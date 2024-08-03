@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `boxdbmartindatabases` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `boxdbmartindatabases` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `boxdbmartindatabases`;
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: boxdbmartindatabases
 -- ------------------------------------------------------
--- Server version	8.0.39
+-- Server version	8.0.28
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,17 +25,23 @@ DROP TABLE IF EXISTS `almacen`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `almacen` (
-  `IdItem` int NOT NULL AUTO_INCREMENT,
-  `IdTipoItem` int NOT NULL,
-  `Nombre` varchar(20) NOT NULL,
-  `Cantidad` decimal(8,2) NOT NULL,
+  `IdItem` varchar(45) NOT NULL,
   `Detalle` varchar(45) NOT NULL,
-  `Ubicacion` varchar(20) DEFAULT NULL,
-  `Codigo` varchar(20) NOT NULL,
+  `IdTipoItem` int NOT NULL,
+  `Valor` decimal(8,2) NOT NULL,
+  `IdClase` int NOT NULL,
+  `IdUnidadMedida` varchar(20) NOT NULL,
   `Estado` varchar(20) NOT NULL,
+  `Stock` decimal(8,2) NOT NULL,
+  `StockMinimo` decimal(8,2) NOT NULL,
+  `FechaAlta` date NOT NULL,
   PRIMARY KEY (`IdItem`),
-  KEY `FKIdTipoItem_idx` (`IdTipoItem`),
-  CONSTRAINT `FKIdTipoItem` FOREIGN KEY (`IdTipoItem`) REFERENCES `tipositems` (`IdTipoItem`)
+  KEY `FKIdTipoAlmacen_idx` (`IdTipoItem`),
+  KEY `FKIdTipoClaseArt_idx` (`IdClase`),
+  KEY `FKIdUnidadMedidaAlmacen_idx` (`IdUnidadMedida`),
+  CONSTRAINT `FKIdTipoAlmacen` FOREIGN KEY (`IdTipoItem`) REFERENCES `mastertipo` (`IdTipo`),
+  CONSTRAINT `FKIdTipoClaseArt` FOREIGN KEY (`IdClase`) REFERENCES `clasesarticulos` (`IdClaseArticulo`),
+  CONSTRAINT `FKIdUnidadMedidaAlmacen` FOREIGN KEY (`IdUnidadMedida`) REFERENCES `unidadesmedida` (`IdUnidadMedida`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -45,7 +51,32 @@ CREATE TABLE `almacen` (
 
 LOCK TABLES `almacen` WRITE;
 /*!40000 ALTER TABLE `almacen` DISABLE KEYS */;
+INSERT INTO `almacen` VALUES ('AGUA','Agua',6,100.00,25,'LTS','A',0.00,0.00,'2007-01-01'),('BC10038-25','Base Cerejeira 100x38x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('BICAZ1','Birome BIC AZUL GRUESO',5,25.00,5,'CU','A',35.00,5.00,'2007-01-01'),('BICNG1','Birome BIC NEGRO GRUESO',5,25.00,5,'CU','A',21.00,5.00,'2007-01-01'),('BICRO1','Birome BIC ROJO GRUESO',5,25.00,5,'CU','A',18.00,5.00,'2007-01-01'),('BICTGAZUL','Bic trazo grueso Azul ',5,15.00,5,'CU','A',8.00,15.00,'2021-10-10'),('BICTGNEGRA','Bic trazo grueso Negra',5,15.00,5,'CU','A',30.00,15.00,'2021-11-10'),('BICTGROJO','Bic trazo grueso Rojo',5,15.00,5,'CU','A',55.00,15.00,'2021-10-10'),('BOGLOGO','Logo Bogner',4,0.00,20,'CU','A',30.00,15.00,'2018-02-08'),('BP10038-25','Base Pino 100x38x2,5',4,250.00,2,'CU','A',15.00,5.00,'2010-08-01'),('BP11038-25','Base Pino 110x38x2,5',4,120.00,2,'CU','A',30.00,5.00,'2010-08-02'),('BP12038-25','Base Pino 120x38x2,5',4,220.00,2,'CU','A',20.00,5.00,'2010-04-20'),('BROCHES10','Broches 10',5,11.00,5,'CU','A',5.00,5.00,'2021-11-10'),('BROCHES15','Broches 15',5,11.80,5,'CU','A',16.00,5.00,'2021-10-20'),('CHAPF-P1000','Chapa Apoyo Sup. Fender P1000',4,380.00,21,'CU','A',40.00,5.00,'2010-04-10'),('CHAPFDER-HR','Chapa Apoyo Sup. Fender HR',4,280.00,21,'CU','A',100.00,20.00,'2019-04-10'),('CHAPMBHN','Chapa Apoyo Sup. MB Head - Negro',4,400.00,21,'CU','A',33.00,5.00,'2010-04-10'),('COLA_MADERA','Cola Madera ',4,90.00,3,'CM3','A',16000.00,4000.00,'2013-08-02'),('CUAD-ESPIRAL-CUA-80','CUADERNO Espiralado 80h Cuadriculado',5,80.00,5,'CU','A',10.00,10.00,'2018-08-08'),('CUAD-ESPIRAL-RAY-80','CUADERNO Espiralado 80h Rayado',5,85.00,5,'CU','A',12.00,10.00,'2018-08-08'),('CUEFDER-BK','Cuerina Fender Negro',4,150.00,16,'M2','A',180.00,10.00,'2010-11-03'),('CUEMBC','Cuerina MB Caoba',4,320.00,16,'M2','A',38.50,10.00,'2010-03-08'),('CUEMBCREAM','Cuerina MB Cream',4,350.00,16,'M2','A',45.00,10.00,'2010-10-02'),('CUEMBN','Cuerina MB Negro',4,150.00,16,'M2','A',180.00,10.00,'2010-11-03'),('CUEVIB SLO','Cuerina Vibora Soldano Custom 1',4,600.00,16,'M2','A',80.00,20.00,'2020-01-01'),('ENERGIA','Energía Electrica',6,1200.00,24,'KWH','A',0.00,0.00,'2007-01-01'),('ESQUIFDERA-BK','Esquinas Fender Acetato - Negro',4,60.00,2,'CU','A',100.00,20.00,'2018-08-04'),('ESQUIMBAHN','Esquinas MB Acetato Head - Negro',4,600.00,2,'CU','A',100.00,20.00,'2018-08-04'),('FC9520-25','Fondo Cerejerira 95x20x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('FDERLOGO1','Logo Fender 1',4,0.00,20,'CU','A',130.00,40.00,'2018-08-02'),('FDERLOGO2','Logo Fender 2',4,0.00,20,'CU','A',50.00,10.00,'2018-08-02'),('FDERLOGO3','Logo Fender 3',4,0.00,20,'CU','A',1000.00,200.00,'2018-08-02'),('FP10535-25','Fondo Pino 105x30x2,5',4,100.00,2,'CU','A',14.00,5.00,'2018-04-08'),('FP11525-25','Fondo Pino 115x25x2,5',4,100.00,2,'CU','A',13.00,5.00,'2018-08-08'),('FP1557225','Frente Pino 1x12 W 155x72x2,5',4,200.00,2,'CU','A',16.00,5.00,'2010-08-08'),('FP9520-25','Fondo Pino 95x20x2,5',4,400.00,2,'CU','A',13.00,5.00,'2012-08-08'),('FREZ1506N','Frezado 1,5x0,6 - Negro',4,0.30,1,'CU','A',98.00,150.00,'2012-08-08'),('FREZ1506P','Frezado 1,5x0,6 - Plata',4,0.40,1,'CU','A',480.00,150.00,'2012-08-08'),('FREZ206P','Frezado 2x0,6 - Plata',4,0.35,1,'CU','A',500.00,100.00,'2012-08-08'),('FTEC9520-25','Frente Cerejerira 95x20x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('FTEP1210545-25','Frente Pino 1x12 105x45x2,5',4,100.00,1,'CU','A',11.00,5.00,'2012-08-08'),('FTEP1211550-25','Frente Pino 1x12 115x50x2,5',4,220.00,2,'CU','A',12.00,5.00,'2018-06-08'),('FTEP9520-25','Frente Pino 95x20x2,5',4,130.00,2,'CU','A',19.00,5.00,'2010-07-08'),('GAS','Gas',6,900.00,25,'CM3','A',0.00,0.00,'2007-01-01'),('HP12A ','TONER 12A HP',5,3000.00,17,'CU','A',5.00,5.00,'2018-08-08'),('HP78A ','TONER 78A HP',5,3000.00,17,'CU','A',5.00,1.00,'2021-10-08'),('LACA-MR-BR','Laca Marina Brillante',4,205.00,14,'CM3','A',1920.00,4000.00,'2019-08-05'),('LACA-MR-SM','Laca Marina Semi-Mate',4,134.00,14,'CM3','A',8000.00,4000.00,'2019-03-01'),('LCD3840-25','Lateral Der Cerejeira Forma 38x40x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('LCI3840-25','Lateral Izq Cerejerira Forma 38x40x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('LPD3840-25','Lateral Der Pino Forma 38x40x2,5',4,370.00,2,'CU','A',20.00,5.00,'2010-08-08'),('LPD3855-25','Lateral Der Pino Forma 38x55x2,5',4,300.00,2,'CU','A',19.00,5.00,'2010-09-08'),('LPI3840-25','Lateral Izq Pino Forma 38x40x2,5',4,120.00,2,'CU','A',18.00,5.00,'2012-08-08'),('LPI3855-25','Lateral Izq Pino Forma 38x55x2,5',4,140.00,2,'CU','A',22.00,5.00,'2012-08-08'),('MANITFDER-BK','Manija Transp. Fender - Negro',4,140.00,8,'CU','A',60.00,20.00,'2018-08-08'),('MANITMBCN','Manija Transp. Heavy MB - Negro',4,450.00,8,'CU','A',35.00,15.00,'2012-08-08'),('MANITMBN','Manija Transp. MB - Negro',4,340.00,8,'CU','A',30.00,15.00,'2018-08-08'),('MARLOGO','Logo Marshall',4,0.00,20,'CU','A',200.00,50.00,'2017-08-03'),('MBLOGO1','Logo Boogie',4,0.00,20,'CU','A',20.00,20.00,'2018-02-06'),('MBLOGO2','Logo Boogie Cream',4,0.00,20,'CU','A',150.00,30.00,'2013-08-02'),('MECHAMAD10','Mecha madera 10mm',5,45.00,4,'CU','A',3.00,5.00,'2018-01-10'),('MECHAMAD4','Mecha madera 4mm',5,35.00,4,'CU','A',12.00,5.00,'2018-08-03'),('MECHAMAD5','Mecha madera 5mm',5,35.00,4,'CU','A',8.00,5.00,'2018-01-12'),('MECHAMAD6','Mecha madera 6mm',5,35.00,4,'CU','A',14.00,5.00,'2018-08-03'),('PARK205N','Parker 2x0,5 - Negro',4,400.00,1,'CU','A',220.00,100.00,'2013-08-08'),('PARK2505N','Parker 2,5x0,5 - Negro',4,350.00,1,'CU','A',250.00,120.00,'2018-08-06'),('PEGA-CTO','Pegamento de Contacto ',4,295.00,3,'CM3','A',12000.00,2000.00,'2020-08-12'),('PEGA-CTO_TR','Pegamento de Contacto Tranparente',4,290.00,3,'CM3','A',20000.00,2000.00,'2020-10-03'),('PLASTICOLA 200GRS','Plasticola 200 gramos blanca',5,145.00,5,'CU','A',12.00,10.00,'2019-08-08'),('REGAFDERSTD-BKN','Regaton Fender STD - Negro',4,22.00,9,'CU','A',180.00,50.00,'2018-08-06'),('REGAMBHN','Regaton MB Head - Negro',4,122.00,9,'CU','A',97.00,50.00,'2018-08-06'),('REGUNV35','Regaton UNIV 35mm- Negro',4,75.00,9,'CU','A',650.00,100.00,'2018-08-06'),('REGUNV40','Regaton UNIV 40mm- Negro',4,80.00,9,'CU','A',450.00,100.00,'2018-08-06'),('RESMA-A4-75GR','Resma A4 500 x 75grs',5,455.00,5,'CU','A',25.00,20.00,'2020-08-08'),('RESMA-CARTA-80GR','Resma CARTA 500 x 80grs',5,498.00,5,'CU','A',15.00,15.00,'2020-08-08'),('RESMAA480G','Resma A4 80grs',5,90.00,5,'CU','A',25.00,15.00,'2021-10-10'),('RESMALT80G','Resma LT 80grs',5,95.00,5,'CU','A',15.00,10.00,'2021-10-10'),('RIVLOGO','Logo Rivera',4,0.00,20,'CU','A',100.00,30.00,'2020-10-03'),('RUED 45-AZUL','Ruedas 45mm diam Azul',4,230.00,18,'CU','A',80.00,20.00,'2017-08-10'),('RUED 60-BK','Ruedas 60mm diam Negra',4,268.00,18,'CU','A',120.00,20.00,'2017-08-10'),('SEGURIDAD','Servicio de Seguridad',6,1050.00,25,'CU','A',0.00,0.00,'2007-01-01'),('SEGUROS','Seguros',6,3000.00,25,'CU','A',0.00,0.00,'2007-01-01'),('SLOLOGO','Logo Soldano',4,0.00,20,'CU','A',78.00,20.00,'2019-03-14'),('TARM1020','Tarugos Mad. 10x20',4,8.00,19,'CU','A',405.00,150.00,'2014-02-05'),('TARM1030','Tarugos Mad. 10x30',4,8.00,19,'CU','A',605.00,150.00,'2014-08-04'),('TC10028-25','Tapa Cerejeira 100x28x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('TELAFDER-BD','Tela Blues Deville Fender',4,125.80,13,'M2','A',100.00,40.00,'2019-08-02'),('TOPFONC20-25x25','Tope Fondo Cerejerira 20x2,5x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('TOPFONP20-25x25','Tope Fondo Pino 20x2,5x2,5',4,270.00,2,'CU','A',12.00,10.00,'2014-08-08'),('TOPFONP25-25x25','Tope Fondo Pino 25x2,5x2,5',4,290.00,2,'CU','A',14.00,10.00,'2014-08-02'),('TOPFONP30-25x25','Tope Fondo Pino 30x2,5x2,5',4,400.00,2,'CU','A',16.00,10.00,'2014-08-10'),('TOPFREC20-25x25','Tope Frente Cerejerira 20x2,5x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('TOPFREP20-25x25','Tope Frente Pino 20x2,5x2,5',4,300.00,2,'CU','A',12.00,10.00,'2014-08-10'),('TOPFREP38-25x25','Tope Frente Pino 38x2,5x2,5',4,210.00,2,'CU','A',14.00,10.00,'2017-08-18'),('TOPFREP50-25x25','Tope Frente Pino 50x2,5x2,5',4,125.00,2,'CU','A',16.00,15.00,'2017-08-10'),('TP10028-25','Tapa Pino 100x28x2,5',4,189.00,2,'CU','A',24.00,15.00,'2017-08-04'),('TP11028-25','Tapa Pino 110x28x2,5',4,167.00,2,'CU','A',23.00,15.00,'2017-08-03'),('TP12038-25','Tapa Pino 120x38x2,5',4,380.00,2,'CU','A',22.00,15.00,'2017-08-03'),('VINIL','Peg. Vinilico Contacto',4,124.00,12,'CM3','A',1350.80,1500.00,'2018-08-02'),('VINIL-ESP','Peg. Vinilico Contacto Especial',4,450.00,12,'CM3','A',2500.30,5000.00,'2019-08-02'),('VINIL-NG','Peg. Vinilico Contacto Negro',4,100.00,12,'CM3','A',4560.00,5000.00,'2019-08-01');
 /*!40000 ALTER TABLE `almacen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `clasesarticulos`
+--
+
+DROP TABLE IF EXISTS `clasesarticulos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `clasesarticulos` (
+  `IdClaseArticulo` int NOT NULL AUTO_INCREMENT,
+  `Clase` varchar(45) NOT NULL,
+  PRIMARY KEY (`IdClaseArticulo`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clasesarticulos`
+--
+
+LOCK TABLES `clasesarticulos` WRITE;
+/*!40000 ALTER TABLE `clasesarticulos` DISABLE KEYS */;
+INSERT INTO `clasesarticulos` VALUES (1,'TORNILLOS'),(2,'MADERAS'),(3,'PEGAMENTOS'),(4,'HERRAMIENTAS'),(5,'LIBRERIA'),(6,'MAQUINAS ELECT.'),(7,'CLAVOS'),(8,'MANIJAS'),(9,'REGATONES'),(10,'ESQUINEROS'),(11,'CUERINA'),(12,'VINILICOS'),(13,'TELAS'),(14,'LACAS'),(15,'PINTURAS'),(16,'CUEROS'),(17,'TONERS'),(18,'RUEDAS'),(19,'TARUGOS'),(20,'LOGOS'),(21,'CHAPA APOYO'),(22,'CURTIEMBRE'),(23,'MADERA ESPECIAL'),(24,'ELECTRICIDAD'),(25,'VARIOS');
+/*!40000 ALTER TABLE `clasesarticulos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -60,8 +91,10 @@ CREATE TABLE `clientes` (
   `IdEmpleado` int NOT NULL,
   `IdDireccion` int NOT NULL,
   `IdContacto` int NOT NULL,
-  `Nombre` varchar(20) NOT NULL,
   `RazonSocial` varchar(20) NOT NULL,
+  `Marca` varchar(45) NOT NULL,
+  `FechaIngreso` date NOT NULL,
+  `Estado` varchar(1) NOT NULL,
   PRIMARY KEY (`IdCliente`),
   KEY `FKIdEmpleado_idx` (`IdEmpleado`),
   KEY `FKIdDireccion_idx` (`IdDireccion`),
@@ -69,7 +102,7 @@ CREATE TABLE `clientes` (
   CONSTRAINT `FKIdContactoClientes` FOREIGN KEY (`IdContacto`) REFERENCES `contactos` (`IdContacto`),
   CONSTRAINT `FKIdDireccionClientes` FOREIGN KEY (`IdDireccion`) REFERENCES `direcciones` (`IdDireccion`),
   CONSTRAINT `FKIdEmpleadoClientes` FOREIGN KEY (`IdEmpleado`) REFERENCES `empleados` (`IdEmpleado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,6 +111,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (1,1,1,1,'Fender LLC','Fender','2015-01-01','A'),(2,2,2,2,'Marshall Inc','Marshall','2014-02-10','A'),(3,3,3,3,'Mesa LLC','Mesa Boogie','2014-01-08','A'),(4,4,4,4,'Soldano','Soldano','2019-10-10','A'),(5,5,5,5,'Bogner Amp Inc','Bogner','2018-09-10','A'),(6,6,6,6,'Rivera Music LLC','Rivera','2017-10-01','A');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,9 +190,11 @@ DROP TABLE IF EXISTS `contactos`;
 CREATE TABLE `contactos` (
   `IdContacto` int NOT NULL AUTO_INCREMENT,
   `Correo` varchar(45) DEFAULT NULL,
-  `Telefono` varchar(45) DEFAULT NULL,
+  `Telefono1` varchar(45) DEFAULT NULL,
+  `Telefono2` varchar(45) DEFAULT NULL,
+  `Telefono3` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`IdContacto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,6 +203,7 @@ CREATE TABLE `contactos` (
 
 LOCK TABLES `contactos` WRITE;
 /*!40000 ALTER TABLE `contactos` DISABLE KEYS */;
+INSERT INTO `contactos` VALUES (1,'fenderllc@fender.com','1111-2222','1111-2223','1111-2224'),(2,'Marshall@marshall.com','2222-1111','2222-1112','2222-1113'),(3,'mesa@mesa.com','3333-2211','3333-2222',NULL),(4,'soldano@soldano.com','1111-2254','1111-8989',NULL),(5,'bogneramp@bogneramp.com','2223-5454',NULL,NULL),(6,'riverainfo@rivera.com','2233-4455','2233-5544',NULL);
 /*!40000 ALTER TABLE `contactos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,22 +247,19 @@ CREATE TABLE `empleados` (
   `IdContacto` int NOT NULL,
   `IdSector` int NOT NULL,
   `IdDireccion` int NOT NULL,
-  `Nombre` varchar(20) NOT NULL,
-  `Apellido` varchar(20) NOT NULL,
-  `Cargo` varchar(20) NOT NULL,
-  `SexEmp` varchar(1) NOT NULL,
-  `FecNac` date NOT NULL,
-  `FecInc` date NOT NULL,
-  `SalEmp` decimal(8,2) NOT NULL,
+  `Nombre` varchar(20) DEFAULT NULL,
+  `Apellido` varchar(20) DEFAULT NULL,
+  `Cargo` varchar(20) DEFAULT NULL,
+  `SexEmp` varchar(1) DEFAULT NULL,
+  `FecNac` date DEFAULT NULL,
+  `FecInc` date DEFAULT NULL,
+  `SalEmp` decimal(8,2) DEFAULT NULL,
   `Comision` decimal(8,2) DEFAULT NULL,
   PRIMARY KEY (`IdEmpleado`),
   KEY `FKIdDireccion_idx` (`IdDireccion`),
   KEY `FKIdContacto_idx` (`IdContacto`),
-  KEY `FkIdSector_idx` (`IdSector`),
-  CONSTRAINT `FKIdContacto` FOREIGN KEY (`IdContacto`) REFERENCES `contactos` (`IdContacto`),
-  CONSTRAINT `FKIdDireccion` FOREIGN KEY (`IdDireccion`) REFERENCES `direcciones` (`IdDireccion`),
-  CONSTRAINT `FkIdSector` FOREIGN KEY (`IdSector`) REFERENCES `sectores` (`IdSector`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  KEY `FkIdSector_idx` (`IdSector`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,6 +268,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
+INSERT INTO `empleados` VALUES (1,1,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,2,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,3,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,4,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,5,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,6,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -320,17 +355,17 @@ DROP TABLE IF EXISTS `hojasruta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `hojasruta` (
-  `IdRuta` int NOT NULL AUTO_INCREMENT,
   `IdProducto` varchar(45) NOT NULL,
-  `IdSecuencia` int NOT NULL,
-  `Codigo` varchar(20) NOT NULL,
-  `Detalle` varchar(20) DEFAULT NULL,
+  `IdSecuencia` varchar(20) NOT NULL,
+  `Secuencia` varchar(20) NOT NULL,
+  `Duracion` time NOT NULL,
+  `IdRuta` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`IdRuta`),
   KEY `FKIdProducto_idx` (`IdProducto`),
   KEY `FKIdSecuencia_idx` (`IdSecuencia`),
   CONSTRAINT `FKIdProductoHojRut` FOREIGN KEY (`IdProducto`) REFERENCES `productos` (`IdProducto`),
   CONSTRAINT `FKIdSecuenciaHojRut` FOREIGN KEY (`IdSecuencia`) REFERENCES `secuenciasproduccion` (`IdSecuencia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -339,6 +374,7 @@ CREATE TABLE `hojasruta` (
 
 LOCK TABLES `hojasruta` WRITE;
 /*!40000 ALTER TABLE `hojasruta` DISABLE KEYS */;
+INSERT INTO `hojasruta` VALUES ('BLUED4X10','AC1','1','35:00:00',1),('BLUED4X10','EN1','2','45:00:00',2),('BLUED4X10','AC2','3','28:00:00',3),('BLUED4X10','EN2','5','25:00:00',4),('BLUED4X10','CC','6','15:00:00',5),('MVCAB1+','AC1','1','35:00:00',6),('MVCAB1+','EN1','2','40:00:00',7),('MVCAB1+','AC2','3','15:00:00',8),('MVCAB1+','EN2','5','25:00:00',9),('MVCBO1','AC1','1','35:00:00',10),('MVCBO1','EN1','2','45:00:00',11),('MVCBO1','AC2','3','28:00:00',12),('MVCBO1','EN2','5','25:00:00',13),('MVCBO1','CC','6','15:00:00',14),('FHOTRODDX3','AC1','1','20:00:00',15),('FHOTRODDX3','EN1','2','35:00:00',16),('FHOTRODDX3','TAP','4','68:00:00',17),('FHOTRODDX3','AC2','3','30:00:00',18),('FHOTRODDX3','EN2','5','25:00:00',19),('BLUED4X10','TAP','4','15:00:00',20),('MVCBO1','TAP','4','78:00:00',21),('MVCAB1+','TAP','4','68:00:00',22),('CT1X12WIDE23','AC1','1','15:00:00',23),('CT1X12WIDE23','EN1','2','35:00:00',24),('CT1X12WIDE23','AC2','3','15:00:00',25),('CT1X12WIDE23','TAP','4','56:00:00',26),('CT1X12WIDE23','EN2','5','14:00:00',27),('CT1X12WIDE23','CC','6','15:00:00',28);
 /*!40000 ALTER TABLE `hojasruta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -370,6 +406,30 @@ LOCK TABLES `lineasproduccion` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `mastertipo`
+--
+
+DROP TABLE IF EXISTS `mastertipo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mastertipo` (
+  `IdTipo` int NOT NULL AUTO_INCREMENT,
+  `TipoDetalle` varchar(20) NOT NULL,
+  PRIMARY KEY (`IdTipo`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mastertipo`
+--
+
+LOCK TABLES `mastertipo` WRITE;
+/*!40000 ALTER TABLE `mastertipo` DISABLE KEYS */;
+INSERT INTO `mastertipo` VALUES (1,'COMBO'),(2,'CABEZAL'),(3,'CAJA'),(4,'COMPONENTE'),(5,'INSUMO'),(6,'SERVICIOS');
+/*!40000 ALTER TABLE `mastertipo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `materialesreservadosprod`
 --
 
@@ -378,7 +438,7 @@ DROP TABLE IF EXISTS `materialesreservadosprod`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `materialesreservadosprod` (
   `IdReservado` int NOT NULL AUTO_INCREMENT,
-  `IdItem` int NOT NULL,
+  `IdItem` varchar(45) NOT NULL,
   `Cantidad` decimal(8,2) NOT NULL,
   `Detalle` varchar(20) NOT NULL,
   PRIMARY KEY (`IdReservado`),
@@ -408,7 +468,7 @@ CREATE TABLE `modelosproductos` (
   `IdProducto` varchar(45) NOT NULL,
   `ModeloImg` blob NOT NULL,
   PRIMARY KEY (`IdModelo`),
-  KEY `FKIdProducto_idx` (`IdProducto`),
+  KEY `FKIdProductoModProds_idx` (`IdProducto`),
   CONSTRAINT `FKIdProductoModProds` FOREIGN KEY (`IdProducto`) REFERENCES `productos` (`IdProducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -432,7 +492,7 @@ DROP TABLE IF EXISTS `movalmacen`;
 CREATE TABLE `movalmacen` (
   `IdMov` int NOT NULL AUTO_INCREMENT,
   `IdCompra` int NOT NULL,
-  `IdItem` int NOT NULL,
+  `IdItem` varchar(45) NOT NULL,
   `IdTipoMov` int NOT NULL,
   `IdEmpleado` int NOT NULL,
   `IdSector` int NOT NULL,
@@ -601,7 +661,7 @@ DROP TABLE IF EXISTS `ordenescompradet`;
 CREATE TABLE `ordenescompradet` (
   `IdOrdenCompraDet` int NOT NULL AUTO_INCREMENT,
   `IdOrdenCompra` int NOT NULL,
-  `IdItem` int NOT NULL,
+  `IdItem` varchar(45) NOT NULL,
   `Codigo` varchar(20) NOT NULL,
   `Cantidad` int NOT NULL,
   `Descripcion` varchar(20) NOT NULL,
@@ -669,7 +729,7 @@ DROP TABLE IF EXISTS `ordenespedidodet`;
 CREATE TABLE `ordenespedidodet` (
   `IdOrdenPedidoDet` int NOT NULL AUTO_INCREMENT,
   `IdOrdenPedido` int NOT NULL,
-  `IdItem` int NOT NULL,
+  `IdItem` varchar(45) NOT NULL,
   `Item` int NOT NULL,
   `Cantidad` decimal(8,2) NOT NULL,
   `Descripcion` varchar(45) NOT NULL,
@@ -774,16 +834,16 @@ DROP TABLE IF EXISTS `productos`;
 CREATE TABLE `productos` (
   `IdProducto` varchar(45) NOT NULL,
   `IdCliente` int NOT NULL,
-  `Descripcion` varchar(45) NOT NULL,
+  `Producto` varchar(45) NOT NULL,
   `IdTipoProducto` int NOT NULL,
   `FechaAlta` date NOT NULL,
   `Margen` decimal(8,2) NOT NULL,
   `Estado` varchar(1) NOT NULL,
   PRIMARY KEY (`IdProducto`),
   KEY `FKIdCliente_idx` (`IdCliente`),
-  KEY `FKIdTipoProductoProd_idx` (`IdTipoProducto`),
+  KEY `FKIdTipoProd_idx` (`IdTipoProducto`),
   CONSTRAINT `FKIdClienteProd` FOREIGN KEY (`IdCliente`) REFERENCES `clientes` (`IdCliente`),
-  CONSTRAINT `FKIdTipoProductoProd` FOREIGN KEY (`IdTipoProducto`) REFERENCES `tipoproducto` (`IdTipoProducto`)
+  CONSTRAINT `FKIdTipoProd` FOREIGN KEY (`IdTipoProducto`) REFERENCES `mastertipo` (`IdTipo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -793,6 +853,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
+INSERT INTO `productos` VALUES ('BLUED4X10',1,'Blues Deville 4x10 Reissue',1,'2008-10-10',38.00,'A'),('BOGECS-100',5,'Bogner Ecstasy 100-watt Tube Head',2,'2011-10-10',29.80,'A'),('CT1X12WIDE23',3,'California Tweed1X12 CALIFORNIA TWEED 23',3,'2010-02-14',35.00,'A'),('FHOTRODDX3',1,'Hot Rod Deluxe III',1,'2018-12-08',37.00,'A'),('MJCM900',2,'JCM900 4100',2,'2008-03-17',41.00,'A'),('MVCAB1+',3,'MARK V+ - Head',2,'2012-04-03',35.00,'A'),('MVCBO1',3,'MARK V - Combo 1x12',1,'2012-04-03',30.00,'A'),('MVS8080',2,'Marshall Valvestate 8080',1,'2008-01-10',35.50,'A'),('PERF1000',1,'Performer 1000 - Black',1,'2009-08-14',40.00,'A'),('RIV_VENUS 5x12H',6,'Rivera Venus 5 1x12\" 35-watt Tube Combo Amp',2,'2015-09-15',43.60,'A'),('SLO-100 SO',4,'Soldano SLO-100 Super Lead Overdrive',2,'2010-12-18',37.00,'A');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -836,21 +897,20 @@ DROP TABLE IF EXISTS `recetamateriales`;
 CREATE TABLE `recetamateriales` (
   `IdReceta` int NOT NULL AUTO_INCREMENT,
   `IdProducto` varchar(45) NOT NULL,
-  `IdItem` int NOT NULL,
-  `IdSecuencia` int NOT NULL,
-  `IdUnidadMedida` varchar(20) NOT NULL,
-  `Detalle` varchar(20) DEFAULT NULL,
+  `IdItem` varchar(45) NOT NULL,
   `Cantidad` decimal(8,2) NOT NULL,
+  `IdUnidadMedida` varchar(20) NOT NULL,
+  `IdSecuencia` varchar(20) NOT NULL,
   PRIMARY KEY (`IdReceta`),
   KEY `FKIdProducto_idx` (`IdProducto`),
   KEY `FKIdItem_idx` (`IdItem`),
   KEY `FKIdSecuencia_idx` (`IdSecuencia`),
-  KEY `FKIdUnidadMedida_idx` (`IdUnidadMedida`),
+  KEY `FKIdUnidadMedidaReceta_idx` (`IdUnidadMedida`),
   CONSTRAINT `FKIdItem` FOREIGN KEY (`IdItem`) REFERENCES `almacen` (`IdItem`),
   CONSTRAINT `FKIdProducto` FOREIGN KEY (`IdProducto`) REFERENCES `productos` (`IdProducto`),
   CONSTRAINT `FKIdSecuencia` FOREIGN KEY (`IdSecuencia`) REFERENCES `secuenciasproduccion` (`IdSecuencia`),
-  CONSTRAINT `FKIdUnidadMedida` FOREIGN KEY (`IdUnidadMedida`) REFERENCES `unidadesmedida` (`IdUnidadMedida`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  CONSTRAINT `FKIdUnidadMedidaReceta` FOREIGN KEY (`IdUnidadMedida`) REFERENCES `unidadesmedida` (`IdUnidadMedida`)
+) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -859,6 +919,7 @@ CREATE TABLE `recetamateriales` (
 
 LOCK TABLES `recetamateriales` WRITE;
 /*!40000 ALTER TABLE `recetamateriales` DISABLE KEYS */;
+INSERT INTO `recetamateriales` VALUES (1,'MVCAB1+','TP10028-25',1.00,'CU','AC1'),(2,'MVCAB1+','BP10038-25',1.00,'CU','AC1'),(3,'MVCAB1+','LPD3840-25',1.00,'CU','AC1'),(4,'MVCAB1+','LPI3840-25',1.00,'CU','AC1'),(5,'MVCAB1+','FP9520-25',1.00,'CU','AC2'),(6,'MVCAB1+','FTEP9520-25',1.00,'CU','AC2'),(7,'MVCAB1+','TOPFREP20-25x25',2.00,'CU','AC2'),(8,'MVCAB1+','TOPFONP20-25x25',2.00,'CU','AC2'),(9,'MVCAB1+','REGAMBHN',4.00,'CU','AC1'),(10,'MVCAB1+','ESQUIMBAHN',6.00,'CU','AC1'),(11,'MVCAB1+','MANITMBN',1.00,'CU','AC2'),(12,'MVCAB1+','TARM1020',8.00,'CU','AC2'),(13,'MVCAB1+','PARK205N',4.00,'CU','AC2'),(14,'MVCAB1+','PARK2505N',4.00,'CU','AC2'),(15,'MVCAB1+','FREZ206P',2.00,'CU','AC2'),(16,'MVCAB1+','CHAPMBHN',2.00,'CU','AC1'),(17,'MVCAB1+','FREZ1506P',4.00,'CU','AC1'),(18,'MVCAB1+','CUEMBN',2.80,'M2','AC1'),(19,'MVCAB1+','VINIL',550.00,'CM3','AC1'),(20,'MVCAB1+','FREZ1506N',8.00,'CU','AC1'),(21,'MVCAB1+','MBLOGO1',1.00,'CU','AC1'),(22,'MVCBO1','TP11028-25',1.00,'CU','AC1'),(23,'MVCBO1','BP11038-25',1.00,'CU','AC1'),(24,'MVCBO1','LPD3855-25',1.00,'CU','AC1'),(25,'MVCBO1','LPI3855-25',1.00,'CU','AC1'),(26,'MVCBO1','FP10535-25',1.00,'CU','AC2'),(27,'MVCBO1','TOPFONP30-25x25',2.00,'CU','AC2'),(28,'MVCBO1','FTEP1210545-25',1.00,'CU','AC2'),(29,'MVCBO1','TOPFREP38-25x25',2.00,'CU','AC2'),(30,'MVCBO1','REGAMBHN',4.00,'CU','AC1'),(31,'MVCBO1','ESQUIMBAHN',5.00,'CU','AC1'),(32,'MVCBO1','MANITMBN',1.00,'CU','AC2'),(33,'MVCBO1','TARM1020',8.00,'CU','AC2'),(34,'MVCBO1','PARK205N',4.00,'CU','AC2'),(35,'MVCBO1','PARK2505N',4.00,'CU','AC2'),(36,'MVCBO1','FREZ206P',2.00,'CU','AC2'),(37,'MVCBO1','CHAPMBHN',2.00,'CU','AC1'),(38,'MVCBO1','FREZ1506P',4.00,'CU','AC1'),(39,'MVCBO1','CUEMBN',4.70,'M2','AC1'),(40,'MVCBO1','VINIL',880.00,'CM3','AC1'),(41,'MVCBO1','FREZ1506N',8.00,'CU','AC1'),(42,'MVCBO1','MBLOGO1',1.00,'CU','AC1'),(43,'CT1X12WIDE23','TP12038-25',1.00,'CU','AC1'),(44,'CT1X12WIDE23','BP12038-25',1.00,'CU','AC1'),(45,'CT1X12WIDE23','LPD3855-25',1.00,'CU','AC1'),(46,'CT1X12WIDE23','LPI3855-25',1.00,'CU','AC1'),(47,'CT1X12WIDE23','FP11525-25',1.00,'CU','AC2'),(48,'CT1X12WIDE23','TOPFONP25-25x25',2.00,'CU','AC2'),(49,'CT1X12WIDE23','TOPFREP50-25x25',2.00,'CU','AC2'),(50,'CT1X12WIDE23','FTEP1211550-25',1.00,'CU','AC2'),(51,'CT1X12WIDE23','REGAMBHN',4.00,'CU','AC1'),(52,'CT1X12WIDE23','ESQUIMBAHN',6.00,'CU','AC1'),(53,'CT1X12WIDE23','MANITMBCN',1.00,'CU','AC2'),(54,'CT1X12WIDE23','TARM1020',8.00,'CU','AC2'),(55,'CT1X12WIDE23','PARK205N',8.00,'CU','AC2'),(56,'CT1X12WIDE23','PARK2505N',4.00,'CU','AC2'),(57,'CT1X12WIDE23','FREZ206P',2.00,'CU','AC2'),(58,'CT1X12WIDE23','CHAPMBHN',2.00,'CU','AC2'),(59,'CT1X12WIDE23','FREZ1506P',4.00,'CU','AC1'),(60,'CT1X12WIDE23','CUEMBCREAM',3.60,'M2','AC1'),(61,'CT1X12WIDE23','VINIL',780.00,'CM3','AC1'),(62,'CT1X12WIDE23','FREZ1506N',8.00,'CU','AC1'),(63,'CT1X12WIDE23','FP1557225',1.00,'CU','AC1'),(64,'CT1X12WIDE23','MBLOGO2',1.00,'CU','AC1'),(65,'BLUED4X10','TP10028-25',1.00,'CU','AC1'),(66,'BLUED4X10','BP10038-25',1.00,'CU','AC1'),(67,'BLUED4X10','LPD3840-25',1.00,'CU','AC1'),(68,'BLUED4X10','LPI3840-25',1.00,'CU','AC1'),(69,'BLUED4X10','FP9520-25',1.00,'CU','AC2'),(70,'BLUED4X10','FTEP9520-25',1.00,'CU','AC2'),(71,'BLUED4X10','TOPFREP20-25x25',2.00,'CU','AC2'),(72,'BLUED4X10','TOPFONP20-25x25',2.00,'CU','AC2'),(73,'BLUED4X10','REGAFDERSTD-BKN',4.00,'CU','AC1'),(74,'BLUED4X10','MANITFDER-BK',1.00,'CU','AC2'),(75,'BLUED4X10','TARM1020',8.00,'CU','AC2'),(76,'BLUED4X10','PARK205N',4.00,'CU','AC2'),(77,'BLUED4X10','PARK2505N',4.00,'CU','AC2'),(78,'BLUED4X10','FREZ206P',2.00,'CU','AC2'),(79,'BLUED4X10','FREZ1506P',4.00,'CU','AC1'),(80,'BLUED4X10','TELAFDER-BD',5.80,'M2','AC1'),(81,'BLUED4X10','VINIL',760.00,'CM3','AC1'),(82,'BLUED4X10','FREZ1506N',8.00,'CU','AC1'),(83,'BLUED4X10','FDERLOGO1',1.00,'CU','AC1'),(105,'FHOTRODDX3','TC10028-25',1.00,'CU','AC1'),(106,'FHOTRODDX3','BC10038-25',1.00,'CU','AC1'),(107,'FHOTRODDX3','LCD3840-25',1.00,'CU','AC1'),(108,'FHOTRODDX3','LCI3840-25',1.00,'CU','AC1'),(109,'FHOTRODDX3','FC9520-25',1.00,'CU','AC1'),(110,'FHOTRODDX3','FTEC9520-25',1.00,'CU','AC1'),(111,'FHOTRODDX3','TOPFREC20-25x25',2.00,'CU','AC1'),(112,'FHOTRODDX3','TOPFONC20-25x25',2.00,'CU','AC1'),(113,'FHOTRODDX3','REGAFDERSTD-BKN',4.00,'CU','AC2'),(114,'FHOTRODDX3','ESQUIFDERA-BK',6.00,'CU','AC2'),(115,'FHOTRODDX3','MANITFDER-BK',1.00,'CU','AC2'),(116,'FHOTRODDX3','TARM1020',8.00,'CU','AC2'),(117,'FHOTRODDX3','PARK205N',4.00,'CU','AC2'),(118,'FHOTRODDX3','PARK2505N',4.00,'CU','AC2'),(119,'FHOTRODDX3','FREZ206P',2.00,'CU','AC2'),(120,'FHOTRODDX3','CHAPFDER-HR',2.00,'CU','AC2'),(121,'FHOTRODDX3','FREZ1506P',4.00,'CU','AC1'),(122,'FHOTRODDX3','CUEFDER-BK',4.80,'M2','AC2'),(123,'FHOTRODDX3','VINIL',760.00,'CM3','AC2'),(124,'FHOTRODDX3','FREZ1506N',8.00,'CU','AC1'),(125,'FHOTRODDX3','FDERLOGO2',1.00,'CU','AC2'),(126,'PERF1000','TP10028-25',1.00,'CU','AC1'),(127,'PERF1000','BP10038-25',1.00,'CU','AC1'),(128,'PERF1000','LPD3840-25',1.00,'CU','AC1'),(129,'PERF1000','LPI3840-25',1.00,'CU','AC1'),(130,'PERF1000','FP9520-25',1.00,'CU','AC1'),(131,'PERF1000','FTEP9520-25',1.00,'CU','AC1'),(132,'PERF1000','TOPFREP20-25x25',2.00,'CU','AC1'),(133,'PERF1000','TOPFONP20-25x25',2.00,'CU','AC1'),(134,'PERF1000','REGAFDERSTD-BKN',4.00,'CU','AC2'),(135,'PERF1000','MANITFDER-BK',1.00,'CU','AC2'),(136,'PERF1000','TARM1020',8.00,'CU','AC1'),(137,'PERF1000','PARK205N',4.00,'CU','AC2'),(138,'PERF1000','PARK2505N',4.00,'CU','AC2'),(139,'PERF1000','FREZ206P',2.00,'CU','AC2'),(140,'PERF1000','FREZ1506P',4.00,'CU','AC2'),(141,'PERF1000','CUEFDER-BK',5.10,'M2','AC2'),(142,'PERF1000','VINIL',820.00,'CM3','AC2'),(143,'PERF1000','FREZ1506N',8.00,'CU','AC2'),(144,'PERF1000','FDERLOGO3',1.00,'CU','AC2');
 /*!40000 ALTER TABLE `recetamateriales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1056,9 +1117,9 @@ DROP TABLE IF EXISTS `secuenciasproduccion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `secuenciasproduccion` (
-  `IdSecuencia` int NOT NULL AUTO_INCREMENT,
-  `Codigo` varchar(20) NOT NULL,
+  `IdSecuencia` varchar(20) NOT NULL,
   `Detalle` varchar(20) NOT NULL,
+  `Tiempo` time NOT NULL,
   PRIMARY KEY (`IdSecuencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1069,31 +1130,8 @@ CREATE TABLE `secuenciasproduccion` (
 
 LOCK TABLES `secuenciasproduccion` WRITE;
 /*!40000 ALTER TABLE `secuenciasproduccion` DISABLE KEYS */;
+INSERT INTO `secuenciasproduccion` VALUES ('AC1','ACOPIO 1','35:00:00'),('AC2','ACOPIO 2','28:00:00'),('CC','CONTROL CALIDAD','15:00:00'),('EN1','ENSAMBLADO 1','60:00:00'),('EN2','ENSAMBLADO 2','40:00:00'),('LUS','LUSTRADO','04:00:00'),('PIN','PINTURA','06:00:00'),('TAP','TAPICERIA','01:30:00');
 /*!40000 ALTER TABLE `secuenciasproduccion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tipoproducto`
---
-
-DROP TABLE IF EXISTS `tipoproducto`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tipoproducto` (
-  `IdTipoProducto` int NOT NULL AUTO_INCREMENT,
-  `Descripcion` varchar(45) NOT NULL,
-  PRIMARY KEY (`IdTipoProducto`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tipoproducto`
---
-
-LOCK TABLES `tipoproducto` WRITE;
-/*!40000 ALTER TABLE `tipoproducto` DISABLE KEYS */;
-INSERT INTO `tipoproducto` VALUES (1,'COMBO'),(2,'CABEZAL'),(3,'CAJA'),(4,'COMPONENTE'),(5,'INSUMO'),(6,'SERVICIOS');
-/*!40000 ALTER TABLE `tipoproducto` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1117,29 +1155,6 @@ CREATE TABLE `tiposentrega` (
 LOCK TABLES `tiposentrega` WRITE;
 /*!40000 ALTER TABLE `tiposentrega` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tiposentrega` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tipositems`
---
-
-DROP TABLE IF EXISTS `tipositems`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tipositems` (
-  `IdTipoItem` int NOT NULL AUTO_INCREMENT,
-  `Detalle` varchar(20) NOT NULL,
-  PRIMARY KEY (`IdTipoItem`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tipositems`
---
-
-LOCK TABLES `tipositems` WRITE;
-/*!40000 ALTER TABLE `tipositems` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tipositems` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1232,4 +1247,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-08-03  1:11:54
+-- Dump completed on 2024-08-03 10:42:50

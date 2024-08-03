@@ -1,1 +1,1 @@
-=CONCATENATE("INSERT INTO articulo VALUES ('"; A100;"' ,'";B100;"' ,'";C100;"' ,'";D100;"' ,'";E100;"' ,'";F100;"' ,'";G100;"' ,'";H100;"' ,'";I100;"' ,'";J100;"'),")
+=CONCATENAR("INSERT INTO hojasruta VALUES ('"; A4;"' ,'";B4;"' ,'";C4;"' ,";D4;" ,'";E4;"');")
