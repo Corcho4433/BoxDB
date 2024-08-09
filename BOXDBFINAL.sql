@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `boxdbmartindatabases` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `boxdbmartindatabases`;
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: localhost    Database: boxdbmartindatabases
@@ -1237,6 +1235,27 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'boxdbmartindatabases'
 --
+/*!50003 DROP FUNCTION IF EXISTS `Positivo_Negativo` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `Positivo_Negativo`(lolo decimal(8,2)) RETURNS varchar(45) CHARSET utf8mb3
+    NO SQL
+    DETERMINISTIC
+BEGIN
+	RETURN IF(lolo > 0, 'Positivo', 'Negativo');
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `Calcular_Precio_Producto` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1253,6 +1272,28 @@ BEGIN
 	from recetamateriales r
 	join almacen a on a.IdItem = r.IdItem
 	where r.IdProducto = PIDProducto;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Check_Stock_Producto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Check_Stock_Producto`(in PidProducto varchar(45), in PCantidad decimal(8,2))
+BEGIN
+    select r.iditem as Componente, (r.cantidad * PCantidad) as "Qty Necesaria", a.stock as Stock, (a.stock - (r.cantidad * PCantidad)) as Dif, if(Positivo_Negativo(a.stock - (r.cantidad * PCantidad)) = "Positivo", "Stock OK", "Sin Stock") as Estado
+    from recetamateriales r
+    join almacen a on r.iditem = a.iditem
+    where r.idproducto = PidProducto;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1335,4 +1376,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-08-03 12:18:46
+-- Dump completed on 2024-08-09 20:56:35
