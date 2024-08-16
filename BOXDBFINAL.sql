@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `boxdbmartindatabases` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `boxdbmartindatabases`;
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: localhost    Database: boxdbmartindatabases
@@ -834,9 +836,12 @@ CREATE TABLE `productos` (
   `IdCliente` int NOT NULL,
   `Producto` varchar(45) NOT NULL,
   `IdTipoProducto` int NOT NULL,
-  `FechaAlta` date NOT NULL,
+  `Costo` decimal(8,2) NOT NULL,
   `Margen` decimal(8,2) NOT NULL,
+  `PUnitario` decimal(8,2) NOT NULL,
+  `Ganancia` int NOT NULL,
   `Estado` varchar(1) NOT NULL,
+  `FechaAlta` date NOT NULL,
   PRIMARY KEY (`IdProducto`),
   KEY `FKIdCliente_idx` (`IdCliente`),
   KEY `FKIdTipoProd_idx` (`IdTipoProducto`),
@@ -851,7 +856,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES ('BLUED4X10',1,'Blues Deville 4x10 Reissue',1,'2008-10-10',38.00,'A'),('BOGECS-100',5,'Bogner Ecstasy 100-watt Tube Head',2,'2011-10-10',29.80,'A'),('CT1X12WIDE23',3,'California Tweed1X12 CALIFORNIA TWEED 23',3,'2010-02-14',35.00,'A'),('FHOTRODDX3',1,'Hot Rod Deluxe III',1,'2018-12-08',37.00,'A'),('MJCM900',2,'JCM900 4100',2,'2008-03-17',41.00,'A'),('MVCAB1+',3,'MARK V+ - Head',2,'2012-04-03',35.00,'A'),('MVCBO1',3,'MARK V - Combo 1x12',1,'2012-04-03',30.00,'A'),('MVS8080',2,'Marshall Valvestate 8080',1,'2008-01-10',35.50,'A'),('PERF1000',1,'Performer 1000 - Black',1,'2009-08-14',40.00,'A'),('RIV_VENUS 5x12H',6,'Rivera Venus 5 1x12\" 35-watt Tube Combo Amp',2,'2015-09-15',43.60,'A'),('SLO-100 SO',4,'Soldano SLO-100 Super Lead Overdrive',2,'2010-12-18',37.00,'A');
+INSERT INTO `productos` VALUES ('BLUED4X10',1,'Blues Deville 4x10 Reissue',1,100865.34,38.00,131124.94,30,'A','2008-10-10'),('BOGECS-100',5,'Bogner Ecstasy 100-watt Tube Head',2,0.00,29.80,0.00,30,'A','2011-10-10'),('CT1X12WIDE23',3,'California Tweed1X12 CALIFORNIA TWEED 23',3,0.00,35.00,0.00,30,'A','2010-02-14'),('FHOTRODDX3',1,'Hot Rod Deluxe III',1,0.00,37.00,0.00,30,'A','2018-12-08'),('MJCM900',2,'JCM900 4100',2,0.00,41.00,0.00,30,'A','2008-03-17'),('MVCAB1+',3,'MARK V+ - Head',2,0.00,35.00,0.00,30,'A','2012-04-03'),('MVCBO1',3,'MARK V - Combo 1x12',1,0.00,30.00,0.00,30,'A','2012-04-03'),('MVS8080',2,'Marshall Valvestate 8080',1,0.00,35.50,0.00,30,'A','2008-01-10'),('PERF1000',1,'Performer 1000 - Black',1,0.00,40.00,0.00,30,'A','2009-08-14'),('RIV_VENUS 5x12H',6,'Rivera Venus 5 1x12\" 35-watt Tube Combo Amp',2,0.00,43.60,0.00,30,'A','2015-09-15'),('SLO-100 SO',4,'Soldano SLO-100 Super Lead Overdrive',2,0.00,37.00,0.00,30,'A','2010-12-18');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1300,6 +1305,33 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Check_Stock_Producto_2` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Check_Stock_Producto_2`(in PIDProducto varchar(45), PCantidad int)
+BEGIN
+	SELECT r.idproducto as Producto,
+    CASE 
+        WHEN SUM(IF(Positivo_Negativo(a.stock - (r.cantidad * PCantidad)) = "Positivo", 0, 1)) > 0 
+        THEN 'N'
+        ELSE 'S'
+    END AS Procesable
+	FROM recetamateriales r
+	JOIN almacen a ON r.iditem = a.iditem
+	WHERE r.idproducto = PidProducto;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `Get_Costo` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1344,6 +1376,40 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Put_Costo` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Put_Costo`(in PIDProducto varchar(45))
+BEGIN
+	
+    declare costofinal decimal(8,2);
+    
+    select sum(a.Valor * Cantidad) into costofinal
+	from recetamateriales r
+	join almacen a on a.IdItem = r.IdItem
+	where r.IdProducto = PIDProducto;
+
+	UPDATE productos
+	SET costo = costofinal, PUnitario = costofinal * 1.3
+	WHERE idproducto = PIDProducto;
+	
+	
+	select p.idproducto, p.idcliente, p.producto as Detalle, p.idtipoproducto, p.costo, p.margen, p.PUnitario, p.Estado, p.fechaalta
+    from productos p
+    where idproducto = PIDProducto;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `Receta_Mat_Producto` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1376,4 +1442,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-08-09 20:56:35
+-- Dump completed on 2024-08-16 20:34:55
