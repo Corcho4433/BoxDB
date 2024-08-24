@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `boxdbmartindatabases` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `boxdbmartindatabases` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `boxdbmartindatabases`;
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
--- Host: localhost    Database: boxdbmartindatabases
+-- Host: 127.0.0.1    Database: boxdbmartindatabases
 -- ------------------------------------------------------
--- Server version	8.0.28
+-- Server version	8.0.39
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -546,7 +546,7 @@ CREATE TABLE `notificacionescab` (
   `Estado` varchar(20) NOT NULL,
   `Item` int NOT NULL,
   `Cantidad` int NOT NULL,
-  `Total` decimal(8,2) NOT NULL,
+  `Total` decimal(8,2) DEFAULT NULL,
   `Pendientes` decimal(8,2) DEFAULT NULL,
   `Observaciones` varchar(45) DEFAULT NULL,
   `IdOrdenFabricacion` int NOT NULL,
@@ -565,7 +565,7 @@ CREATE TABLE `notificacionescab` (
   CONSTRAINT `FKIdProductoNotCab` FOREIGN KEY (`IdProducto`) REFERENCES `productos` (`IdProducto`),
   CONSTRAINT `FKIdTipoEntregaNotCab` FOREIGN KEY (`IdTipoEntrega`) REFERENCES `tiposentrega` (`IdTipoEntrega`),
   CONSTRAINT `FKIdVendedorNotCab` FOREIGN KEY (`IdVendedor`) REFERENCES `empleados` (`IdEmpleado`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -574,7 +574,7 @@ CREATE TABLE `notificacionescab` (
 
 LOCK TABLES `notificacionescab` WRITE;
 /*!40000 ALTER TABLE `notificacionescab` DISABLE KEYS */;
-INSERT INTO `notificacionescab` VALUES (1,1,2,1,3,'MVCBO1',NULL,'2025-01-01','2024-02-02','OFP',1,10,10.00,0.00,NULL,1);
+INSERT INTO `notificacionescab` VALUES (1,1,2,1,3,'MVCBO1',NULL,'2025-01-01','2024-02-02','OFP',1,10,10.00,0.00,NULL,1),(2,1,2,2,3,'MVCAB1+',NULL,'2025-04-04','2024-03-03','OFP',2,15,NULL,NULL,NULL,1),(3,1,2,3,3,'MVCAB1+',NULL,'2025-04-04','2024-03-05','OFP',3,15,NULL,NULL,NULL,1);
 /*!40000 ALTER TABLE `notificacionescab` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -597,7 +597,7 @@ CREATE TABLE `notificacionesdet` (
   KEY `FKIdEmpleadoOperario_idx` (`IdOperario`),
   CONSTRAINT `FKIdEmpleadoOperario` FOREIGN KEY (`IdOperario`) REFERENCES `empleados` (`IdEmpleado`),
   CONSTRAINT `FKIdNotificacion` FOREIGN KEY (`IdNotificacion`) REFERENCES `notificacionescab` (`IdNotificacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -606,7 +606,7 @@ CREATE TABLE `notificacionesdet` (
 
 LOCK TABLES `notificacionesdet` WRITE;
 /*!40000 ALTER TABLE `notificacionesdet` DISABLE KEYS */;
-INSERT INTO `notificacionesdet` VALUES (1,1,1,'2022-03-14','09:30:00',2.00),(2,1,1,'2022-03-15','08:15:00',1.00),(3,1,1,'2022-03-15','14:45:00',3.00),(4,1,1,'2022-03-16','08:55:00',1.00),(5,1,1,'2022-03-17','16:35:00',1.00),(6,1,1,'2022-03-17','14:50:00',2.00);
+INSERT INTO `notificacionesdet` VALUES (1,1,1,'2022-03-14','09:30:00',2.00),(2,1,1,'2022-03-15','08:15:00',1.00),(3,1,1,'2022-03-15','14:45:00',3.00),(4,1,1,'2022-03-16','08:55:00',1.00),(5,1,1,'2022-03-17','16:35:00',1.00),(6,1,1,'2022-03-17','14:50:00',2.00),(7,2,1,'2024-05-16','14:50:00',15.00),(8,3,1,'2024-05-16','16:35:00',5.00);
 /*!40000 ALTER TABLE `notificacionesdet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1418,14 +1418,39 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Estado_OF_Item`(in PIdOrdenFabricacion int, PIDProducto varchar(45))
 BEGIN
-	select nc.idordenfabricacion, nc.item, nc.idproducto, nc.cantidad, nc.estado, nc.idlineaprod, nt.cantidad, nt.fecha, nt.hora, nt.idoperario
+	select nc.idordenfabricacion as Orden, nc.item as Item, nc.idproducto as Producto, nc.cantidad, nc.estado, l.centrotrabajo as Centro, nt.cantidad as CantidadProcesada, nt.fecha, nt.hora, nt.idoperario
     from notificacionescab nc
-    join notificacionesdet nt on nc.idnotificacion = nt.idnotificacion
+    inner join notificacionesdet nt on nc.idnotificacion = nt.idnotificacion
+    inner join lineasproduccion l on nc.idlineaprod = l.idlineaprod
     where nc.idordenfabricacion = PIdOrdenFabricacion and nc.idproducto = PIDProducto;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Estado_OF_Item_CT` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Estado_OF_Item_CT`(IN PIDOrdenFabricacion INT)
+BEGIN
+    SELECT nc.idordenfabricacion AS Orden, nc.item, nc.idproducto AS Producto, nc.cantidad AS QtyOrdenada, l.centrotrabajo AS Centro, SUM(nd.cantidad) AS QtyProcesada, (nc.cantidad - SUM(nd.cantidad)) AS Pendiente
+    FROM notificacionescab nc
+    INNER JOIN notificacionesdet nd ON nd.idnotificacion = nc.idnotificacion
+    INNER JOIN lineasproduccion l ON l.idlineaprod = nc.idlineaprod
+    WHERE nc.idordenfabricacion = PIDOrdenFabricacion
+    GROUP BY nc.idordenfabricacion, nc.item, nc.idproducto, nc.cantidad, l.centrotrabajo;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1542,4 +1567,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-08-23 22:08:59
+-- Dump completed on 2024-08-24 11:50:34
