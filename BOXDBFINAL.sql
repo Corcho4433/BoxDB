@@ -268,7 +268,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES (1,1,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,2,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,3,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,4,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,5,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,6,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `empleados` VALUES (1,1,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,2,2,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,3,3,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,4,4,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,5,5,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,6,6,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -393,7 +393,7 @@ CREATE TABLE `lineasproduccion` (
   PRIMARY KEY (`IdLineaProd`),
   KEY `FKIdEmpleadoJefeLinea_idx` (`IdJefeLinea`),
   CONSTRAINT `FKIdEmpleadoJefeLinea` FOREIGN KEY (`IdJefeLinea`) REFERENCES `empleados` (`IdEmpleado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -402,6 +402,7 @@ CREATE TABLE `lineasproduccion` (
 
 LOCK TABLES `lineasproduccion` WRITE;
 /*!40000 ALTER TABLE `lineasproduccion` DISABLE KEYS */;
+INSERT INTO `lineasproduccion` VALUES (1,2,'AC1','e'),(2,2,'AC2','e'),(3,2,'ENS1','e'),(4,2,'ENS2','e'),(5,2,'CC','e'),(6,2,'TAP','e');
 /*!40000 ALTER TABLE `lineasproduccion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -539,7 +540,7 @@ CREATE TABLE `notificacionescab` (
   `IdLineaProd` int NOT NULL,
   `IdCliente` int NOT NULL,
   `IdProducto` varchar(45) NOT NULL,
-  `IdTipoEntrega` int NOT NULL,
+  `IdTipoEntrega` int DEFAULT NULL,
   `FechaEntrega` date NOT NULL,
   `Fecha` date NOT NULL,
   `Estado` varchar(20) NOT NULL,
@@ -548,6 +549,7 @@ CREATE TABLE `notificacionescab` (
   `Total` decimal(8,2) NOT NULL,
   `Pendientes` decimal(8,2) DEFAULT NULL,
   `Observaciones` varchar(45) DEFAULT NULL,
+  `IdOrdenFabricacion` int NOT NULL,
   PRIMARY KEY (`IdNotificacion`),
   KEY `FKIdVendedor_idx` (`IdVendedor`),
   KEY `FKIdJefeLinea_idx` (`IdJefeLinea`),
@@ -555,13 +557,15 @@ CREATE TABLE `notificacionescab` (
   KEY `FKIdCliente_idx` (`IdCliente`),
   KEY `FKIdProducto_idx` (`IdProducto`),
   KEY `FKIdTipoEntrega_idx` (`IdTipoEntrega`),
+  KEY `FKIdOrdenFabricacionNotCab_idx` (`IdOrdenFabricacion`),
   CONSTRAINT `FKIdClienteNotCab` FOREIGN KEY (`IdCliente`) REFERENCES `clientes` (`IdCliente`),
   CONSTRAINT `FKIdJefeLineaNotCab` FOREIGN KEY (`IdJefeLinea`) REFERENCES `lineasproduccion` (`IdJefeLinea`),
   CONSTRAINT `FKIdLineaProdNotCab` FOREIGN KEY (`IdLineaProd`) REFERENCES `lineasproduccion` (`IdLineaProd`),
+  CONSTRAINT `FKIdOrdenNotCabLolo` FOREIGN KEY (`IdOrdenFabricacion`) REFERENCES `ordenfabricacioncab` (`IdOrdenFabricacion`),
   CONSTRAINT `FKIdProductoNotCab` FOREIGN KEY (`IdProducto`) REFERENCES `productos` (`IdProducto`),
   CONSTRAINT `FKIdTipoEntregaNotCab` FOREIGN KEY (`IdTipoEntrega`) REFERENCES `tiposentrega` (`IdTipoEntrega`),
   CONSTRAINT `FKIdVendedorNotCab` FOREIGN KEY (`IdVendedor`) REFERENCES `empleados` (`IdEmpleado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -570,6 +574,7 @@ CREATE TABLE `notificacionescab` (
 
 LOCK TABLES `notificacionescab` WRITE;
 /*!40000 ALTER TABLE `notificacionescab` DISABLE KEYS */;
+INSERT INTO `notificacionescab` VALUES (1,1,2,1,3,'MVCBO1',NULL,'2025-01-01','2024-02-02','OFP',1,10,10.00,0.00,NULL,1);
 /*!40000 ALTER TABLE `notificacionescab` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -592,7 +597,7 @@ CREATE TABLE `notificacionesdet` (
   KEY `FKIdEmpleadoOperario_idx` (`IdOperario`),
   CONSTRAINT `FKIdEmpleadoOperario` FOREIGN KEY (`IdOperario`) REFERENCES `empleados` (`IdEmpleado`),
   CONSTRAINT `FKIdNotificacion` FOREIGN KEY (`IdNotificacion`) REFERENCES `notificacionescab` (`IdNotificacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -601,6 +606,7 @@ CREATE TABLE `notificacionesdet` (
 
 LOCK TABLES `notificacionesdet` WRITE;
 /*!40000 ALTER TABLE `notificacionesdet` DISABLE KEYS */;
+INSERT INTO `notificacionesdet` VALUES (1,1,1,'2022-03-14','09:30:00',2.00),(2,1,1,'2022-03-15','08:15:00',1.00),(3,1,1,'2022-03-15','14:45:00',3.00),(4,1,1,'2022-03-16','08:55:00',1.00),(5,1,1,'2022-03-17','16:35:00',1.00),(6,1,1,'2022-03-17','14:50:00',2.00);
 /*!40000 ALTER TABLE `notificacionesdet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -802,7 +808,6 @@ CREATE TABLE `ordenesventasdet` (
   `IdOrdenVenta` int NOT NULL,
   `IdProducto` varchar(45) NOT NULL,
   `Item` varchar(20) NOT NULL,
-  `Codigo` varchar(20) NOT NULL,
   `Cantidad` decimal(8,2) NOT NULL,
   `Descripcion` varchar(45) DEFAULT NULL,
   `Unitario` decimal(8,2) NOT NULL,
@@ -825,6 +830,76 @@ LOCK TABLES `ordenesventasdet` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `ordenfabricacioncab`
+--
+
+DROP TABLE IF EXISTS `ordenfabricacioncab`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ordenfabricacioncab` (
+  `IdOrdenFabricacion` int NOT NULL,
+  `IdCliente` int NOT NULL,
+  `IdEmpleado` int NOT NULL,
+  `IdDireccion` int NOT NULL,
+  `IdTipoEntrega` int DEFAULT NULL,
+  `Fecha` date NOT NULL,
+  `FechaEntrega` date NOT NULL,
+  `Observaciones` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`IdOrdenFabricacion`),
+  KEY `FKIdClienteOrdenFabDet_idx` (`IdCliente`),
+  KEY `FKIdEmpleadoOrdenFabDet_idx` (`IdEmpleado`),
+  KEY `FKIdDireccionOrdenFabDet_idx` (`IdDireccion`),
+  KEY `FKIdTipoEntregaFabDet_idx` (`IdTipoEntrega`),
+  CONSTRAINT `FKIdClienteOrdenFabDet` FOREIGN KEY (`IdCliente`) REFERENCES `clientes` (`IdCliente`),
+  CONSTRAINT `FKIdDireccionOrdenFabDet` FOREIGN KEY (`IdDireccion`) REFERENCES `direcciones` (`IdDireccion`),
+  CONSTRAINT `FKIdEmpleadoOrdenFabDet` FOREIGN KEY (`IdEmpleado`) REFERENCES `empleados` (`IdEmpleado`),
+  CONSTRAINT `FKIdTipoEntregaFabDet` FOREIGN KEY (`IdTipoEntrega`) REFERENCES `tiposentrega` (`IdTipoEntrega`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ordenfabricacioncab`
+--
+
+LOCK TABLES `ordenfabricacioncab` WRITE;
+/*!40000 ALTER TABLE `ordenfabricacioncab` DISABLE KEYS */;
+INSERT INTO `ordenfabricacioncab` VALUES (1,3,1,3,NULL,'2024-02-02','2025-01-01',NULL);
+/*!40000 ALTER TABLE `ordenfabricacioncab` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ordenfabricaciondet`
+--
+
+DROP TABLE IF EXISTS `ordenfabricaciondet`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ordenfabricaciondet` (
+  `IdOrdenFabricacionDet` int NOT NULL AUTO_INCREMENT,
+  `IdOrdenFabricacion` int NOT NULL,
+  `IdProducto` varchar(45) NOT NULL,
+  `Item` int NOT NULL,
+  `Cantidad` decimal(8,2) NOT NULL,
+  `Descripcion` varchar(45) NOT NULL,
+  PRIMARY KEY (`IdOrdenFabricacionDet`),
+  KEY `FKIdOrdenFabricacion-det_idx` (`IdOrdenFabricacion`),
+  KEY `FKIdProductoOrdenFabDet_idx` (`IdProducto`),
+  CONSTRAINT `FKIdOrdenFabricacion-det` FOREIGN KEY (`IdOrdenFabricacion`) REFERENCES `ordenfabricacioncab` (`IdOrdenFabricacion`),
+  CONSTRAINT `FKIdProductoOrdenFabDet` FOREIGN KEY (`IdProducto`) REFERENCES `productos` (`IdProducto`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ordenfabricaciondet`
+--
+
+LOCK TABLES `ordenfabricaciondet` WRITE;
+/*!40000 ALTER TABLE `ordenfabricaciondet` DISABLE KEYS */;
+INSERT INTO `ordenfabricaciondet` VALUES (1,1,'MVCBO1',1,10.00,'MARK V - Combo 1x12'),(2,1,'MVCAB1+',2,15.00,'MARK V+ - Head'),(3,1,'CT1X12WIDE23',3,5.00,'California Tweed1X12 CALIFORNIA TWEED 23');
+/*!40000 ALTER TABLE `ordenfabricaciondet` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `productos`
 --
 
@@ -843,8 +918,10 @@ CREATE TABLE `productos` (
   `Estado` varchar(1) NOT NULL,
   `FechaAlta` date NOT NULL,
   PRIMARY KEY (`IdProducto`),
+  UNIQUE KEY `Producto_UNIQUE` (`Producto`),
   KEY `FKIdCliente_idx` (`IdCliente`),
   KEY `FKIdTipoProd_idx` (`IdTipoProducto`),
+  KEY `FKProducto_idx` (`Producto`),
   CONSTRAINT `FKIdClienteProd` FOREIGN KEY (`IdCliente`) REFERENCES `clientes` (`IdCliente`),
   CONSTRAINT `FKIdTipoProd` FOREIGN KEY (`IdTipoProducto`) REFERENCES `mastertipo` (`IdTipo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
@@ -1100,7 +1177,7 @@ CREATE TABLE `sectores` (
   PRIMARY KEY (`IdSector`),
   KEY `FKIdEmpleadoGerente_idx` (`IdGerente`),
   CONSTRAINT `FKIdEmpleadoGerente` FOREIGN KEY (`IdGerente`) REFERENCES `empleados` (`IdEmpleado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1109,6 +1186,7 @@ CREATE TABLE `sectores` (
 
 LOCK TABLES `sectores` WRITE;
 /*!40000 ALTER TABLE `sectores` DISABLE KEYS */;
+INSERT INTO `sectores` VALUES (1,2,'Ventas'),(2,2,'Produccion');
 /*!40000 ALTER TABLE `sectores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1332,6 +1410,28 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Estado_OF_Item` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Estado_OF_Item`(in PIdOrdenFabricacion int, PIDProducto varchar(45))
+BEGIN
+	select nc.idordenfabricacion, nc.item, nc.idproducto, nc.cantidad, nc.estado, nc.idlineaprod, nt.cantidad, nt.fecha, nt.hora, nt.idoperario
+    from notificacionescab nc
+    join notificacionesdet nt on nc.idnotificacion = nt.idnotificacion
+    where nc.idordenfabricacion = PIdOrdenFabricacion and nc.idproducto = PIDProducto;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `Get_Costo` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1442,4 +1542,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-08-16 20:34:55
+-- Dump completed on 2024-08-23 22:08:59
