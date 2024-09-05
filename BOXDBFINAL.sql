@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `boxdbmartindatabases` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `boxdbmartindatabases` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `boxdbmartindatabases`;
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: boxdbmartindatabases
+-- Host: localhost    Database: boxdbmartindatabases
 -- ------------------------------------------------------
--- Server version	8.0.39
+-- Server version	8.0.28
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -51,8 +51,147 @@ CREATE TABLE `almacen` (
 
 LOCK TABLES `almacen` WRITE;
 /*!40000 ALTER TABLE `almacen` DISABLE KEYS */;
-INSERT INTO `almacen` VALUES ('AGUA','Agua',6,100.00,25,'LTS','A',0.00,0.00,'2007-01-01'),('BC10038-25','Base Cerejeira 100x38x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('BICAZ1','Birome BIC AZUL GRUESO',5,25.00,5,'CU','A',35.00,5.00,'2007-01-01'),('BICNG1','Birome BIC NEGRO GRUESO',5,25.00,5,'CU','A',21.00,5.00,'2007-01-01'),('BICRO1','Birome BIC ROJO GRUESO',5,25.00,5,'CU','A',18.00,5.00,'2007-01-01'),('BICTGAZUL','Bic trazo grueso Azul ',5,15.00,5,'CU','A',8.00,15.00,'2021-10-10'),('BICTGNEGRA','Bic trazo grueso Negra',5,15.00,5,'CU','A',30.00,15.00,'2021-11-10'),('BICTGROJO','Bic trazo grueso Rojo',5,15.00,5,'CU','A',55.00,15.00,'2021-10-10'),('BOGLOGO','Logo Bogner',4,0.00,20,'CU','A',30.00,15.00,'2018-02-08'),('BP10038-25','Base Pino 100x38x2,5',4,250.00,2,'CU','A',15.00,5.00,'2010-08-01'),('BP11038-25','Base Pino 110x38x2,5',4,120.00,2,'CU','A',30.00,5.00,'2010-08-02'),('BP12038-25','Base Pino 120x38x2,5',4,220.00,2,'CU','A',20.00,5.00,'2010-04-20'),('BROCHES10','Broches 10',5,11.00,5,'CU','A',5.00,5.00,'2021-11-10'),('BROCHES15','Broches 15',5,11.80,5,'CU','A',16.00,5.00,'2021-10-20'),('CHAPF-P1000','Chapa Apoyo Sup. Fender P1000',4,380.00,21,'CU','A',40.00,5.00,'2010-04-10'),('CHAPFDER-HR','Chapa Apoyo Sup. Fender HR',4,280.00,21,'CU','A',100.00,20.00,'2019-04-10'),('CHAPMBHN','Chapa Apoyo Sup. MB Head - Negro',4,400.00,21,'CU','A',33.00,5.00,'2010-04-10'),('COLA_MADERA','Cola Madera ',4,90.00,3,'CM3','A',16000.00,4000.00,'2013-08-02'),('CUAD-ESPIRAL-CUA-80','CUADERNO Espiralado 80h Cuadriculado',5,80.00,5,'CU','A',10.00,10.00,'2018-08-08'),('CUAD-ESPIRAL-RAY-80','CUADERNO Espiralado 80h Rayado',5,85.00,5,'CU','A',12.00,10.00,'2018-08-08'),('CUEFDER-BK','Cuerina Fender Negro',4,150.00,16,'M2','A',180.00,10.00,'2010-11-03'),('CUEMBC','Cuerina MB Caoba',4,320.00,16,'M2','A',38.50,10.00,'2010-03-08'),('CUEMBCREAM','Cuerina MB Cream',4,350.00,16,'M2','A',45.00,10.00,'2010-10-02'),('CUEMBN','Cuerina MB Negro',4,150.00,16,'M2','A',180.00,10.00,'2010-11-03'),('CUEVIB SLO','Cuerina Vibora Soldano Custom 1',4,600.00,16,'M2','A',80.00,20.00,'2020-01-01'),('ENERGIA','Energía Electrica',6,1200.00,24,'KWH','A',0.00,0.00,'2007-01-01'),('ESQUIFDERA-BK','Esquinas Fender Acetato - Negro',4,60.00,2,'CU','A',100.00,20.00,'2018-08-04'),('ESQUIMBAHN','Esquinas MB Acetato Head - Negro',4,600.00,2,'CU','A',100.00,20.00,'2018-08-04'),('FC9520-25','Fondo Cerejerira 95x20x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('FDERLOGO1','Logo Fender 1',4,0.00,20,'CU','A',130.00,40.00,'2018-08-02'),('FDERLOGO2','Logo Fender 2',4,0.00,20,'CU','A',50.00,10.00,'2018-08-02'),('FDERLOGO3','Logo Fender 3',4,0.00,20,'CU','A',1000.00,200.00,'2018-08-02'),('FP10535-25','Fondo Pino 105x30x2,5',4,100.00,2,'CU','A',14.00,5.00,'2018-04-08'),('FP11525-25','Fondo Pino 115x25x2,5',4,100.00,2,'CU','A',13.00,5.00,'2018-08-08'),('FP1557225','Frente Pino 1x12 W 155x72x2,5',4,200.00,2,'CU','A',16.00,5.00,'2010-08-08'),('FP9520-25','Fondo Pino 95x20x2,5',4,400.00,2,'CU','A',13.00,5.00,'2012-08-08'),('FREZ1506N','Frezado 1,5x0,6 - Negro',4,0.30,1,'CU','A',98.00,150.00,'2012-08-08'),('FREZ1506P','Frezado 1,5x0,6 - Plata',4,0.40,1,'CU','A',480.00,150.00,'2012-08-08'),('FREZ206P','Frezado 2x0,6 - Plata',4,0.35,1,'CU','A',500.00,100.00,'2012-08-08'),('FTEC9520-25','Frente Cerejerira 95x20x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('FTEP1210545-25','Frente Pino 1x12 105x45x2,5',4,100.00,1,'CU','A',11.00,5.00,'2012-08-08'),('FTEP1211550-25','Frente Pino 1x12 115x50x2,5',4,220.00,2,'CU','A',12.00,5.00,'2018-06-08'),('FTEP9520-25','Frente Pino 95x20x2,5',4,130.00,2,'CU','A',19.00,5.00,'2010-07-08'),('GAS','Gas',6,900.00,25,'CM3','A',0.00,0.00,'2007-01-01'),('HP12A ','TONER 12A HP',5,3000.00,17,'CU','A',5.00,5.00,'2018-08-08'),('HP78A ','TONER 78A HP',5,3000.00,17,'CU','A',5.00,1.00,'2021-10-08'),('LACA-MR-BR','Laca Marina Brillante',4,205.00,14,'CM3','A',1920.00,4000.00,'2019-08-05'),('LACA-MR-SM','Laca Marina Semi-Mate',4,134.00,14,'CM3','A',8000.00,4000.00,'2019-03-01'),('LCD3840-25','Lateral Der Cerejeira Forma 38x40x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('LCI3840-25','Lateral Izq Cerejerira Forma 38x40x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('LPD3840-25','Lateral Der Pino Forma 38x40x2,5',4,370.00,2,'CU','A',20.00,5.00,'2010-08-08'),('LPD3855-25','Lateral Der Pino Forma 38x55x2,5',4,300.00,2,'CU','A',19.00,5.00,'2010-09-08'),('LPI3840-25','Lateral Izq Pino Forma 38x40x2,5',4,120.00,2,'CU','A',18.00,5.00,'2012-08-08'),('LPI3855-25','Lateral Izq Pino Forma 38x55x2,5',4,140.00,2,'CU','A',22.00,5.00,'2012-08-08'),('MANITFDER-BK','Manija Transp. Fender - Negro',4,140.00,8,'CU','A',60.00,20.00,'2018-08-08'),('MANITMBCN','Manija Transp. Heavy MB - Negro',4,450.00,8,'CU','A',35.00,15.00,'2012-08-08'),('MANITMBN','Manija Transp. MB - Negro',4,340.00,8,'CU','A',30.00,15.00,'2018-08-08'),('MARLOGO','Logo Marshall',4,0.00,20,'CU','A',200.00,50.00,'2017-08-03'),('MBLOGO1','Logo Boogie',4,0.00,20,'CU','A',20.00,20.00,'2018-02-06'),('MBLOGO2','Logo Boogie Cream',4,0.00,20,'CU','A',150.00,30.00,'2013-08-02'),('MECHAMAD10','Mecha madera 10mm',5,45.00,4,'CU','A',3.00,5.00,'2018-01-10'),('MECHAMAD4','Mecha madera 4mm',5,35.00,4,'CU','A',12.00,5.00,'2018-08-03'),('MECHAMAD5','Mecha madera 5mm',5,35.00,4,'CU','A',8.00,5.00,'2018-01-12'),('MECHAMAD6','Mecha madera 6mm',5,35.00,4,'CU','A',14.00,5.00,'2018-08-03'),('PARK205N','Parker 2x0,5 - Negro',4,400.00,1,'CU','A',220.00,100.00,'2013-08-08'),('PARK2505N','Parker 2,5x0,5 - Negro',4,350.00,1,'CU','A',250.00,120.00,'2018-08-06'),('PEGA-CTO','Pegamento de Contacto ',4,295.00,3,'CM3','A',12000.00,2000.00,'2020-08-12'),('PEGA-CTO_TR','Pegamento de Contacto Tranparente',4,290.00,3,'CM3','A',20000.00,2000.00,'2020-10-03'),('PLASTICOLA 200GRS','Plasticola 200 gramos blanca',5,145.00,5,'CU','A',12.00,10.00,'2019-08-08'),('REGAFDERSTD-BKN','Regaton Fender STD - Negro',4,22.00,9,'CU','A',180.00,50.00,'2018-08-06'),('REGAMBHN','Regaton MB Head - Negro',4,122.00,9,'CU','A',97.00,50.00,'2018-08-06'),('REGUNV35','Regaton UNIV 35mm- Negro',4,75.00,9,'CU','A',650.00,100.00,'2018-08-06'),('REGUNV40','Regaton UNIV 40mm- Negro',4,80.00,9,'CU','A',450.00,100.00,'2018-08-06'),('RESMA-A4-75GR','Resma A4 500 x 75grs',5,455.00,5,'CU','A',25.00,20.00,'2020-08-08'),('RESMA-CARTA-80GR','Resma CARTA 500 x 80grs',5,498.00,5,'CU','A',15.00,15.00,'2020-08-08'),('RESMAA480G','Resma A4 80grs',5,90.00,5,'CU','A',25.00,15.00,'2021-10-10'),('RESMALT80G','Resma LT 80grs',5,95.00,5,'CU','A',15.00,10.00,'2021-10-10'),('RIVLOGO','Logo Rivera',4,0.00,20,'CU','A',100.00,30.00,'2020-10-03'),('RUED 45-AZUL','Ruedas 45mm diam Azul',4,230.00,18,'CU','A',80.00,20.00,'2017-08-10'),('RUED 60-BK','Ruedas 60mm diam Negra',4,268.00,18,'CU','A',120.00,20.00,'2017-08-10'),('SEGURIDAD','Servicio de Seguridad',6,1050.00,25,'CU','A',0.00,0.00,'2007-01-01'),('SEGUROS','Seguros',6,3000.00,25,'CU','A',0.00,0.00,'2007-01-01'),('SLOLOGO','Logo Soldano',4,0.00,20,'CU','A',78.00,20.00,'2019-03-14'),('TARM1020','Tarugos Mad. 10x20',4,8.00,19,'CU','A',405.00,150.00,'2014-02-05'),('TARM1030','Tarugos Mad. 10x30',4,8.00,19,'CU','A',605.00,150.00,'2014-08-04'),('TC10028-25','Tapa Cerejeira 100x28x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('TELAFDER-BD','Tela Blues Deville Fender',4,125.80,13,'M2','A',100.00,40.00,'2019-08-02'),('TOPFONC20-25x25','Tope Fondo Cerejerira 20x2,5x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('TOPFONP20-25x25','Tope Fondo Pino 20x2,5x2,5',4,270.00,2,'CU','A',12.00,10.00,'2014-08-08'),('TOPFONP25-25x25','Tope Fondo Pino 25x2,5x2,5',4,290.00,2,'CU','A',14.00,10.00,'2014-08-02'),('TOPFONP30-25x25','Tope Fondo Pino 30x2,5x2,5',4,400.00,2,'CU','A',16.00,10.00,'2014-08-10'),('TOPFREC20-25x25','Tope Frente Cerejerira 20x2,5x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('TOPFREP20-25x25','Tope Frente Pino 20x2,5x2,5',4,300.00,2,'CU','A',12.00,10.00,'2014-08-10'),('TOPFREP38-25x25','Tope Frente Pino 38x2,5x2,5',4,210.00,2,'CU','A',14.00,10.00,'2017-08-18'),('TOPFREP50-25x25','Tope Frente Pino 50x2,5x2,5',4,125.00,2,'CU','A',16.00,15.00,'2017-08-10'),('TP10028-25','Tapa Pino 100x28x2,5',4,189.00,2,'CU','A',24.00,15.00,'2017-08-04'),('TP11028-25','Tapa Pino 110x28x2,5',4,167.00,2,'CU','A',23.00,15.00,'2017-08-03'),('TP12038-25','Tapa Pino 120x38x2,5',4,380.00,2,'CU','A',22.00,15.00,'2017-08-03'),('VINIL','Peg. Vinilico Contacto',4,124.00,12,'CM3','A',1350.80,1500.00,'2018-08-02'),('VINIL-ESP','Peg. Vinilico Contacto Especial',4,450.00,12,'CM3','A',2500.30,5000.00,'2019-08-02'),('VINIL-NG','Peg. Vinilico Contacto Negro',4,100.00,12,'CM3','A',4560.00,5000.00,'2019-08-01');
+INSERT INTO `almacen` VALUES ('AGUA','Agua',6,100.00,25,'LTS','A',0.00,0.00,'2007-01-01'),('b','a',4,20.00,12,'CM3','A',222.00,2222.00,'2019-08-01'),('BC10038-25','Base Cerejeira 100x38x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('BICAZ1','Birome BIC AZUL GRUESO',5,25.00,5,'CU','A',35.00,5.00,'2007-01-01'),('BICNG1','Birome BIC NEGRO GRUESO',5,25.00,5,'CU','A',21.00,5.00,'2007-01-01'),('BICRO1','Birome BIC ROJO GRUESO',5,25.00,5,'CU','A',18.00,5.00,'2007-01-01'),('BICTGAZUL','Bic trazo grueso Azul ',5,15.00,5,'CU','A',8.00,15.00,'2021-10-10'),('BICTGNEGRA','Bic trazo grueso Negra',5,15.00,5,'CU','A',30.00,15.00,'2021-11-10'),('BICTGROJO','Bic trazo grueso Rojo',5,15.00,5,'CU','A',55.00,15.00,'2021-10-10'),('BOGLOGO','Logo Bogner',4,0.00,20,'CU','A',30.00,15.00,'2018-02-08'),('BP10038-25','Base Pino 100x38x2,5',4,250.00,2,'CU','A',15.00,5.00,'2010-08-01'),('BP11038-25','Base Pino 110x38x2,5',4,120.00,2,'CU','A',30.00,5.00,'2010-08-02'),('BP12038-25','Base Pino 120x38x2,5',4,220.00,2,'CU','A',20.00,5.00,'2010-04-20'),('BROCHES10','Broches 10',5,11.00,5,'CU','A',5.00,5.00,'2021-11-10'),('BROCHES15','Broches 15',5,11.80,5,'CU','A',16.00,5.00,'2021-10-20'),('CHAPF-P1000','Chapa Apoyo Sup. Fender P1000',4,380.00,21,'CU','A',40.00,5.00,'2010-04-10'),('CHAPFDER-HR','Chapa Apoyo Sup. Fender HR',4,280.00,21,'CU','A',100.00,20.00,'2019-04-10'),('CHAPMBHN','Chapa Apoyo Sup. MB Head - Negro',4,400.00,21,'CU','A',33.00,5.00,'2010-04-10'),('COLA_MADERA','Cola Madera ',4,90.00,3,'CM3','A',16000.00,4000.00,'2013-08-02'),('CUAD-ESPIRAL-CUA-80','CUADERNO Espiralado 80h Cuadriculado',5,80.00,5,'CU','A',10.00,10.00,'2018-08-08'),('CUAD-ESPIRAL-RAY-80','CUADERNO Espiralado 80h Rayado',5,85.00,5,'CU','A',12.00,10.00,'2018-08-08'),('CUEFDER-BK','Cuerina Fender Negro',4,150.00,16,'M2','A',180.00,10.00,'2010-11-03'),('CUEMBC','Cuerina MB Caoba',4,320.00,16,'M2','A',38.50,10.00,'2010-03-08'),('CUEMBCREAM','Cuerina MB Cream',4,350.00,16,'M2','A',45.00,10.00,'2010-10-02'),('CUEMBN','Cuerina MB Negro',4,150.00,16,'M2','A',180.00,10.00,'2010-11-03'),('CUEVIB SLO','Cuerina Vibora Soldano Custom 1',4,600.00,16,'M2','A',80.00,20.00,'2020-01-01'),('ENERGIA','Energía Electrica',6,1200.00,24,'KWH','A',0.00,0.00,'2007-01-01'),('ESQUIFDERA-BK','Esquinas Fender Acetato - Negro',4,60.00,2,'CU','A',100.00,20.00,'2018-08-04'),('ESQUIMBAHN','Esquinas MB Acetato Head - Negro',4,600.00,2,'CU','A',100.00,20.00,'2018-08-04'),('FC9520-25','Fondo Cerejerira 95x20x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('FDERLOGO1','Logo Fender 1',4,0.00,20,'CU','A',130.00,40.00,'2018-08-02'),('FDERLOGO2','Logo Fender 2',4,0.00,20,'CU','A',50.00,10.00,'2018-08-02'),('FDERLOGO3','Logo Fender 3',4,0.00,20,'CU','A',1000.00,200.00,'2018-08-02'),('FP10535-25','Fondo Pino 105x30x2,5',4,100.00,2,'CU','A',14.00,5.00,'2018-04-08'),('FP11525-25','Fondo Pino 115x25x2,5',4,100.00,2,'CU','A',13.00,5.00,'2018-08-08'),('FP1557225','Frente Pino 1x12 W 155x72x2,5',4,200.00,2,'CU','A',16.00,5.00,'2010-08-08'),('FP9520-25','Fondo Pino 95x20x2,5',4,400.00,2,'CU','A',13.00,5.00,'2012-08-08'),('FREZ1506N','Frezado 1,5x0,6 - Negro',4,0.30,1,'CU','A',98.00,150.00,'2012-08-08'),('FREZ1506P','Frezado 1,5x0,6 - Plata',4,0.40,1,'CU','A',480.00,150.00,'2012-08-08'),('FREZ206P','Frezado 2x0,6 - Plata',4,0.35,1,'CU','A',500.00,100.00,'2012-08-08'),('FTEC9520-25','Frente Cerejerira 95x20x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('FTEP1210545-25','Frente Pino 1x12 105x45x2,5',4,100.00,1,'CU','A',11.00,5.00,'2012-08-08'),('FTEP1211550-25','Frente Pino 1x12 115x50x2,5',4,220.00,2,'CU','A',12.00,5.00,'2018-06-08'),('FTEP9520-25','Frente Pino 95x20x2,5',4,130.00,2,'CU','A',19.00,5.00,'2010-07-08'),('GAS','Gas',6,900.00,25,'CM3','A',0.00,0.00,'2007-01-01'),('HP12A ','TONER 12A HP',5,3000.00,17,'CU','A',5.00,5.00,'2018-08-08'),('HP78A ','TONER 78A HP',5,3000.00,17,'CU','A',5.00,1.00,'2021-10-08'),('LACA-MR-BR','Laca Marina Brillante',4,205.00,14,'CM3','A',1920.00,4000.00,'2019-08-05'),('LACA-MR-SM','Laca Marina Semi-Mate',4,134.00,14,'CM3','A',8000.00,4000.00,'2019-03-01'),('LCD3840-25','Lateral Der Cerejeira Forma 38x40x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('LCI3840-25','Lateral Izq Cerejerira Forma 38x40x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('LPD3840-25','Lateral Der Pino Forma 38x40x2,5',4,370.00,2,'CU','A',20.00,5.00,'2010-08-08'),('LPD3855-25','Lateral Der Pino Forma 38x55x2,5',4,300.00,2,'CU','A',19.00,5.00,'2010-09-08'),('LPI3840-25','Lateral Izq Pino Forma 38x40x2,5',4,120.00,2,'CU','A',18.00,5.00,'2012-08-08'),('LPI3855-25','Lateral Izq Pino Forma 38x55x2,5',4,140.00,2,'CU','A',22.00,5.00,'2012-08-08'),('MANITFDER-BK','Manija Transp. Fender - Negro',4,140.00,8,'CU','A',60.00,20.00,'2018-08-08'),('MANITMBCN','Manija Transp. Heavy MB - Negro',4,450.00,8,'CU','A',35.00,15.00,'2012-08-08'),('MANITMBN','Manija Transp. MB - Negro',4,340.00,8,'CU','A',30.00,15.00,'2018-08-08'),('MARLOGO','Logo Marshall',4,0.00,20,'CU','A',200.00,50.00,'2017-08-03'),('MBLOGO1','Logo Boogie',4,0.00,20,'CU','A',20.00,20.00,'2018-02-06'),('MBLOGO2','Logo Boogie Cream',4,0.00,20,'CU','A',150.00,30.00,'2013-08-02'),('MECHAMAD10','Mecha madera 10mm',5,45.00,4,'CU','A',3.00,5.00,'2018-01-10'),('MECHAMAD4','Mecha madera 4mm',5,35.00,4,'CU','A',12.00,5.00,'2018-08-03'),('MECHAMAD5','Mecha madera 5mm',5,35.00,4,'CU','A',8.00,5.00,'2018-01-12'),('MECHAMAD6','Mecha madera 6mm',5,35.00,4,'CU','A',14.00,5.00,'2018-08-03'),('PARK205N','Parker 2x0,5 - Negro',4,400.00,1,'CU','A',220.00,100.00,'2013-08-08'),('PARK2505N','Parker 2,5x0,5 - Negro',4,350.00,1,'CU','A',250.00,120.00,'2018-08-06'),('PEGA-CTO','Pegamento de Contacto ',4,295.00,3,'CM3','A',12000.00,2000.00,'2020-08-12'),('PEGA-CTO_TR','Pegamento de Contacto Tranparente',4,290.00,3,'CM3','A',20000.00,2000.00,'2020-10-03'),('PLASTICOLA 200GRS','Plasticola 200 gramos blanca',5,145.00,5,'CU','A',12.00,10.00,'2019-08-08'),('REGAFDERSTD-BKN','Regaton Fender STD - Negro',4,22.00,9,'CU','A',180.00,50.00,'2018-08-06'),('REGAMBHN','Regaton MB Head - Negro',4,122.00,9,'CU','A',97.00,50.00,'2018-08-06'),('REGUNV35','Regaton UNIV 35mm- Negro',4,75.00,9,'CU','A',650.00,100.00,'2018-08-06'),('REGUNV40','Regaton UNIV 40mm- Negro',4,80.00,9,'CU','A',450.00,100.00,'2018-08-06'),('RESMA-A4-75GR','Resma A4 500 x 75grs',5,455.00,5,'CU','A',25.00,20.00,'2020-08-08'),('RESMA-CARTA-80GR','Resma CARTA 500 x 80grs',5,498.00,5,'CU','A',15.00,15.00,'2020-08-08'),('RESMAA480G','Resma A4 80grs',5,90.00,5,'CU','A',25.00,15.00,'2021-10-10'),('RESMALT80G','Resma LT 80grs',5,95.00,5,'CU','A',15.00,10.00,'2021-10-10'),('RIVLOGO','Logo Rivera',4,0.00,20,'CU','A',100.00,30.00,'2020-10-03'),('RUED 45-AZUL','Ruedas 45mm diam Azul',4,230.00,18,'CU','A',80.00,20.00,'2017-08-10'),('RUED 60-BK','Ruedas 60mm diam Negra',4,268.00,18,'CU','A',120.00,20.00,'2017-08-10'),('SEGURIDAD','Servicio de Seguridad',6,1050.00,25,'CU','A',0.00,0.00,'2007-01-01'),('SEGUROS','Seguros',6,3000.00,25,'CU','A',0.00,0.00,'2007-01-01'),('SLOLOGO','Logo Soldano',4,0.00,20,'CU','A',78.00,20.00,'2019-03-14'),('TARM1020','Tarugos Mad. 10x20',4,8.00,19,'CU','A',405.00,150.00,'2014-02-05'),('TARM1030','Tarugos Mad. 10x30',4,8.00,19,'CU','A',605.00,150.00,'2014-08-04'),('TC10028-25','Tapa Cerejeira 100x28x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('TELAFDER-BD','Tela Blues Deville Fender',4,125.80,13,'M2','A',100.00,40.00,'2019-08-02'),('TOPFONC20-25x25','Tope Fondo Cerejerira 20x2,5x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('TOPFONP20-25x25','Tope Fondo Pino 20x2,5x2,5',4,270.00,2,'CU','A',12.00,10.00,'2014-08-08'),('TOPFONP25-25x25','Tope Fondo Pino 25x2,5x2,5',4,290.00,2,'CU','A',14.00,10.00,'2014-08-02'),('TOPFONP30-25x25','Tope Fondo Pino 30x2,5x2,5',4,400.00,2,'CU','A',16.00,10.00,'2014-08-10'),('TOPFREC20-25x25','Tope Frente Cerejerira 20x2,5x2,5',4,100.00,2,'CU','A',100.00,50.00,'2016-10-03'),('TOPFREP20-25x25','Tope Frente Pino 20x2,5x2,5',4,300.00,2,'CU','A',12.00,10.00,'2014-08-10'),('TOPFREP38-25x25','Tope Frente Pino 38x2,5x2,5',4,210.00,2,'CU','A',14.00,10.00,'2017-08-18'),('TOPFREP50-25x25','Tope Frente Pino 50x2,5x2,5',4,125.00,2,'CU','A',16.00,15.00,'2017-08-10'),('TP10028-25','Tapa Pino 100x28x2,5',4,189.00,2,'CU','A',24.00,15.00,'2017-08-04'),('TP11028-25','Tapa Pino 110x28x2,5',4,167.00,2,'CU','A',23.00,15.00,'2017-08-03'),('TP12038-25','Tapa Pino 120x38x2,5',4,380.00,2,'CU','A',22.00,15.00,'2017-08-03'),('VINIL','Peg. Vinilico Contacto',4,124.00,12,'CM3','A',1350.80,1500.00,'2018-08-02'),('VINIL-ESP','Peg. Vinilico Contacto Especial',4,450.00,12,'CM3','A',2500.30,5000.00,'2019-08-02'),('VINIL-NG','Peg. Vinilico Contacto Negro',4,100.00,12,'CM3','A',4560.00,5000.00,'2019-08-01');
 /*!40000 ALTER TABLE `almacen` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `almacen_AFTER_INSERT` AFTER INSERT ON `almacen` FOR EACH ROW BEGIN
+    DECLARE v_idusr INT;
+    DECLARE v_movimiento VARCHAR(50);
+    DECLARE v_tabla VARCHAR(50);
+    DECLARE v_idmov INT;
+    
+    set v_idusr = 1;
+    set v_movimiento = "ALTA";
+    set v_tabla = "almacen";
+    set v_idmov = 1;
+    
+
+    CALL AuditCentralizado(v_idmov, v_movimiento, v_idusr, v_tabla);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `almacen_AFTER_UPDATE` AFTER UPDATE ON `almacen` FOR EACH ROW BEGIN
+	DECLARE v_idusr INT;
+    DECLARE v_movimiento VARCHAR(50);
+    DECLARE v_tabla VARCHAR(50);
+    DECLARE v_idmov INT;
+    
+    set v_idusr = 1;
+    set v_movimiento = "MODIFICACION";
+    set v_tabla = "almacen";
+    set v_idmov = 3;
+    
+
+    CALL AuditCentralizado(v_idmov, v_movimiento, v_idusr, v_tabla);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `almacen_AFTER_DELETE` AFTER DELETE ON `almacen` FOR EACH ROW BEGIN
+	DECLARE v_idusr INT;
+    DECLARE v_movimiento VARCHAR(50);
+    DECLARE v_tabla VARCHAR(50);
+    DECLARE v_idmov INT;
+    
+    set v_idusr = 1;
+    set v_movimiento = "BAJA";
+    set v_tabla = "almacen";
+    set v_idmov = 2;
+    
+
+    CALL AuditCentralizado(v_idmov, v_movimiento, v_idusr, v_tabla);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `audit`
+--
+
+DROP TABLE IF EXISTS `audit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `audit` (
+  `idEvent` int NOT NULL AUTO_INCREMENT,
+  `idMov` int NOT NULL,
+  `DetMov` varchar(80) NOT NULL,
+  `Fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `idUsr` int NOT NULL,
+  `tabla` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idEvent`),
+  KEY `FKIdMovAudit_idx` (`idMov`),
+  CONSTRAINT `FKIdMovAudit` FOREIGN KEY (`idMov`) REFERENCES `audmov` (`idMov`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `audit`
+--
+
+LOCK TABLES `audit` WRITE;
+/*!40000 ALTER TABLE `audit` DISABLE KEYS */;
+INSERT INTO `audit` VALUES (1,1,'ALTA','2024-08-30','20:38:00',1,'almacen'),(2,3,'MODIFICACION','2024-08-30','20:39:40',1,'almacen'),(3,2,'BAJA','2024-08-30','20:41:56',1,'almacen'),(4,1,'ALTA','2024-08-30','20:42:45',1,'almacen'),(5,1,'ALTA','2024-08-30','20:42:45',1,'almacen'),(6,2,'BAJA','2024-08-30','20:43:29',1,'almacen'),(7,1,'ALTA','2024-08-30','21:27:02',1,'almacen'),(8,3,'MODIFICACION','2024-08-30','21:34:00',1,'ordenfabricacioncab'),(9,3,'MODIFICACION','2024-08-30','21:34:21',1,'ordenfabricacioncab'),(10,3,'MODIFICACION','2024-08-30','21:34:45',1,'productos'),(11,3,'MODIFICACION','2024-08-30','21:35:02',1,'productos'),(12,1,'ALTA','2024-08-31','10:54:33',1,'ordenfabricacioncab'),(13,1,'ALTA','2024-08-31','12:17:35',1,'remitoscab'),(14,2,'BAJA','2024-08-31','12:38:27',1,'remitoscab'),(15,1,'ALTA','2024-08-31','12:49:37',1,'remitoscab'),(16,1,'ALTA','2024-08-31','12:50:14',1,'remitoscab'),(17,2,'BAJA','2024-08-31','12:51:35',1,'remitoscab'),(18,2,'BAJA','2024-08-31','12:51:35',1,'remitoscab'),(19,1,'ALTA','2024-08-31','12:51:45',1,'remitoscab'),(20,2,'BAJA','2024-08-31','12:52:14',1,'remitoscab'),(21,1,'ALTA','2024-08-31','12:53:12',1,'remitoscab'),(22,2,'BAJA','2024-08-31','12:53:31',1,'remitoscab'),(23,1,'ALTA','2024-08-31','12:57:55',1,'remitoscab'),(24,2,'BAJA','2024-08-31','12:59:25',1,'remitoscab'),(25,1,'ALTA','2024-08-31','13:00:01',1,'remitoscab'),(26,2,'BAJA','2024-08-31','13:01:51',1,'remitoscab'),(27,1,'ALTA','2024-08-31','13:02:18',1,'remitoscab');
+/*!40000 ALTER TABLE `audit` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `audmov`
+--
+
+DROP TABLE IF EXISTS `audmov`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `audmov` (
+  `idMov` int NOT NULL,
+  `Movimiento` varchar(100) NOT NULL,
+  PRIMARY KEY (`idMov`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `audmov`
+--
+
+LOCK TABLES `audmov` WRITE;
+/*!40000 ALTER TABLE `audmov` DISABLE KEYS */;
+INSERT INTO `audmov` VALUES (1,'ALTA'),(2,'BAJA'),(3,'MODIFICACION');
+/*!40000 ALTER TABLE `audmov` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -314,6 +453,90 @@ LOCK TABLES `facturascab` WRITE;
 /*!40000 ALTER TABLE `facturascab` DISABLE KEYS */;
 /*!40000 ALTER TABLE `facturascab` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `facturascab_AFTER_INSERT` AFTER INSERT ON `facturascab` FOR EACH ROW BEGIN
+	DECLARE v_idusr INT;
+    DECLARE v_movimiento VARCHAR(50);
+    DECLARE v_tabla VARCHAR(50);
+    DECLARE v_idmov INT;
+    
+    set v_idusr = 1;
+    set v_movimiento = "ALTA";
+    set v_tabla = "facturascab";
+    set v_idmov = 1;
+    
+
+    CALL AuditCentralizado(v_idmov, v_movimiento, v_idusr, v_tabla);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `facturascab_AFTER_UPDATE` AFTER UPDATE ON `facturascab` FOR EACH ROW BEGIN
+	DECLARE v_idusr INT;
+    DECLARE v_movimiento VARCHAR(50);
+    DECLARE v_tabla VARCHAR(50);
+    DECLARE v_idmov INT;
+    
+    set v_idusr = 1;
+    set v_movimiento = "MODIFICACION";
+    set v_tabla = "facturascab";
+    set v_idmov = 3;
+    
+
+    CALL AuditCentralizado(v_idmov, v_movimiento, v_idusr, v_tabla);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `facturascab_AFTER_DELETE` AFTER DELETE ON `facturascab` FOR EACH ROW BEGIN
+	DECLARE v_idusr INT;
+    DECLARE v_movimiento VARCHAR(50);
+    DECLARE v_tabla VARCHAR(50);
+    DECLARE v_idmov INT;
+    
+    set v_idusr = 1;
+    set v_movimiento = "BAJA";
+    set v_tabla = "facturascab";
+    set v_idmov = 2;
+    
+
+    CALL AuditCentralizado(v_idmov, v_movimiento, v_idusr, v_tabla);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `facturasdet`
@@ -546,7 +769,7 @@ CREATE TABLE `notificacionescab` (
   `Estado` varchar(20) NOT NULL,
   `Item` int NOT NULL,
   `Cantidad` int NOT NULL,
-  `Total` decimal(8,2) DEFAULT NULL,
+  `Total` decimal(8,2) NOT NULL,
   `Pendientes` decimal(8,2) DEFAULT NULL,
   `Observaciones` varchar(45) DEFAULT NULL,
   `IdOrdenFabricacion` int NOT NULL,
@@ -565,7 +788,7 @@ CREATE TABLE `notificacionescab` (
   CONSTRAINT `FKIdProductoNotCab` FOREIGN KEY (`IdProducto`) REFERENCES `productos` (`IdProducto`),
   CONSTRAINT `FKIdTipoEntregaNotCab` FOREIGN KEY (`IdTipoEntrega`) REFERENCES `tiposentrega` (`IdTipoEntrega`),
   CONSTRAINT `FKIdVendedorNotCab` FOREIGN KEY (`IdVendedor`) REFERENCES `empleados` (`IdEmpleado`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -574,7 +797,7 @@ CREATE TABLE `notificacionescab` (
 
 LOCK TABLES `notificacionescab` WRITE;
 /*!40000 ALTER TABLE `notificacionescab` DISABLE KEYS */;
-INSERT INTO `notificacionescab` VALUES (1,1,2,1,3,'MVCBO1',NULL,'2025-01-01','2024-02-02','OFP',1,10,10.00,0.00,NULL,1),(2,1,2,2,3,'MVCAB1+',NULL,'2025-04-04','2024-03-03','OFP',2,15,NULL,NULL,NULL,1),(3,1,2,3,3,'MVCAB1+',NULL,'2025-04-04','2024-03-05','OFP',3,15,NULL,NULL,NULL,1);
+INSERT INTO `notificacionescab` VALUES (1,1,2,1,3,'MVCBO1',NULL,'2025-01-01','2024-02-02','OFP',1,10,10.00,0.00,NULL,1),(2,1,2,1,3,'MVCBO1',NULL,'2025-04-01','2024-05-02','OFF',1,10,10.00,NULL,NULL,2),(3,1,2,2,3,'MVCBO1',NULL,'2025-04-01','2024-05-02','OFF',1,10,10.00,NULL,NULL,2),(4,1,2,3,3,'MVCBO1',NULL,'2025-04-01','2024-05-02','OFF',1,10,10.00,NULL,NULL,2),(5,1,2,4,3,'MVCBO1',NULL,'2025-04-01','2024-05-02','OFF',1,10,10.00,NULL,NULL,2),(6,1,2,5,3,'MVCBO1',NULL,'2025-04-01','2024-05-02','OFF',1,10,10.00,NULL,NULL,2),(7,1,2,6,3,'MVCBO1',NULL,'2025-04-01','2024-05-02','OFF',1,10,10.00,NULL,NULL,2),(8,1,2,1,3,'MVCAB1+',NULL,'2025-04-01','2024-05-02','OFF',2,15,15.00,NULL,NULL,2),(9,1,2,2,3,'MVCAB1+',NULL,'2025-04-01','2024-05-02','OFF',2,15,15.00,NULL,NULL,2),(10,1,2,3,3,'MVCAB1+',NULL,'2025-04-01','2024-05-02','OFF',2,15,15.00,NULL,NULL,2),(11,1,2,4,3,'MVCAB1+',NULL,'2025-04-01','2024-05-02','OFF',2,15,15.00,NULL,NULL,2),(12,1,2,6,3,'MVCAB1+',NULL,'2025-04-01','2024-05-02','OFF',2,15,15.00,NULL,NULL,2),(13,1,2,1,3,'CT1X12WIDE23',NULL,'2025-04-01','2024-05-02','OFF',3,5,5.00,NULL,NULL,2),(14,1,2,2,3,'CT1X12WIDE23',NULL,'2025-04-01','2024-05-02','OFF',3,5,5.00,NULL,NULL,2),(15,1,2,3,3,'CT1X12WIDE23',NULL,'2025-04-01','2024-05-02','OFF',3,5,5.00,NULL,NULL,2),(16,1,2,4,3,'CT1X12WIDE23',NULL,'2025-04-01','2024-05-02','OFF',3,5,5.00,NULL,NULL,2),(17,1,2,5,3,'CT1X12WIDE23',NULL,'2025-04-01','2024-05-02','OFF',3,5,5.00,NULL,NULL,2),(18,1,2,6,3,'CT1X12WIDE23',NULL,'2025-04-01','2024-05-02','OFF',3,5,5.00,NULL,NULL,2);
 /*!40000 ALTER TABLE `notificacionescab` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -597,7 +820,7 @@ CREATE TABLE `notificacionesdet` (
   KEY `FKIdEmpleadoOperario_idx` (`IdOperario`),
   CONSTRAINT `FKIdEmpleadoOperario` FOREIGN KEY (`IdOperario`) REFERENCES `empleados` (`IdEmpleado`),
   CONSTRAINT `FKIdNotificacion` FOREIGN KEY (`IdNotificacion`) REFERENCES `notificacionescab` (`IdNotificacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -606,7 +829,7 @@ CREATE TABLE `notificacionesdet` (
 
 LOCK TABLES `notificacionesdet` WRITE;
 /*!40000 ALTER TABLE `notificacionesdet` DISABLE KEYS */;
-INSERT INTO `notificacionesdet` VALUES (1,1,1,'2022-03-14','09:30:00',2.00),(2,1,1,'2022-03-15','08:15:00',1.00),(3,1,1,'2022-03-15','14:45:00',3.00),(4,1,1,'2022-03-16','08:55:00',1.00),(5,1,1,'2022-03-17','16:35:00',1.00),(6,1,1,'2022-03-17','14:50:00',2.00),(7,2,1,'2024-05-16','14:50:00',15.00),(8,3,1,'2024-05-16','16:35:00',5.00);
+INSERT INTO `notificacionesdet` VALUES (1,1,1,'2022-03-14','09:30:00',2.00),(2,1,1,'2022-03-15','08:15:00',1.00),(3,1,1,'2022-03-15','14:45:00',3.00),(4,1,1,'2022-03-16','08:55:00',1.00),(5,1,1,'2022-03-17','16:35:00',1.00),(6,1,1,'2022-03-17','14:50:00',2.00),(7,2,1,'2024-02-02','14:50:00',10.00),(8,3,1,'2024-02-02','14:50:00',10.00),(9,4,1,'2024-02-02','14:50:00',10.00),(10,5,1,'2024-02-02','14:50:00',10.00),(11,6,1,'2024-02-02','14:50:00',10.00),(12,7,1,'2024-02-02','14:50:00',10.00),(13,8,1,'2024-02-02','14:50:00',15.00),(14,9,1,'2024-02-02','14:50:00',15.00),(15,10,1,'2024-02-02','14:50:00',15.00),(16,11,1,'2024-02-02','14:50:00',15.00),(17,12,1,'2024-02-02','14:50:00',15.00),(18,13,1,'2024-02-02','14:50:00',5.00),(19,14,1,'2024-02-02','14:50:00',5.00),(20,15,1,'2024-02-02','14:50:00',5.00),(21,16,1,'2024-02-02','14:50:00',5.00),(22,17,1,'2024-02-02','14:50:00',5.00),(23,18,1,'2024-02-02','14:50:00',5.00);
 /*!40000 ALTER TABLE `notificacionesdet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -863,9 +1086,93 @@ CREATE TABLE `ordenfabricacioncab` (
 
 LOCK TABLES `ordenfabricacioncab` WRITE;
 /*!40000 ALTER TABLE `ordenfabricacioncab` DISABLE KEYS */;
-INSERT INTO `ordenfabricacioncab` VALUES (1,3,1,3,NULL,'2024-02-02','2025-01-01',NULL);
+INSERT INTO `ordenfabricacioncab` VALUES (1,3,1,3,NULL,'2024-02-02','2025-01-01',NULL),(2,3,1,3,NULL,'2024-05-02','2025-04-01',NULL);
 /*!40000 ALTER TABLE `ordenfabricacioncab` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `ordenfabricacioncab_AFTER_INSERT` AFTER INSERT ON `ordenfabricacioncab` FOR EACH ROW BEGIN
+	DECLARE v_idusr INT;
+    DECLARE v_movimiento VARCHAR(50);
+    DECLARE v_tabla VARCHAR(50);
+    DECLARE v_idmov INT;
+    
+    set v_idusr = 1;
+    set v_movimiento = "ALTA";
+    set v_tabla = "ordenfabricacioncab";
+    set v_idmov = 1;
+    
+
+    CALL AuditCentralizado(v_idmov, v_movimiento, v_idusr, v_tabla);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `ordenfabricacioncab_AFTER_UPDATE` AFTER UPDATE ON `ordenfabricacioncab` FOR EACH ROW BEGIN
+	DECLARE v_idusr INT;
+    DECLARE v_movimiento VARCHAR(50);
+    DECLARE v_tabla VARCHAR(50);
+    DECLARE v_idmov INT;
+    
+    set v_idusr = 1;
+    set v_movimiento = "MODIFICACION";
+    set v_tabla = "ordenfabricacioncab";
+    set v_idmov = 3;
+    
+
+    CALL AuditCentralizado(v_idmov, v_movimiento, v_idusr, v_tabla);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `ordenfabricacioncab_AFTER_DELETE` AFTER DELETE ON `ordenfabricacioncab` FOR EACH ROW BEGIN
+	DECLARE v_idusr INT;
+    DECLARE v_movimiento VARCHAR(50);
+    DECLARE v_tabla VARCHAR(50);
+    DECLARE v_idmov INT;
+    
+    set v_idusr = 1;
+    set v_movimiento = "BAJA";
+    set v_tabla = "ordenfabricacioncab";
+    set v_idmov = 2;
+    
+
+    CALL AuditCentralizado(v_idmov, v_movimiento, v_idusr, v_tabla);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `ordenfabricaciondet`
@@ -895,7 +1202,7 @@ CREATE TABLE `ordenfabricaciondet` (
 
 LOCK TABLES `ordenfabricaciondet` WRITE;
 /*!40000 ALTER TABLE `ordenfabricaciondet` DISABLE KEYS */;
-INSERT INTO `ordenfabricaciondet` VALUES (1,1,'MVCBO1',1,10.00,'MARK V - Combo 1x12'),(2,1,'MVCAB1+',2,15.00,'MARK V+ - Head'),(3,1,'CT1X12WIDE23',3,5.00,'California Tweed1X12 CALIFORNIA TWEED 23');
+INSERT INTO `ordenfabricaciondet` VALUES (1,1,'MVCBO1',1,10.00,'MARK V - Combo 1x12'),(2,1,'MVCAB1+',2,15.00,'MARK V+ - Head'),(3,1,'CT1X12WIDE23',3,5.00,'California Tweed1X12 CALIFORNIA TWEED 23'),(4,2,'MVCBO1',1,10.00,'MARK V - Combo 1x12'),(5,2,'MVCAB1+',2,15.00,'MARK V+ - Head'),(6,2,'CT1X12WIDE23',3,5.00,'California Tweed1X12 CALIFORNIA TWEED 23');
 /*!40000 ALTER TABLE `ordenfabricaciondet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -936,6 +1243,90 @@ LOCK TABLES `productos` WRITE;
 INSERT INTO `productos` VALUES ('BLUED4X10',1,'Blues Deville 4x10 Reissue',1,100865.34,38.00,131124.94,30,'A','2008-10-10'),('BOGECS-100',5,'Bogner Ecstasy 100-watt Tube Head',2,0.00,29.80,0.00,30,'A','2011-10-10'),('CT1X12WIDE23',3,'California Tweed1X12 CALIFORNIA TWEED 23',3,0.00,35.00,0.00,30,'A','2010-02-14'),('FHOTRODDX3',1,'Hot Rod Deluxe III',1,0.00,37.00,0.00,30,'A','2018-12-08'),('MJCM900',2,'JCM900 4100',2,0.00,41.00,0.00,30,'A','2008-03-17'),('MVCAB1+',3,'MARK V+ - Head',2,0.00,35.00,0.00,30,'A','2012-04-03'),('MVCBO1',3,'MARK V - Combo 1x12',1,0.00,30.00,0.00,30,'A','2012-04-03'),('MVS8080',2,'Marshall Valvestate 8080',1,0.00,35.50,0.00,30,'A','2008-01-10'),('PERF1000',1,'Performer 1000 - Black',1,0.00,40.00,0.00,30,'A','2009-08-14'),('RIV_VENUS 5x12H',6,'Rivera Venus 5 1x12\" 35-watt Tube Combo Amp',2,0.00,43.60,0.00,30,'A','2015-09-15'),('SLO-100 SO',4,'Soldano SLO-100 Super Lead Overdrive',2,0.00,37.00,0.00,30,'A','2010-12-18');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `productos_AFTER_INSERT` AFTER INSERT ON `productos` FOR EACH ROW BEGIN
+	DECLARE v_idusr INT;
+    DECLARE v_movimiento VARCHAR(50);
+    DECLARE v_tabla VARCHAR(50);
+    DECLARE v_idmov INT;
+    
+    set v_idusr = 1;
+    set v_movimiento = "ALTA";
+    set v_tabla = "productos";
+    set v_idmov = 1;
+    
+
+    CALL AuditCentralizado(v_idmov, v_movimiento, v_idusr, v_tabla);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `productos_AFTER_UPDATE` AFTER UPDATE ON `productos` FOR EACH ROW BEGIN
+	DECLARE v_idusr INT;
+    DECLARE v_movimiento VARCHAR(50);
+    DECLARE v_tabla VARCHAR(50);
+    DECLARE v_idmov INT;
+    
+    set v_idusr = 1;
+    set v_movimiento = "MODIFICACION";
+    set v_tabla = "productos";
+    set v_idmov = 3;
+    
+
+    CALL AuditCentralizado(v_idmov, v_movimiento, v_idusr, v_tabla);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `productos_AFTER_DELETE` AFTER DELETE ON `productos` FOR EACH ROW BEGIN
+	DECLARE v_idusr INT;
+    DECLARE v_movimiento VARCHAR(50);
+    DECLARE v_tabla VARCHAR(50);
+    DECLARE v_idmov INT;
+    
+    set v_idusr = 1;
+    set v_movimiento = "BAJA";
+    set v_tabla = "productos";
+    set v_idmov = 2;
+    
+
+    CALL AuditCentralizado(v_idmov, v_movimiento, v_idusr, v_tabla);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `proveedores`
@@ -1104,9 +1495,9 @@ CREATE TABLE `remitoscab` (
   `IdCliente` int NOT NULL,
   `IdEmpleado` int NOT NULL,
   `IdDireccion` int NOT NULL,
-  `IdTipoEntrega` int NOT NULL,
+  `IdTipoEntrega` int DEFAULT NULL,
   `Fecha` date NOT NULL,
-  `PesoTotal` decimal(8,2) NOT NULL,
+  `PesoTotal` decimal(8,2) DEFAULT NULL,
   `CantidadBultos` decimal(8,2) NOT NULL,
   `Conformado` varchar(20) DEFAULT NULL,
   `Observaciones` varchar(45) DEFAULT NULL,
@@ -1119,7 +1510,7 @@ CREATE TABLE `remitoscab` (
   CONSTRAINT `FKIdDireccionRemCab` FOREIGN KEY (`IdDireccion`) REFERENCES `direcciones` (`IdDireccion`),
   CONSTRAINT `FKIdEmpleadoRemCab` FOREIGN KEY (`IdEmpleado`) REFERENCES `empleados` (`IdEmpleado`),
   CONSTRAINT `FKIdTipoEntregaRemCab` FOREIGN KEY (`IdTipoEntrega`) REFERENCES `tiposentrega` (`IdTipoEntrega`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1128,8 +1519,93 @@ CREATE TABLE `remitoscab` (
 
 LOCK TABLES `remitoscab` WRITE;
 /*!40000 ALTER TABLE `remitoscab` DISABLE KEYS */;
+INSERT INTO `remitoscab` VALUES (1,3,1,3,NULL,'2024-08-31',NULL,3.00,'S',NULL);
 /*!40000 ALTER TABLE `remitoscab` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `remitoscab_AFTER_INSERT` AFTER INSERT ON `remitoscab` FOR EACH ROW BEGIN
+	DECLARE v_idusr INT;
+    DECLARE v_movimiento VARCHAR(50);
+    DECLARE v_tabla VARCHAR(50);
+    DECLARE v_idmov INT;
+    
+    set v_idusr = 1;
+    set v_movimiento = "ALTA";
+    set v_tabla = "remitoscab";
+    set v_idmov = 1;
+    
+
+    CALL AuditCentralizado(v_idmov, v_movimiento, v_idusr, v_tabla);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `remitoscab_AFTER_UPDATE` AFTER UPDATE ON `remitoscab` FOR EACH ROW BEGIN
+	DECLARE v_idusr INT;
+    DECLARE v_movimiento VARCHAR(50);
+    DECLARE v_tabla VARCHAR(50);
+    DECLARE v_idmov INT;
+    
+    set v_idusr = 1;
+    set v_movimiento = "MODIFICACION";
+    set v_tabla = "remitoscab";
+    set v_idmov = 3;
+    
+
+    CALL AuditCentralizado(v_idmov, v_movimiento, v_idusr, v_tabla);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `remitoscab_AFTER_DELETE` AFTER DELETE ON `remitoscab` FOR EACH ROW BEGIN
+	DECLARE v_idusr INT;
+    DECLARE v_movimiento VARCHAR(50);
+    DECLARE v_tabla VARCHAR(50);
+    DECLARE v_idmov INT;
+    
+    set v_idusr = 1;
+    set v_movimiento = "BAJA";
+    set v_tabla = "remitoscab";
+    set v_idmov = 2;
+    
+
+    CALL AuditCentralizado(v_idmov, v_movimiento, v_idusr, v_tabla);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `remitosdet`
@@ -1145,7 +1621,7 @@ CREATE TABLE `remitosdet` (
   `Cantidad` decimal(8,2) NOT NULL,
   `Descripcion` varchar(45) DEFAULT NULL,
   `NumeroOrden` int NOT NULL,
-  `Peso` decimal(8,2) NOT NULL,
+  `Peso` decimal(8,2) DEFAULT NULL,
   PRIMARY KEY (`IdRemitoDet`),
   KEY `FKIdProducto_idx` (`IdProducto`),
   KEY `FKIdRemito_idx` (`IdRemito`),
@@ -1318,6 +1794,56 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'boxdbmartindatabases'
 --
+/*!50003 DROP FUNCTION IF EXISTS `OF_FINALIZADA` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `OF_FINALIZADA`(PIdOrdenFabricacion int) RETURNS char(1) CHARSET utf8mb3
+    DETERMINISTIC
+BEGIN
+
+	declare cantidad decimal(8,2);
+    declare cantidad2 decimal(8,2);
+    DECLARE resultado CHAR(1);
+
+	SELECT SUM(ofd.cantidad * hr.product_count) into cantidad
+	FROM ordenfabricaciondet ofd
+	JOIN (
+		SELECT idproducto, COUNT(idproducto) AS product_count
+		FROM hojasruta
+		GROUP BY idproducto
+	) hr ON ofd.idproducto = hr.idproducto
+	WHERE ofd.idordenfabricacion = PIdOrdenFabricacion;
+    
+    SELECT SUM(notdet.cantidad) into cantidad2
+	FROM notificacionescab notcab
+	INNER JOIN notificacionesdet notdet ON notcab.idnotificacion = notdet.idnotificacion
+	LEFT JOIN (
+		SELECT DISTINCT idproducto
+		FROM ordenfabricaciondet
+	) ofdet ON notcab.idproducto = ofdet.idproducto
+	WHERE notcab.idordenfabricacion = PIdOrdenFabricacion;
+    
+	IF cantidad = cantidad2 THEN
+        SET resultado = 'F';
+    ELSE
+        SET resultado = 'P';
+    END IF;
+	
+    RETURN resultado;
+RETURN 1;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP FUNCTION IF EXISTS `Positivo_Negativo` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1333,6 +1859,26 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `Positivo_Negativo`(lolo decimal(8,2)
     DETERMINISTIC
 BEGIN
 	RETURN IF(lolo > 0, 'Positivo', 'Negativo');
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `AuditCentralizado` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AuditCentralizado`(in Pidmov int, Pdetmov varchar(100), Pidusr int, Ptabla varchar(100))
+BEGIN
+	INSERT INTO audit (idMov, DetMov, Fecha, hora, idUsr, tabla)
+    VALUES (pidmov, PdetMov, curdate(), curtime(), Pidusr, Ptabla);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1418,14 +1964,13 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Estado_OF_Item`(in PIdOrdenFabricacion int, PIDProducto varchar(45))
 BEGIN
-	select nc.idordenfabricacion as Orden, nc.item as Item, nc.idproducto as Producto, nc.cantidad, nc.estado, l.centrotrabajo as Centro, nt.cantidad as CantidadProcesada, nt.fecha, nt.hora, nt.idoperario
+	select nc.idordenfabricacion, nc.item, nc.idproducto, nc.cantidad, nc.estado, nc.idlineaprod, nt.cantidad, nt.fecha, nt.hora, nt.idoperario
     from notificacionescab nc
-    inner join notificacionesdet nt on nc.idnotificacion = nt.idnotificacion
-    inner join lineasproduccion l on nc.idlineaprod = l.idlineaprod
+    join notificacionesdet nt on nc.idnotificacion = nt.idnotificacion
     where nc.idordenfabricacion = PIdOrdenFabricacion and nc.idproducto = PIDProducto;
 END ;;
 DELIMITER ;
@@ -1441,11 +1986,11 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Estado_OF_Item_CT`(IN PIDOrdenFabricacion INT)
 BEGIN
-    SELECT nc.idordenfabricacion AS Orden, nc.item, nc.idproducto AS Producto, nc.cantidad AS QtyOrdenada, l.centrotrabajo AS Centro, SUM(nd.cantidad) AS QtyProcesada, (nc.cantidad - SUM(nd.cantidad)) AS Pendiente
+	SELECT nc.idordenfabricacion AS Orden, nc.item, nc.idproducto AS Producto, nc.cantidad AS QtyOrdenada, l.centrotrabajo AS Centro, SUM(nd.cantidad) AS QtyProcesada, (nc.cantidad - SUM(nd.cantidad)) AS Pendiente
     FROM notificacionescab nc
     INNER JOIN notificacionesdet nd ON nd.idnotificacion = nc.idnotificacion
     INNER JOIN lineasproduccion l ON l.idlineaprod = nc.idlineaprod
@@ -1557,6 +2102,49 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `REMITO_OF` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `REMITO_OF`(PIDOrdenFabricacion int, PIDUsr int)
+BEGIN
+	
+    declare cliente int;
+    declare direccion int;
+    declare cantidad int;
+    
+    declare producto varchar(45);
+    
+    select idcliente into cliente from ordenfabricacioncab
+    where idordenfabricacion = PIDordenFabricacion;
+    
+    select iddireccion into direccion from ordenfabricacioncab
+    where idordenfabricacion = PIDordenFabricacion;
+    
+    select count(*) into cantidad from ordenfabricacioncab oc
+    join ordenfabricaciondet od on oc.idordenfabricacion = od.idordenfabricacion
+    where oc.idordenfabricacion = PIDordenFabricacion;
+    
+	insert into remitoscab (idcliente, idempleado, iddireccion, fecha, cantidadbultos, conformado) 
+    values (cliente, PIDUsr, direccion, curdate(), cantidad, "S");
+    
+    insert into remitosdet (idremito, idproducto, cantidad, numeroorden)
+    select idremitodet, (select idproducto from ordenfabricaciondet where idordenfabricacion = pidordenfabricacion) as idproducto, 
+    cantidad, PIDordenFabricacion
+    from remitosdet;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1567,4 +2155,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-08-24 11:50:34
+-- Dump completed on 2024-09-05 19:30:25
