@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `boxdbmartindatabases` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `boxdbmartindatabases` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `boxdbmartindatabases`;
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
--- Host: localhost    Database: boxdbmartindatabases
+-- Host: 127.0.0.1    Database: boxdbmartindatabases
 -- ------------------------------------------------------
--- Server version	8.0.28
+-- Server version	8.0.39
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -157,7 +157,7 @@ CREATE TABLE `audit` (
   PRIMARY KEY (`idEvent`),
   KEY `FKIdMovAudit_idx` (`idMov`),
   CONSTRAINT `FKIdMovAudit` FOREIGN KEY (`idMov`) REFERENCES `audmov` (`idMov`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -166,7 +166,7 @@ CREATE TABLE `audit` (
 
 LOCK TABLES `audit` WRITE;
 /*!40000 ALTER TABLE `audit` DISABLE KEYS */;
-INSERT INTO `audit` VALUES (1,1,'ALTA','2024-08-30','20:38:00',1,'almacen'),(2,3,'MODIFICACION','2024-08-30','20:39:40',1,'almacen'),(3,2,'BAJA','2024-08-30','20:41:56',1,'almacen'),(4,1,'ALTA','2024-08-30','20:42:45',1,'almacen'),(5,1,'ALTA','2024-08-30','20:42:45',1,'almacen'),(6,2,'BAJA','2024-08-30','20:43:29',1,'almacen'),(7,1,'ALTA','2024-08-30','21:27:02',1,'almacen'),(8,3,'MODIFICACION','2024-08-30','21:34:00',1,'ordenfabricacioncab'),(9,3,'MODIFICACION','2024-08-30','21:34:21',1,'ordenfabricacioncab'),(10,3,'MODIFICACION','2024-08-30','21:34:45',1,'productos'),(11,3,'MODIFICACION','2024-08-30','21:35:02',1,'productos'),(12,1,'ALTA','2024-08-31','10:54:33',1,'ordenfabricacioncab'),(13,1,'ALTA','2024-08-31','12:17:35',1,'remitoscab'),(14,2,'BAJA','2024-08-31','12:38:27',1,'remitoscab'),(15,1,'ALTA','2024-08-31','12:49:37',1,'remitoscab'),(16,1,'ALTA','2024-08-31','12:50:14',1,'remitoscab'),(17,2,'BAJA','2024-08-31','12:51:35',1,'remitoscab'),(18,2,'BAJA','2024-08-31','12:51:35',1,'remitoscab'),(19,1,'ALTA','2024-08-31','12:51:45',1,'remitoscab'),(20,2,'BAJA','2024-08-31','12:52:14',1,'remitoscab'),(21,1,'ALTA','2024-08-31','12:53:12',1,'remitoscab'),(22,2,'BAJA','2024-08-31','12:53:31',1,'remitoscab'),(23,1,'ALTA','2024-08-31','12:57:55',1,'remitoscab'),(24,2,'BAJA','2024-08-31','12:59:25',1,'remitoscab'),(25,1,'ALTA','2024-08-31','13:00:01',1,'remitoscab'),(26,2,'BAJA','2024-08-31','13:01:51',1,'remitoscab'),(27,1,'ALTA','2024-08-31','13:02:18',1,'remitoscab'),(28,2,'BAJA','2024-09-05','19:53:26',1,'remitoscab'),(29,1,'ALTA','2024-09-05','20:01:18',1,'remitoscab'),(30,2,'BAJA','2024-09-05','20:04:59',1,'remitoscab'),(31,1,'ALTA','2024-09-05','20:32:52',1,'remitoscab'),(32,2,'BAJA','2024-09-05','20:37:45',1,'remitoscab'),(33,1,'ALTA','2024-09-05','20:37:49',1,'remitoscab'),(34,1,'ALTA','2024-09-05','20:38:00',1,'remitoscab'),(35,2,'BAJA','2024-09-05','20:38:36',1,'remitoscab'),(36,2,'BAJA','2024-09-05','20:38:36',1,'remitoscab'),(37,1,'ALTA','2024-09-05','20:39:49',1,'remitoscab'),(38,2,'BAJA','2024-09-05','20:42:20',1,'remitoscab'),(39,1,'ALTA','2024-09-05','21:02:03',1,'remitoscab'),(40,1,'ALTA','2024-09-05','21:02:16',1,'remitoscab'),(41,1,'ALTA','2024-09-05','21:15:34',1,'remitoscab'),(42,1,'ALTA','2024-09-05','21:15:44',1,'remitoscab'),(43,2,'BAJA','2024-09-05','21:16:04',1,'remitoscab'),(44,2,'BAJA','2024-09-05','21:16:04',1,'remitoscab'),(45,2,'BAJA','2024-09-05','21:16:04',1,'remitoscab'),(46,1,'ALTA','2024-09-05','21:16:21',1,'remitoscab'),(47,2,'BAJA','2024-09-05','21:17:14',1,'remitoscab'),(48,2,'BAJA','2024-09-05','21:17:14',1,'remitoscab'),(49,1,'ALTA','2024-09-05','21:19:32',1,'remitoscab'),(50,2,'BAJA','2024-09-05','21:20:53',1,'remitoscab'),(51,1,'ALTA','2024-09-05','21:22:01',1,'remitoscab');
+INSERT INTO `audit` VALUES (1,1,'ALTA','2024-08-30','20:38:00',1,'almacen'),(2,3,'MODIFICACION','2024-08-30','20:39:40',1,'almacen'),(3,2,'BAJA','2024-08-30','20:41:56',1,'almacen'),(4,1,'ALTA','2024-08-30','20:42:45',1,'almacen'),(5,1,'ALTA','2024-08-30','20:42:45',1,'almacen'),(6,2,'BAJA','2024-08-30','20:43:29',1,'almacen'),(7,1,'ALTA','2024-08-30','21:27:02',1,'almacen'),(8,3,'MODIFICACION','2024-08-30','21:34:00',1,'ordenfabricacioncab'),(9,3,'MODIFICACION','2024-08-30','21:34:21',1,'ordenfabricacioncab'),(10,3,'MODIFICACION','2024-08-30','21:34:45',1,'productos'),(11,3,'MODIFICACION','2024-08-30','21:35:02',1,'productos'),(12,1,'ALTA','2024-08-31','10:54:33',1,'ordenfabricacioncab'),(13,1,'ALTA','2024-08-31','12:17:35',1,'remitoscab'),(14,2,'BAJA','2024-08-31','12:38:27',1,'remitoscab'),(15,1,'ALTA','2024-08-31','12:49:37',1,'remitoscab'),(16,1,'ALTA','2024-08-31','12:50:14',1,'remitoscab'),(17,2,'BAJA','2024-08-31','12:51:35',1,'remitoscab'),(18,2,'BAJA','2024-08-31','12:51:35',1,'remitoscab'),(19,1,'ALTA','2024-08-31','12:51:45',1,'remitoscab'),(20,2,'BAJA','2024-08-31','12:52:14',1,'remitoscab'),(21,1,'ALTA','2024-08-31','12:53:12',1,'remitoscab'),(22,2,'BAJA','2024-08-31','12:53:31',1,'remitoscab'),(23,1,'ALTA','2024-08-31','12:57:55',1,'remitoscab'),(24,2,'BAJA','2024-08-31','12:59:25',1,'remitoscab'),(25,1,'ALTA','2024-08-31','13:00:01',1,'remitoscab'),(26,2,'BAJA','2024-08-31','13:01:51',1,'remitoscab'),(27,1,'ALTA','2024-08-31','13:02:18',1,'remitoscab'),(28,2,'BAJA','2024-09-05','19:53:26',1,'remitoscab'),(29,1,'ALTA','2024-09-05','20:01:18',1,'remitoscab'),(30,2,'BAJA','2024-09-05','20:04:59',1,'remitoscab'),(31,1,'ALTA','2024-09-05','20:32:52',1,'remitoscab'),(32,2,'BAJA','2024-09-05','20:37:45',1,'remitoscab'),(33,1,'ALTA','2024-09-05','20:37:49',1,'remitoscab'),(34,1,'ALTA','2024-09-05','20:38:00',1,'remitoscab'),(35,2,'BAJA','2024-09-05','20:38:36',1,'remitoscab'),(36,2,'BAJA','2024-09-05','20:38:36',1,'remitoscab'),(37,1,'ALTA','2024-09-05','20:39:49',1,'remitoscab'),(38,2,'BAJA','2024-09-05','20:42:20',1,'remitoscab'),(39,1,'ALTA','2024-09-05','21:02:03',1,'remitoscab'),(40,1,'ALTA','2024-09-05','21:02:16',1,'remitoscab'),(41,1,'ALTA','2024-09-05','21:15:34',1,'remitoscab'),(42,1,'ALTA','2024-09-05','21:15:44',1,'remitoscab'),(43,2,'BAJA','2024-09-05','21:16:04',1,'remitoscab'),(44,2,'BAJA','2024-09-05','21:16:04',1,'remitoscab'),(45,2,'BAJA','2024-09-05','21:16:04',1,'remitoscab'),(46,1,'ALTA','2024-09-05','21:16:21',1,'remitoscab'),(47,2,'BAJA','2024-09-05','21:17:14',1,'remitoscab'),(48,2,'BAJA','2024-09-05','21:17:14',1,'remitoscab'),(49,1,'ALTA','2024-09-05','21:19:32',1,'remitoscab'),(50,2,'BAJA','2024-09-05','21:20:53',1,'remitoscab'),(51,1,'ALTA','2024-09-05','21:22:01',1,'remitoscab'),(52,3,'MODIFICACION','2024-09-06','01:33:44',1,'productos'),(53,3,'MODIFICACION','2024-09-06','01:34:06',1,'productos'),(54,3,'MODIFICACION','2024-09-06','01:34:19',1,'productos'),(55,1,'ALTA','2024-09-06','01:58:26',1,'facturascab'),(56,2,'BAJA','2024-09-06','01:58:57',1,'facturascab'),(57,1,'ALTA','2024-09-06','01:59:09',1,'facturascab'),(58,2,'BAJA','2024-09-06','01:59:24',1,'facturascab'),(59,1,'ALTA','2024-09-06','02:01:58',1,'facturascab'),(60,2,'BAJA','2024-09-06','02:02:12',1,'facturascab'),(61,1,'ALTA','2024-09-06','02:04:58',1,'facturascab'),(62,2,'BAJA','2024-09-06','02:07:35',1,'facturascab'),(63,1,'ALTA','2024-09-06','02:09:28',1,'facturascab');
 /*!40000 ALTER TABLE `audit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -419,7 +419,7 @@ DROP TABLE IF EXISTS `facturascab`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `facturascab` (
-  `IdFactura` int NOT NULL AUTO_INCREMENT,
+  `IdFactura` int NOT NULL,
   `IdCliente` int NOT NULL,
   `IdEmpleado` int NOT NULL,
   `IdRemito` int NOT NULL,
@@ -451,6 +451,7 @@ CREATE TABLE `facturascab` (
 
 LOCK TABLES `facturascab` WRITE;
 /*!40000 ALTER TABLE `facturascab` DISABLE KEYS */;
+INSERT INTO `facturascab` VALUES (1,3,1,1,3,'2024-09-06','2024-09-05',402429.43,0.00,402429.43,84510.18,486939.61,'2024-10-06',NULL);
 /*!40000 ALTER TABLE `facturascab` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -552,13 +553,13 @@ CREATE TABLE `facturasdet` (
   `Cantidad` decimal(8,2) NOT NULL,
   `Descripcion` varchar(45) DEFAULT NULL,
   `Precio` decimal(8,2) NOT NULL,
-  `Importe` decimal(8,2) NOT NULL,
+  `Importe` decimal(10,2) NOT NULL,
   PRIMARY KEY (`IdFacturaDet`),
   KEY `FKIdFactura_idx` (`IdFactura`),
   KEY `FKIdProducto_idx` (`IdProducto`),
   CONSTRAINT `FKIdFacturaFactDet` FOREIGN KEY (`IdFactura`) REFERENCES `facturascab` (`IdFactura`),
   CONSTRAINT `FKIdProductoFactDet` FOREIGN KEY (`IdProducto`) REFERENCES `productos` (`IdProducto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -567,6 +568,7 @@ CREATE TABLE `facturasdet` (
 
 LOCK TABLES `facturasdet` WRITE;
 /*!40000 ALTER TABLE `facturasdet` DISABLE KEYS */;
+INSERT INTO `facturasdet` VALUES (2,1,'MVCBO1',10.00,NULL,155569.31,1555693.10),(3,1,'MVCAB1+',15.00,NULL,103370.41,1550556.15),(4,1,'CT1X12WIDE23',5.00,NULL,143489.71,717448.55);
 /*!40000 ALTER TABLE `facturasdet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1240,7 +1242,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES ('BLUED4X10',1,'Blues Deville 4x10 Reissue',1,100865.34,38.00,131124.94,30,'A','2008-10-10'),('BOGECS-100',5,'Bogner Ecstasy 100-watt Tube Head',2,0.00,29.80,0.00,30,'A','2011-10-10'),('CT1X12WIDE23',3,'California Tweed1X12 CALIFORNIA TWEED 23',3,0.00,35.00,0.00,30,'A','2010-02-14'),('FHOTRODDX3',1,'Hot Rod Deluxe III',1,0.00,37.00,0.00,30,'A','2018-12-08'),('MJCM900',2,'JCM900 4100',2,0.00,41.00,0.00,30,'A','2008-03-17'),('MVCAB1+',3,'MARK V+ - Head',2,0.00,35.00,0.00,30,'A','2012-04-03'),('MVCBO1',3,'MARK V - Combo 1x12',1,0.00,30.00,0.00,30,'A','2012-04-03'),('MVS8080',2,'Marshall Valvestate 8080',1,0.00,35.50,0.00,30,'A','2008-01-10'),('PERF1000',1,'Performer 1000 - Black',1,0.00,40.00,0.00,30,'A','2009-08-14'),('RIV_VENUS 5x12H',6,'Rivera Venus 5 1x12\" 35-watt Tube Combo Amp',2,0.00,43.60,0.00,30,'A','2015-09-15'),('SLO-100 SO',4,'Soldano SLO-100 Super Lead Overdrive',2,0.00,37.00,0.00,30,'A','2010-12-18');
+INSERT INTO `productos` VALUES ('BLUED4X10',1,'Blues Deville 4x10 Reissue',1,100865.34,38.00,131124.94,30,'A','2008-10-10'),('BOGECS-100',5,'Bogner Ecstasy 100-watt Tube Head',2,0.00,29.80,0.00,30,'A','2011-10-10'),('CT1X12WIDE23',3,'California Tweed1X12 CALIFORNIA TWEED 23',3,110376.70,35.00,143489.71,30,'A','2010-02-14'),('FHOTRODDX3',1,'Hot Rod Deluxe III',1,0.00,37.00,0.00,30,'A','2018-12-08'),('MJCM900',2,'JCM900 4100',2,0.00,41.00,0.00,30,'A','2008-03-17'),('MVCAB1+',3,'MARK V+ - Head',2,79515.70,35.00,103370.41,30,'A','2012-04-03'),('MVCBO1',3,'MARK V - Combo 1x12',1,119668.70,30.00,155569.31,30,'A','2012-04-03'),('MVS8080',2,'Marshall Valvestate 8080',1,0.00,35.50,0.00,30,'A','2008-01-10'),('PERF1000',1,'Performer 1000 - Black',1,0.00,40.00,0.00,30,'A','2009-08-14'),('RIV_VENUS 5x12H',6,'Rivera Venus 5 1x12\" 35-watt Tube Combo Amp',2,0.00,43.60,0.00,30,'A','2015-09-15'),('SLO-100 SO',4,'Soldano SLO-100 Super Lead Overdrive',2,0.00,37.00,0.00,30,'A','2010-12-18');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -2011,11 +2013,38 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `FACTURA_REMITO`(in PIDRemito int, PIDUsr int)
 BEGIN
+	declare idfacturaencab int;
 
+	if not exists(select idremito from facturascab where idremito = PIDRemito) then
+    
+		SELECT (idfactura + 1) INTO idfacturaencab
+		FROM facturascab
+		ORDER BY idfactura DESC LIMIT 1;
+		
+		IF idfacturaencab IS NULL THEN
+			SET idfacturaencab = 1;
+		END IF;
+    
+		insert into facturascab (idfactura ,idcliente, idempleado, idremito, iddireccion, fecha, fechaentrega, subtotal, descuento, neto, IVA, total, fechavencimiento)
+		select idfacturaencab, rc.idcliente, PIDUsr, rc.idremito, rc.iddireccion, curdate(), rc.fecha, sum(p.punitario), 0, sum(p.punitario), (sum(p.punitario) * 0.21), (sum(p.punitario) + (sum(p.punitario) * 0.21)), DATE_ADD(CURDATE(), INTERVAL 1 MONTH)
+		from remitoscab rc
+		inner join remitosdet rd on rc.idremito = rd.idremito
+		inner join productos p on rd.idproducto = p.idproducto
+		where rc.idremito = PIDRemito
+        group by rc.idcliente, PIDUsr, rc.idremito, rc.iddireccion, rc.fecha;
+
+		insert into facturasdet (idfactura, idproducto, cantidad, precio, importe)
+		select idfacturaencab, rd.idproducto, rd.cantidad, p.punitario, (p.punitario * rd.cantidad)
+		from remitosdet rd
+		join productos p on rd.idproducto = p.idproducto
+		where rd.idremito = PIDRemito;
+	else
+		select "Este remito ya fue facturado";
+	end if;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2195,4 +2224,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-05 22:17:27
+-- Dump completed on 2024-09-06  2:16:43
