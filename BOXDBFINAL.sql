@@ -157,7 +157,7 @@ CREATE TABLE `audit` (
   PRIMARY KEY (`idEvent`),
   KEY `FKIdMovAudit_idx` (`idMov`),
   CONSTRAINT `FKIdMovAudit` FOREIGN KEY (`idMov`) REFERENCES `audmov` (`idMov`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -166,7 +166,7 @@ CREATE TABLE `audit` (
 
 LOCK TABLES `audit` WRITE;
 /*!40000 ALTER TABLE `audit` DISABLE KEYS */;
-INSERT INTO `audit` VALUES (1,1,'ALTA','2024-08-30','20:38:00',1,'almacen'),(2,3,'MODIFICACION','2024-08-30','20:39:40',1,'almacen'),(3,2,'BAJA','2024-08-30','20:41:56',1,'almacen'),(4,1,'ALTA','2024-08-30','20:42:45',1,'almacen'),(5,1,'ALTA','2024-08-30','20:42:45',1,'almacen'),(6,2,'BAJA','2024-08-30','20:43:29',1,'almacen'),(7,1,'ALTA','2024-08-30','21:27:02',1,'almacen'),(8,3,'MODIFICACION','2024-08-30','21:34:00',1,'ordenfabricacioncab'),(9,3,'MODIFICACION','2024-08-30','21:34:21',1,'ordenfabricacioncab'),(10,3,'MODIFICACION','2024-08-30','21:34:45',1,'productos'),(11,3,'MODIFICACION','2024-08-30','21:35:02',1,'productos'),(12,1,'ALTA','2024-08-31','10:54:33',1,'ordenfabricacioncab'),(13,1,'ALTA','2024-08-31','12:17:35',1,'remitoscab'),(14,2,'BAJA','2024-08-31','12:38:27',1,'remitoscab'),(15,1,'ALTA','2024-08-31','12:49:37',1,'remitoscab'),(16,1,'ALTA','2024-08-31','12:50:14',1,'remitoscab'),(17,2,'BAJA','2024-08-31','12:51:35',1,'remitoscab'),(18,2,'BAJA','2024-08-31','12:51:35',1,'remitoscab'),(19,1,'ALTA','2024-08-31','12:51:45',1,'remitoscab'),(20,2,'BAJA','2024-08-31','12:52:14',1,'remitoscab'),(21,1,'ALTA','2024-08-31','12:53:12',1,'remitoscab'),(22,2,'BAJA','2024-08-31','12:53:31',1,'remitoscab'),(23,1,'ALTA','2024-08-31','12:57:55',1,'remitoscab'),(24,2,'BAJA','2024-08-31','12:59:25',1,'remitoscab'),(25,1,'ALTA','2024-08-31','13:00:01',1,'remitoscab'),(26,2,'BAJA','2024-08-31','13:01:51',1,'remitoscab'),(27,1,'ALTA','2024-08-31','13:02:18',1,'remitoscab');
+INSERT INTO `audit` VALUES (1,1,'ALTA','2024-08-30','20:38:00',1,'almacen'),(2,3,'MODIFICACION','2024-08-30','20:39:40',1,'almacen'),(3,2,'BAJA','2024-08-30','20:41:56',1,'almacen'),(4,1,'ALTA','2024-08-30','20:42:45',1,'almacen'),(5,1,'ALTA','2024-08-30','20:42:45',1,'almacen'),(6,2,'BAJA','2024-08-30','20:43:29',1,'almacen'),(7,1,'ALTA','2024-08-30','21:27:02',1,'almacen'),(8,3,'MODIFICACION','2024-08-30','21:34:00',1,'ordenfabricacioncab'),(9,3,'MODIFICACION','2024-08-30','21:34:21',1,'ordenfabricacioncab'),(10,3,'MODIFICACION','2024-08-30','21:34:45',1,'productos'),(11,3,'MODIFICACION','2024-08-30','21:35:02',1,'productos'),(12,1,'ALTA','2024-08-31','10:54:33',1,'ordenfabricacioncab'),(13,1,'ALTA','2024-08-31','12:17:35',1,'remitoscab'),(14,2,'BAJA','2024-08-31','12:38:27',1,'remitoscab'),(15,1,'ALTA','2024-08-31','12:49:37',1,'remitoscab'),(16,1,'ALTA','2024-08-31','12:50:14',1,'remitoscab'),(17,2,'BAJA','2024-08-31','12:51:35',1,'remitoscab'),(18,2,'BAJA','2024-08-31','12:51:35',1,'remitoscab'),(19,1,'ALTA','2024-08-31','12:51:45',1,'remitoscab'),(20,2,'BAJA','2024-08-31','12:52:14',1,'remitoscab'),(21,1,'ALTA','2024-08-31','12:53:12',1,'remitoscab'),(22,2,'BAJA','2024-08-31','12:53:31',1,'remitoscab'),(23,1,'ALTA','2024-08-31','12:57:55',1,'remitoscab'),(24,2,'BAJA','2024-08-31','12:59:25',1,'remitoscab'),(25,1,'ALTA','2024-08-31','13:00:01',1,'remitoscab'),(26,2,'BAJA','2024-08-31','13:01:51',1,'remitoscab'),(27,1,'ALTA','2024-08-31','13:02:18',1,'remitoscab'),(28,2,'BAJA','2024-09-05','19:53:26',1,'remitoscab'),(29,1,'ALTA','2024-09-05','20:01:18',1,'remitoscab'),(30,2,'BAJA','2024-09-05','20:04:59',1,'remitoscab'),(31,1,'ALTA','2024-09-05','20:32:52',1,'remitoscab'),(32,2,'BAJA','2024-09-05','20:37:45',1,'remitoscab'),(33,1,'ALTA','2024-09-05','20:37:49',1,'remitoscab'),(34,1,'ALTA','2024-09-05','20:38:00',1,'remitoscab'),(35,2,'BAJA','2024-09-05','20:38:36',1,'remitoscab'),(36,2,'BAJA','2024-09-05','20:38:36',1,'remitoscab'),(37,1,'ALTA','2024-09-05','20:39:49',1,'remitoscab'),(38,2,'BAJA','2024-09-05','20:42:20',1,'remitoscab'),(39,1,'ALTA','2024-09-05','21:02:03',1,'remitoscab'),(40,1,'ALTA','2024-09-05','21:02:16',1,'remitoscab'),(41,1,'ALTA','2024-09-05','21:15:34',1,'remitoscab'),(42,1,'ALTA','2024-09-05','21:15:44',1,'remitoscab'),(43,2,'BAJA','2024-09-05','21:16:04',1,'remitoscab'),(44,2,'BAJA','2024-09-05','21:16:04',1,'remitoscab'),(45,2,'BAJA','2024-09-05','21:16:04',1,'remitoscab'),(46,1,'ALTA','2024-09-05','21:16:21',1,'remitoscab'),(47,2,'BAJA','2024-09-05','21:17:14',1,'remitoscab'),(48,2,'BAJA','2024-09-05','21:17:14',1,'remitoscab'),(49,1,'ALTA','2024-09-05','21:19:32',1,'remitoscab'),(50,2,'BAJA','2024-09-05','21:20:53',1,'remitoscab'),(51,1,'ALTA','2024-09-05','21:22:01',1,'remitoscab');
 /*!40000 ALTER TABLE `audit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1491,7 +1491,7 @@ DROP TABLE IF EXISTS `remitoscab`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `remitoscab` (
-  `IdRemito` int NOT NULL AUTO_INCREMENT,
+  `IdRemito` int NOT NULL,
   `IdCliente` int NOT NULL,
   `IdEmpleado` int NOT NULL,
   `IdDireccion` int NOT NULL,
@@ -1510,7 +1510,7 @@ CREATE TABLE `remitoscab` (
   CONSTRAINT `FKIdDireccionRemCab` FOREIGN KEY (`IdDireccion`) REFERENCES `direcciones` (`IdDireccion`),
   CONSTRAINT `FKIdEmpleadoRemCab` FOREIGN KEY (`IdEmpleado`) REFERENCES `empleados` (`IdEmpleado`),
   CONSTRAINT `FKIdTipoEntregaRemCab` FOREIGN KEY (`IdTipoEntrega`) REFERENCES `tiposentrega` (`IdTipoEntrega`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1519,7 +1519,7 @@ CREATE TABLE `remitoscab` (
 
 LOCK TABLES `remitoscab` WRITE;
 /*!40000 ALTER TABLE `remitoscab` DISABLE KEYS */;
-INSERT INTO `remitoscab` VALUES (1,3,1,3,NULL,'2024-08-31',NULL,3.00,'S',NULL);
+INSERT INTO `remitoscab` VALUES (1,3,1,3,NULL,'2024-09-05',NULL,30.00,'S',NULL);
 /*!40000 ALTER TABLE `remitoscab` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -1627,7 +1627,7 @@ CREATE TABLE `remitosdet` (
   KEY `FKIdRemito_idx` (`IdRemito`),
   CONSTRAINT `FKIdProductoRemDet` FOREIGN KEY (`IdProducto`) REFERENCES `productos` (`IdProducto`),
   CONSTRAINT `FKIdRemito` FOREIGN KEY (`IdRemito`) REFERENCES `remitoscab` (`IdRemito`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1636,6 +1636,7 @@ CREATE TABLE `remitosdet` (
 
 LOCK TABLES `remitosdet` WRITE;
 /*!40000 ALTER TABLE `remitosdet` DISABLE KEYS */;
+INSERT INTO `remitosdet` VALUES (1,1,'MVCBO1',10.00,NULL,2,NULL),(2,1,'MVCAB1+',15.00,NULL,2,NULL),(3,1,'CT1X12WIDE23',5.00,NULL,2,NULL);
 /*!40000 ALTER TABLE `remitosdet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2110,34 +2111,54 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `REMITO_OF`(PIDOrdenFabricacion int, PIDUsr int)
 BEGIN
 	
-    declare cliente int;
-    declare direccion int;
-    declare cantidad int;
+    DECLARE cliente INT;
+    DECLARE direccion INT;
+    DECLARE bultos INT;
+    DECLARE idremitoencab INT DEFAULT 1;
     
-    declare producto varchar(45);
+    SELECT idcliente INTO cliente
+    FROM ordenfabricacioncab
+    WHERE idordenfabricacion = PIDOrdenFabricacion;
     
-    select idcliente into cliente from ordenfabricacioncab
-    where idordenfabricacion = PIDordenFabricacion;
+    SELECT iddireccion INTO direccion
+    FROM ordenfabricacioncab
+    WHERE idordenfabricacion = PIDOrdenFabricacion;
     
-    select iddireccion into direccion from ordenfabricacioncab
-    where idordenfabricacion = PIDordenFabricacion;
+    SELECT sum(od.cantidad) INTO bultos
+    FROM ordenfabricacioncab oc
+    JOIN ordenfabricaciondet od ON oc.idordenfabricacion = od.idordenfabricacion
+    WHERE oc.idordenfabricacion = PIDOrdenFabricacion;
     
-    select count(*) into cantidad from ordenfabricacioncab oc
-    join ordenfabricaciondet od on oc.idordenfabricacion = od.idordenfabricacion
-    where oc.idordenfabricacion = PIDordenFabricacion;
+    SELECT (idremito + 1) INTO idremitoencab
+    FROM remitoscab
+    ORDER BY idremito DESC LIMIT 1;
     
-	insert into remitoscab (idcliente, idempleado, iddireccion, fecha, cantidadbultos, conformado) 
-    values (cliente, PIDUsr, direccion, curdate(), cantidad, "S");
+    IF idremitoencab IS NULL THEN
+        SET idremitoencab = 1;
+    END IF;
+
+	if OF_FINALIZADA(PIDOrdenFabricacion) = "F" then
+		if not exists(select idremito from remitosdet where numeroorden = PIDOrdenFabricacion) then
+			INSERT INTO remitoscab (idremito, idcliente, idempleado, iddireccion, fecha, cantidadbultos, conformado) 
+			VALUES (idremitoencab, cliente, PIDUsr, direccion, CURDATE(), bultos, "S");
+		
+			INSERT INTO remitosdet (idremito, idproducto, cantidad, numeroorden)
+			SELECT idremitoencab, idproducto, cantidad, PIDOrdenFabricacion
+			FROM ordenfabricaciondet
+			WHERE idordenfabricacion = PIDOrdenFabricacion;
+		else
+			select "El remito ya se hizo para esta orden de fabricacion";
+		end if;
+	else
+		select "La orden de fabricacion no esta terminada";
+	end if;
     
-    insert into remitosdet (idremito, idproducto, cantidad, numeroorden)
-    select idremitodet, (select idproducto from ordenfabricaciondet where idordenfabricacion = pidordenfabricacion) as idproducto, 
-    cantidad, PIDordenFabricacion
-    from remitosdet;
+    
 
 END ;;
 DELIMITER ;
@@ -2155,4 +2176,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-05 19:30:25
+-- Dump completed on 2024-09-05 21:28:30
