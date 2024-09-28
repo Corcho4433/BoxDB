@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `boxdbmartindatabases` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `boxdbmartindatabases` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `boxdbmartindatabases`;
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: boxdbmartindatabases
+-- Host: localhost    Database: boxdbmartindatabases
 -- ------------------------------------------------------
--- Server version	8.0.39
+-- Server version	8.0.28
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1397,35 +1397,6 @@ INSERT INTO `recetamateriales` VALUES (1,'MVCAB1+','TP10028-25',1.00,'CU','AC1')
 UNLOCK TABLES;
 
 --
--- Table structure for table `recibopagodocs`
---
-
-DROP TABLE IF EXISTS `recibopagodocs`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `recibopagodocs` (
-  `IdReciboPagoDoc` int NOT NULL AUTO_INCREMENT,
-  `IdReciboPago` int NOT NULL,
-  `IdFactura` int NOT NULL,
-  `Importe` decimal(8,2) NOT NULL,
-  PRIMARY KEY (`IdReciboPagoDoc`),
-  KEY `FKIdReciboPago_idx` (`IdReciboPago`),
-  KEY `FKIdFactura_idx` (`IdFactura`),
-  CONSTRAINT `FKIdFacturaDocs` FOREIGN KEY (`IdFactura`) REFERENCES `facturascab` (`IdFactura`),
-  CONSTRAINT `FKIdReciboPagoDocs` FOREIGN KEY (`IdReciboPago`) REFERENCES `recibospagocab` (`IdReciboPago`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `recibopagodocs`
---
-
-LOCK TABLES `recibopagodocs` WRITE;
-/*!40000 ALTER TABLE `recibopagodocs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `recibopagodocs` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `recibospagocab`
 --
 
@@ -1438,12 +1409,13 @@ CREATE TABLE `recibospagocab` (
   `IdDireccion` int NOT NULL,
   `Total` decimal(8,2) NOT NULL,
   `Conforme` varchar(20) DEFAULT NULL,
+  `Fecha` date NOT NULL,
   PRIMARY KEY (`IdReciboPago`),
   KEY `FKIdCliente_idx` (`IdCliente`),
   KEY `FKIdDireccion_idx` (`IdDireccion`),
   CONSTRAINT `FKIdClienteRecPagoCab` FOREIGN KEY (`IdCliente`) REFERENCES `clientes` (`IdCliente`),
   CONSTRAINT `FKIdDireccionRecPagoCab` FOREIGN KEY (`IdDireccion`) REFERENCES `direcciones` (`IdDireccion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1452,6 +1424,7 @@ CREATE TABLE `recibospagocab` (
 
 LOCK TABLES `recibospagocab` WRITE;
 /*!40000 ALTER TABLE `recibospagocab` DISABLE KEYS */;
+INSERT INTO `recibospagocab` VALUES (1,3,3,486839.61,'S','2024-10-01');
 /*!40000 ALTER TABLE `recibospagocab` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1466,14 +1439,15 @@ CREATE TABLE `recibospagodet` (
   `IdReciboPagoDet` int NOT NULL AUTO_INCREMENT,
   `IdReciboPago` int NOT NULL,
   `IdTipoPago` int NOT NULL,
-  `Banco` varchar(20) NOT NULL,
   `Importe` decimal(8,2) NOT NULL,
+  `IdFactura` int NOT NULL,
   PRIMARY KEY (`IdReciboPagoDet`),
   KEY `FKIdReciboPago_idx` (`IdReciboPago`),
   KEY `FKIdTipoPago_idx` (`IdTipoPago`),
+  KEY `FKIdFacturaRPDet_idx` (`IdFactura`),
   CONSTRAINT `FKIdReciboPago` FOREIGN KEY (`IdReciboPago`) REFERENCES `recibospagocab` (`IdReciboPago`),
   CONSTRAINT `FKIdTipoPago` FOREIGN KEY (`IdTipoPago`) REFERENCES `tipospago` (`IdTipoPago`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1482,6 +1456,7 @@ CREATE TABLE `recibospagodet` (
 
 LOCK TABLES `recibospagodet` WRITE;
 /*!40000 ALTER TABLE `recibospagodet` DISABLE KEYS */;
+INSERT INTO `recibospagodet` VALUES (1,1,1,162279.87,1),(2,1,2,162279.87,1),(3,1,3,162279.87,1);
 /*!40000 ALTER TABLE `recibospagodet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1754,7 +1729,7 @@ CREATE TABLE `tipospago` (
   `Cuotas` int NOT NULL,
   `ExtensionDias` int DEFAULT NULL,
   PRIMARY KEY (`IdTipoPago`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1763,6 +1738,7 @@ CREATE TABLE `tipospago` (
 
 LOCK TABLES `tipospago` WRITE;
 /*!40000 ALTER TABLE `tipospago` DISABLE KEYS */;
+INSERT INTO `tipospago` VALUES (1,'Galicia','Oro',1,1),(2,'BBVA','Chelines',6,15),(3,'Santander','Yenes',12,30);
 /*!40000 ALTER TABLE `tipospago` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1868,6 +1844,45 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Actualizar_Saldo` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Actualizar_Saldo`()
+BEGIN
+	declare contador int;
+    DECLARE nuevo_saldo DECIMAL(10,2);
+    DECLARE debe_actual DECIMAL(10,2);
+    DECLARE haber_actual DECIMAL(10,2);
+
+	set contador = 1;
+    set nuevo_saldo = 0.00;
+    
+    WHILE contador <= (SELECT MAX(linea) FROM CCtemp) DO
+        SELECT debe, haber INTO debe_actual, haber_actual
+        FROM CCtemp
+        WHERE linea = contador;
+        SET nuevo_saldo = nuevo_saldo + debe_actual - haber_actual;
+        UPDATE CCtemp
+        SET saldo = nuevo_saldo
+        WHERE linea = contador;
+        SET contador = contador + 1;
+    END WHILE;
+
+	SELECT comprobante, tipo, fecha, debe, haber, saldo FROM `CCtemp`
+    order by fecha;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `AuditCentralizado` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1904,6 +1919,52 @@ BEGIN
 	from recetamateriales r
 	join almacen a on a.IdItem = r.IdItem
 	where r.IdProducto = PIDProducto;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `CC_Cliente_2` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CC_Cliente_2`(in PIDcliente int)
+BEGIN
+	
+
+	DROP TEMPORARY TABLE IF EXISTS `CCtemp`;
+	CREATE TEMPORARY TABLE `CCtemp` (
+		`Comprobante` INT NOT NULL DEFAULT 0,
+		`Tipo` CHAR(2),
+		`Fecha` DATE,
+		`Debe` DECIMAL(8,2),
+		`Haber` DECIMAL(8,2),
+		`Saldo` DECIMAL(8,2),
+        `Linea` int not null auto_increment key,
+		INDEX `idx_fecha` (`Fecha`)
+	);
+	INSERT INTO `CCtemp` (Comprobante, Tipo, Fecha, Debe, Haber, Saldo)
+	SELECT idfactura,'FC', fecha, total, 0.00, total
+	from facturascab
+	WHERE idcliente = PIDcliente
+    union all
+	SELECT rpd.idfactura, 'RP', rpc.fecha, 0.00, SUM(rpd.importe), 0.00
+	from recibospagocab rpc
+    inner join recibospagodet rpd on rpc.idrecibopago = rpd.idrecibopago
+    inner join facturascab fc on rpd.idfactura = fc.idfactura
+	WHERE fc.idcliente = PIDcliente;
+
+    
+    #saldo - haber + debe
+    call Actualizar_Saldo();
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2214,6 +2275,31 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Saldos_Facturas` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Saldos_Facturas`(in PIDcliente int)
+BEGIN
+	
+    select rpc.idcliente as Cliente, rpd.idfactura as Comprobante, fc.total as Importe, sum(rpd.importe) as Pagos, (fc.total - sum(rpd.importe)) as Saldo
+    from recibospagocab rpc
+    inner join recibospagodet rpd on rpc.idrecibopago = rpd.idrecibopago
+    inner join facturascab fc on rpd.idfactura = fc.idfactura
+    where rpc.idcliente = PIDcliente;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -2224,4 +2310,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-06  2:16:43
+-- Dump completed on 2024-09-28 10:46:36
