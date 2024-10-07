@@ -28,5 +28,11 @@ class CrudManager:
     def listar_clientes(self):
         clientes_disponibles = []
         for cliente in self.__clientes:
-            clientes_disponibles.append(cliente)
+            clientes_disponibles.append(str(cliente))
         return clientes_disponibles
+    
+    def get_cliente_from_string(self, cliente: str):
+        for cliente in self.__clientes:
+            if str(cliente) == cliente:
+                return cliente
+        return None

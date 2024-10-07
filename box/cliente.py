@@ -5,6 +5,9 @@ class Cliente:
         self.__fecha_ingreso = fecha_ingreso
         self.__estado = estado
 
+    def __str__(self):
+        return f"Cliente con Id {self.__id_cliente} de nombre {self.__nombre}"
+
     @property
     def id_cliente(self) -> int:
         return self.__id_cliente

@@ -29,15 +29,11 @@ sistema = crear_sistema()
 def home():
     """Define la logica para la pagina principal (index)"""
     if request.method=='POST':
+        cliente = sistema.get_cliente_from_string(request.form["cliente"])
         return render_template('index.html')
 
-    listado_clientes = sistema.listar_clientes()
-
-    clientes = []
-    for cliente in listado_clientes:
-        clientes.append([cliente.id_cliente, cliente.nombre, cliente.fecha_ingreso, cliente.estado])
-
-    return render_template('index.html', clientes=clientes)
+    clientes = sistema.listar_clientes()
+    return render_template('index.html', clientes=clientes, form={})
 
 @app.route('/iniciar_sesion',methods=['GET','POST'])
 def iniciar_sesion():

@@ -3,7 +3,7 @@ import mysql.connector
 
 class ProductoDAO:
     def __init__(self):
-        self.__db = mysql.connector.connect(user='root', password="i2i0L2aH1", host="localhost", database='boxdbmartindatabases')
+        self.__db = mysql.connector.connect(user='root', password="racing1996", host="127.0.0.1", database='boxdbmartindatabases')
 
     def listar_productos(self, id_cliente: int):
         cnx = self.__db

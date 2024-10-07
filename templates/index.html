@@ -11,29 +11,27 @@
 <body class="container">
 
     <h1 class="my-4">CrudBOX</h1>
-
-    <table class="table table-striped table-bordered">
-        <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Fecha Ingreso</th>
-            <th>Estado</th>
-        </tr>
-        {% for cliente in clientes %}
-        <tr>
-            <td>{{ cliente[0] }}</td>
-            <td>{{ cliente[1] }}</td>
-            <td>{{ cliente[2] }}</td>
-            <td>{{ cliente[3] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-
+    
     {% if request.args.get('mensaje') %}
     <p>{{ request.args.get('mensaje') }}</p>
     {% endif %}
 
     <div class="alert alert-info">Bienvenido a CrudBox. Por favor, inicie sesión para continuar.</div>
+
+    <div class="form-container">
+        <form method="post" class="form-group">
+            <div class="mb-3">
+                <label for="cliente" class="form-label">Cliente:</label>
+                <select name="cliente" id="cliente" required class="form-select">
+                    {% for cliente in clientes %}
+                    <option value="{{cliente}}"{% if cliente == form.cliente %} selected{% endif %}>{{cliente}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <a href="{{ url_for('iniciar_sesion') }}" class="btn btn-primary btn-block">Iniciar sesion</a>
 
 </body>
 
