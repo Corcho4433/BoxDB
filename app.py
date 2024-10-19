@@ -2,7 +2,6 @@
 
 from flask import Flask,redirect,url_for,render_template,request
 from dao.clientedao import ClienteDAO
-from dao.materialdao import MaterialDAO
 from dao.ordenventadao import OrdenVentaDAO
 from dao.productodao import ProductoDAO
 from box.crudmanager import CrudManager
@@ -16,10 +15,9 @@ def crear_sistema():
     """Crea el sistema de reservas que se usara"""
     cliente_dao = ClienteDAO()
     producto_dao = ProductoDAO()
-    material_dao = MaterialDAO()
     orden_venta_dao = OrdenVentaDAO()
     usuario_dao = UsuarioDAO()
-    sistema_crud = CrudManager(cliente_dao, usuario_dao, material_dao, orden_venta_dao, producto_dao)
+    sistema_crud = CrudManager(cliente_dao, usuario_dao, orden_venta_dao, producto_dao)
     return sistema_crud
 
 sistema = crear_sistema()
@@ -39,7 +37,6 @@ def home():
     clientes = sistema.listar_clientes()
     return render_template('index.html', clientes=clientes, form={})
 
-
 @app.route('/iniciar_sesion',methods=['GET','POST'])
 def iniciar_sesion():
     if request.method=='POST':
@@ -51,19 +48,43 @@ def iniciar_sesion():
 
     return render_template('iniciar_sesion.html', form={})
 
-@app.route('/cargar_productos',methods=['GET','POST'])
+@app.route('/cargar_productos', methods=['GET', 'POST'])
 def cargar_productos():
-    if request.method=='POST':
-        return render_template("cargar_productos.html")
-    
-    listado_productos = sistema.listar_productos()
+    if request.method == 'POST':
+        return render_template("comprar.html", form={})
 
+    listado_productos, productos_baja = sistema.listar_productos()
     productos = []
+
     for producto in listado_productos:
         producto = sistema.get_producto_from_id(producto.id_producto)
-        productos.append([producto.id_producto, producto.nombre, producto.tipo_producto, producto.precio_unitario, producto.estado, producto.fecha_alta])
+        productos.append([producto.id_producto, producto.nombre, producto.tipo_producto,
+        producto.precio_unitario, producto.estado, producto.fecha_alta])
 
-    return render_template('cargar_productos.html', form={}, productos=productos, cliente=str(sistema.cliente))
+    return render_template('cargar_productos.html', form={}, productos=productos,
+    productos_baja=productos_baja, cliente=sistema.cliente)
+
+@app.route('/comprar', methods=['GET', 'POST'])
+def comprar():
+    if request.method == 'POST':
+        productos_cantidades = []
+        for key in request.form:
+            if key.startswith('cantidad_'):
+                producto_id = key.split('_')[1]
+                cantidad = request.form[key]
+                productos_cantidades.append((producto_id, int(cantidad)))
+
+        return render_template("comprar.html")
+    
+    listado_productos,_= sistema.listar_productos()
+    productos = []
+
+    for producto in listado_productos:
+        producto = sistema.get_producto_from_id(producto.id_producto)
+        productos.append([producto.id_producto, producto.nombre, producto.tipo_producto,
+        producto.precio_unitario])
+
+    return render_template('comprar.html', form={}, productos=productos, cliente=sistema.cliente)
 
 if __name__ == '__main__':
     app.run(port=5000,debug=True)
