@@ -11,35 +11,28 @@
 <body class="container">
     <div class="d-flex justify-content-between align-items-center my-4">
         <h1>CrudBox</h1>
+        <h1>Bienvenido {{ cliente }}</h1>
         <a href="{{ url_for('iniciar_sesion') }}" class="btn btn-primary">Iniciar Sesión</a>
     </div>
-
-    <h2 class="my-4">Iniciar Sesión</h2>
 
     {% if request.args.get('mensaje') %}
     <div class="alert alert-warning">{{ request.args.get('mensaje') }}</div>
     {% endif %}
 
-    <form method="POST" action="{{ url_for('iniciar_sesion') }}">
-        {{ form.hidden_tag() }}
-        <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre de Usuario:</label>
-            {{ form.nombre(class="form-control", id="nombre", required=True) }}
-            {% for error in form.nombre.errors %}
-                <div class="alert alert-danger">{{ error }}</div>
-            {% endfor %}
-        </div>
-        
-        <div class="mb-3">
-            <label for="apellido" class="form-label">Contraseña:</label>
-            {{ form.apellido(class="form-control", id="apellido", required=True) }}
-            {% for error in form.apellido.errors %}
-                <div class="alert alert-danger">{{ error }}</div>
-            {% endfor %}
-        </div>
-        
-        <button type="submit" class="btn btn-success">Iniciar Sesión</button>
-    </form>
+    <div class="form-container">
+        <form method="POST" action="{{ url_for('iniciar_sesion') }}" class="form-group">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" value="{{ form.nombre }}" required class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" value="{{ form.apellido }}" required class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+        </form>
+    </div>
 </body>
 
 </html>

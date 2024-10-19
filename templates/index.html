@@ -19,7 +19,7 @@
     <div class="alert alert-info">Bienvenido a CrudBox. Por favor, inicie sesión para continuar.</div>
 
     <div class="form-container">
-        <form method="post" class="form-group">
+        <form method="POST" class="form-group">
             <div class="mb-3">
                 <label for="cliente" class="form-label">Cliente:</label>
                 <select name="cliente" id="cliente" required class="form-select">
@@ -28,10 +28,10 @@
                     {% endfor %}
                 </select>
             </div>
+            <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
         </form>
     </div>
 
-    <a href="{{ url_for('iniciar_sesion') }}" class="btn btn-primary btn-block">Iniciar sesion</a>
 
 </body>
 

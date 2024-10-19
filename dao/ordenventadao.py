@@ -3,7 +3,7 @@ from datetime import datetime
 
 class OrdenVentaDAO:
     def __init__(self):
-        self.__db = mysql.connector.connect(user='root', password="racing1996", host="127.0.0.1", database='boxdbmartindatabases')
+        self.__db = mysql.connector.connect(user='root', password="i2i0L2aH1", host="localhost", database='boxdbmartindatabases')
 
     def crear_orden_venta(self, id_cliente: int, id_usuario, id_direccion, id_tipo_entrega, subtotal, descuento, total, fecha_entrega, obs):
         cnx = self.__db
