@@ -31,6 +31,10 @@ class CrudManager:
     @property
     def cliente(self) -> str:
         return self.__cliente.nombre
+    
+    @property
+    def usuario(self) -> str:
+        return f"{str(self.__usuario)}"
 
     def listar_clientes(self):
         clientes_disponibles = []
@@ -45,8 +49,7 @@ class CrudManager:
         return None
 
     def cargar_usuario_from_credentials(self, nombre: str, apellido: str):
-        usuario = self.__usuario_dao.get_empleado_from_nombre(nombre, apellido)
-        return usuario
+        return self.__usuario_dao.get_empleado_from_nombre(nombre, apellido)
     
     def get_producto_from_id(self, id: str):
         for p in self.__productos:
@@ -67,3 +70,5 @@ class CrudManager:
             productos.append(producto)
         return productos, self.__productos_baja
 
+    def check_stock(self, producto_cantidad: tuple):
+        return self.__producto_dao.check_stock(producto_cantidad)

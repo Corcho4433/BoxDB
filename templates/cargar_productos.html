@@ -12,7 +12,7 @@
 
     <div class="d-flex justify-content-between align-items-center my-4">
         <h1>CrudBOX</h1>
-        <h1>Productos para el cliente {{ cliente }}</h1>
+        <h1>Productos para el cliente {{ cliente }} {{ usuario }}</h1>
     </div>
     
     {% if request.args.get('mensaje') %}

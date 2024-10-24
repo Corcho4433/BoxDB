@@ -3,7 +3,7 @@
 from flask import Flask,redirect,url_for,render_template,request
 from dao.clientedao import ClienteDAO
 from dao.ordenventadao import OrdenVentaDAO
-from dao.productodao import ProductoDAO
+from dao.productodao import ProductoDAO, NoEsProcesableError
 from box.crudmanager import CrudManager
 from dao.usuariodao import UsuarioDAO
 from box.cliente import Cliente
@@ -26,25 +26,24 @@ sistema = crear_sistema()
 def home():
     """Define la lógica para la página principal (index)"""
     if request.method == 'POST':
-        if 'cliente' in request.form:
-            cliente = sistema.get_cliente_from_string(request.form["cliente"])
-            sistema.agregar_cliente(cliente)
-            return render_template('iniciar_sesion.html', cliente=cliente.nombre, form={})
+        cliente = sistema.get_cliente_from_string(request.form["cliente"])
+        sistema.agregar_cliente(cliente)
+        return render_template('iniciar_sesion.html', cliente=sistema.cliente, form={})
 
-        return render_template('index.html', clientes=sistema.listar_clientes(), form={},
-        mensaje="Por favor, selecciona un cliente.")
-
+    # Solo renderiza la página principal si es un GET
     clientes = sistema.listar_clientes()
     return render_template('index.html', clientes=clientes, form={})
 
-@app.route('/iniciar_sesion',methods=['GET','POST'])
+
+@app.route('/iniciar_sesion', methods=['GET', 'POST'])
 def iniciar_sesion():
-    if request.method=='POST':
+    if request.method == 'POST':
         nombre = request.form["nombre"]
         apellido = request.form["apellido"]
         usuario = sistema.cargar_usuario_from_credentials(nombre, apellido)
         sistema.agregar_usuario(usuario)
-        return render_template("cargar_productos.html", usuario=str(usuario))
+        print("lolo")  # This should now show in the console
+        return render_template("cargar_productos.html", usuario=usuario)  # Ensure this is not redirecting unexpectedly
 
     return render_template('iniciar_sesion.html', form={})
 
@@ -62,20 +61,38 @@ def cargar_productos():
         producto.precio_unitario, producto.estado, producto.fecha_alta])
 
     return render_template('cargar_productos.html', form={}, productos=productos,
-    productos_baja=productos_baja, cliente=sistema.cliente)
+    productos_baja=productos_baja, cliente=sistema.cliente, usuario=sistema.usuario)
 
 @app.route('/comprar', methods=['GET', 'POST'])
 def comprar():
     if request.method == 'POST':
-        productos_cantidades = []
-        for key in request.form:
-            if key.startswith('cantidad_'):
-                producto_id = key.split('_')[1]
-                cantidad = request.form[key]
-                productos_cantidades.append((producto_id, int(cantidad)))
+        try:
+            productos_cantidades = []
+            for key in request.form:
+                if key.startswith('cantidad_'):
+                    producto_id = key.split('_')[1]
+                    cantidad = request.form[key]
+                    productos_cantidades.append((producto_id, int(cantidad)))
 
-        return render_template("comprar.html")
-    
+            for producto_cantidad in productos_cantidades:
+                sistema.check_stock(producto_cantidad)
+
+            return redirect(url_for("confirmar_compra", form={},
+            productos_cantidades=productos_cantidades, usuario=sistema.usuario))
+
+        except NoEsProcesableError as e:
+            mensaje_error = f"Error: {e}"
+            listado_productos,_= sistema.listar_productos()
+            productos = []
+
+            for producto in listado_productos:
+                producto = sistema.get_producto_from_id(producto.id_producto)
+                productos.append([producto.id_producto, producto.nombre, producto.tipo_producto,
+                producto.precio_unitario])
+
+            return render_template("comprar.html", error=mensaje_error,
+            productos=productos, cliente=sistema.cliente)
+
     listado_productos,_= sistema.listar_productos()
     productos = []
 
@@ -85,6 +102,13 @@ def comprar():
         producto.precio_unitario])
 
     return render_template('comprar.html', form={}, productos=productos, cliente=sistema.cliente)
+
+@app.route('/confirmar_compra', methods=['GET', 'POST'])
+def confirmar_compra():
+    if request.method == 'POST':
+        return render_template("confirmar_compra.html")
+
+    return render_template('confirmar_compra.html', form={}, cliente=sistema.cliente)
 
 if __name__ == '__main__':
     app.run(port=5000,debug=True)

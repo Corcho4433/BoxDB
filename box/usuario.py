@@ -4,5 +4,5 @@ class Usuario:
         self.__apellido = apellido
 
     def __str__(self):
-        return f"Usuario: {self.__nombre} {self.__apellido}"
+        return f"{self.__nombre} {self.__apellido}"
 

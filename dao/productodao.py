@@ -1,9 +1,12 @@
 from box.producto import Producto
 import mysql.connector
 
+class NoEsProcesableError(Exception):
+    pass
+
 class ProductoDAO:
     def __init__(self):
-        self.__db = mysql.connector.connect(user='root', password="i2i0L2aH1", host="localhost", database='boxdbmartindatabases')
+        self.__db = mysql.connector.connect(user='root', password="racing1996", host="localhost", database='boxdbmartindatabases')
 
     def listar_productos(self, id_cliente: int) -> list[Producto]:
         cnx = self.__db
@@ -30,6 +33,21 @@ class ProductoDAO:
         productos_baja = self.__conseguir_bajas(id_cliente)
 
         return productos_final, productos_baja
+    
+    def check_stock(self, producto_cantidad: tuple):
+        cnx = self.__db
+        cursor = cnx.cursor()
+        id_producto = producto_cantidad[0]
+        cantidad = producto_cantidad[1]
+        if cantidad != 0:
+            cursor.callproc('Check_Stock_Producto_2', (id_producto, cantidad))
+            for result in cursor.stored_results():
+                resultado = result.fetchall()
+            procesable = resultado[0][1]
+            if procesable == "N":
+                raise NoEsProcesableError("""No se pueden hacer las
+                cantidades solicitadas en uno de los productos""")
+        return None
 
     def __conseguir_bajas(self, id_cliente: str):
         cnx = self.__db

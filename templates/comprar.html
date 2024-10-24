@@ -19,36 +19,45 @@
     <p>{{ request.args.get('mensaje') }}</p>
     {% endif %}
 
+    {% if error %}
+    <div class="alert alert-danger text-center">{{ error }}</div>
+    {% endif %}
+
     <div class="table-container">
         {% if productos %}
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Id producto</th>
-                    <th>Nombre</th>
-                    <th>Tipo de producto</th>
-                    <th>Precio unitario</th>
-                    <th>Cantidad</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for producto in productos %}
-                <tr>
-                    <td>{{ producto[0] }}</td>
-                    <td>{{ producto[1] }}</td>
-                    <td>{{ producto[2] }}</td>
-                    <td>{{ producto[3] }}</td>
-                    <td><input type="number" id="cantidad" 
-                    name="quantity_{{ producto[0] }}_{{ producto[1] }}_{{ producto[3] }}" required class="form-control" value="0" min="0"></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <form method="post">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id producto</th>
+                        <th>Nombre</th>
+                        <th>Tipo de producto</th>
+                        <th>Precio unitario</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                    <tr>
+                        <td>{{ producto[0] }}</td>
+                        <td>{{ producto[1] }}</td>
+                        <td>{{ producto[2] }}</td>
+                        <td>{{ producto[3] }}</td>
+                        <td>
+                            <input type="number" id="cantidad" name="cantidad_{{ producto[0] }}" 
+                            required class="form-control" value="0" min="0">
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- Botón de compra dentro del formulario -->
+            <button type="submit" class="btn btn-primary btn-block">Realizar compra</button>
+        </form>
         {% else %}
         <div class="alert alert-info text-center">No hay productos en este momento.</div>
         {% endif %}
     </div>
-        <button type="submit" class="btn btn-primary btn-block">Realizar compra</button>
 
 </body>
 
