@@ -21,7 +21,7 @@ class Producto:
     
     @property
     def precio_unitario(self):
-        return f"$ {self.__precio_unitario}"
+        return float(self.__precio_unitario)
     
     @property
     def estado(self):

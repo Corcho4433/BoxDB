@@ -18,8 +18,8 @@ class CrudManager:
         self.__usuario_dao = usuario_dao
         self.__productos : list = []
         self.__productos_baja : list = []
-        self.__materiales : list = []
         self.__clientes : list = []
+        self.__productos_cantidad : list = []
         self.__cargar_clientes()
 
     def __cargar_productos(self, id_cliente: int):
@@ -30,11 +30,14 @@ class CrudManager:
 
     @property
     def cliente(self) -> str:
-        return self.__cliente.nombre
-    
+        return str(self.__cliente)
+
     @property
     def usuario(self) -> str:
         return f"{str(self.__usuario)}"
+
+    def set_productos_cantidad(self, productos_cantidad: list):
+        self.__productos_cantidad = productos_cantidad
 
     def listar_clientes(self):
         clientes_disponibles = []
@@ -50,13 +53,13 @@ class CrudManager:
 
     def cargar_usuario_from_credentials(self, nombre: str, apellido: str):
         return self.__usuario_dao.get_empleado_from_nombre(nombre, apellido)
-    
+
     def get_producto_from_id(self, id: str):
         for p in self.__productos:
             if id == p.id_producto:
                 return p
         return None
-    
+
     def agregar_usuario(self, usuario: Usuario):
         self.__usuario = usuario
 
@@ -72,3 +75,29 @@ class CrudManager:
 
     def check_stock(self, producto_cantidad: tuple):
         return self.__producto_dao.check_stock(producto_cantidad)
+
+    def listar_metodos_entrega(self):
+        return self.__orden_venta_dao.listar_tipos_entrega()
+    
+    def listar_metodos_pago(self):
+        return self.__orden_venta_dao.listar_tipos_pago()
+
+    def realizar_orden_venta(self, id_entrega: int):
+        subtotal = 0.00
+        id_cliente = self.__cliente.id_cliente
+        id_usuario = self.__usuario_dao.get_id_from_usuario(self.__usuario)
+
+        for par in self.__productos_cantidad:
+            producto = self.get_producto_from_id(par[0])
+            subtotal += producto.precio_unitario * par[1]
+
+        if id_entrega == 1:
+            obs = "Descuento por retiro"
+            descuento = 20000.00
+            total = subtotal - 20000.00
+        else:
+            obs = "Suma costo de envio"
+            descuento = 0.00
+            total = subtotal + 20000.00
+
+        self.__orden_venta_dao.crear_orden_venta(id_cliente, id_usuario, id_entrega, subtotal, total, descuento, obs)

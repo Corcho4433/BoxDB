@@ -15,53 +15,33 @@
         <h1>Confirmar compra para el empleado {{ usuario }}</h1>
     </div>
 
-    <h3 name="empleado" id="empleado">Compra a cargo del empleado {{ empleado }}</h3>
-
     <div class="form-container">
-        <form method="post" class="form-group">
+        <form action="/confirmar_compra" method="post" class="form-group">
+            <h3>Cliente: {{ cliente }}</h3>
+
             <div class="mb-3">
-                <label for="sala" class="form-label">Id empleado</label>
-                <select name="sala" id="sala" required class="form-select">
-                    {% for sala in salas %}
-                    <option value="{{sala}}"{% if sala == form.sala %} selected{% endif %}>{{sala}}</option>
+                <label for="entrega" class="form-label">Tipo de entrega:</label>
+                <select name="entrega" id="entrega" required class="form-select">
+                    {% for entrega in entregas %}
+                    <option value="{{entrega}}"{% if entrega == form.entrega %} selected{% endif %}>{{entrega}}</option>
                     {% endfor %}
                 </select>
             </div>
 
             <div class="mb-3">
-                <label for="sala" class="form-label">Tipo de envio:</label>
-                <select name="sala" id="sala" required class="form-select">
-                    {% for sala in salas %}
-                    <option value="{{sala}}"{% if sala == form.sala %} selected{% endif %}>{{sala}}</option>
+                <label for="pago" class="form-label">Tipo de pago:</label>
+                <select name="pago" id="pago" required class="form-select">
+                    {% for pago in pagos %}
+                    <option value="{{pago}}"{% if pago == form.pago %} selected{% endif %}>{{pago}}</option>
                     {% endfor %}
                 </select>
             </div>
 
-            <div class="mb-3">
-                <label for="mes" class="form-label">Mes:</label>
-                <input type="number" id="mes" name="mes" value="{{form.mes}}" required class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label for="dia" class="form-label">Día:</label>
-                <input type="number" id="dia" name="dia" value="{{form.dia}}" required class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label for="horainicio" class="form-label">Hora inicio:</label>
-                <input type="time" id="horainicio" name="horainicio" value="{{form.horainicio}}" required class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label for="horafin" class="form-label">Hora fin:</label>
-                <input type="time" id="horafin" name="horafin" value="{{form.horafin}}" required class="form-control">
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-block">Realizar Reserva</button>
+            <button type="submit" class="btn btn-primary btn-block">Confirmar compra</button>
         </form>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-block">Confirmar compra</button>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 

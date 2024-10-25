@@ -4,8 +4,8 @@ from flask import Flask,redirect,url_for,render_template,request
 from dao.clientedao import ClienteDAO
 from dao.ordenventadao import OrdenVentaDAO
 from dao.productodao import ProductoDAO, NoEsProcesableError
-from box.crudmanager import CrudManager
 from dao.usuariodao import UsuarioDAO
+from box.crudmanager import CrudManager
 from box.cliente import Cliente
 from box.usuario import Usuario
 
@@ -28,7 +28,7 @@ def home():
     if request.method == 'POST':
         cliente = sistema.get_cliente_from_string(request.form["cliente"])
         sistema.agregar_cliente(cliente)
-        return render_template('iniciar_sesion.html', cliente=sistema.cliente, form={})
+        return render_template('iniciar_sesion.html', cliente=cliente.nombre, form={})
 
     # Solo renderiza la página principal si es un GET
     clientes = sistema.listar_clientes()
@@ -43,7 +43,7 @@ def iniciar_sesion():
         usuario = sistema.cargar_usuario_from_credentials(nombre, apellido)
         sistema.agregar_usuario(usuario)
         print("lolo")  # This should now show in the console
-        return render_template("cargar_productos.html", usuario=usuario)  # Ensure this is not redirecting unexpectedly
+        return redirect(url_for("cargar_productos"))  # Ensure this is not redirecting unexpectedly
 
     return render_template('iniciar_sesion.html', form={})
 
@@ -60,8 +60,10 @@ def cargar_productos():
         productos.append([producto.id_producto, producto.nombre, producto.tipo_producto,
         producto.precio_unitario, producto.estado, producto.fecha_alta])
 
+    cliente = sistema.get_cliente_from_string(sistema.cliente)
+
     return render_template('cargar_productos.html', form={}, productos=productos,
-    productos_baja=productos_baja, cliente=sistema.cliente, usuario=sistema.usuario)
+    productos_baja=productos_baja, cliente=cliente.nombre, usuario=sistema.usuario)
 
 @app.route('/comprar', methods=['GET', 'POST'])
 def comprar():
@@ -77,6 +79,8 @@ def comprar():
             for producto_cantidad in productos_cantidades:
                 sistema.check_stock(producto_cantidad)
 
+            sistema.set_productos_cantidad(productos_cantidades)
+
             return redirect(url_for("confirmar_compra", form={},
             productos_cantidades=productos_cantidades, usuario=sistema.usuario))
 
@@ -90,25 +94,35 @@ def comprar():
                 productos.append([producto.id_producto, producto.nombre, producto.tipo_producto,
                 producto.precio_unitario])
 
+            cliente = sistema.get_cliente_from_string(sistema.cliente)
+
             return render_template("comprar.html", error=mensaje_error,
-            productos=productos, cliente=sistema.cliente)
+            productos=productos, cliente=cliente.nombre)
 
     listado_productos,_= sistema.listar_productos()
     productos = []
+    cliente = sistema.get_cliente_from_string(sistema.cliente)
 
     for producto in listado_productos:
         producto = sistema.get_producto_from_id(producto.id_producto)
         productos.append([producto.id_producto, producto.nombre, producto.tipo_producto,
         producto.precio_unitario])
 
-    return render_template('comprar.html', form={}, productos=productos, cliente=sistema.cliente)
+    return render_template('comprar.html', form={}, productos=productos, cliente=cliente.nombre)
 
 @app.route('/confirmar_compra', methods=['GET', 'POST'])
 def confirmar_compra():
     if request.method == 'POST':
-        return render_template("confirmar_compra.html")
+        tipo_entrega = eval(request.form["entrega"])
+        id_entrega = int(tipo_entrega[0])
+        sistema.realizar_orden_venta(id_entrega)
 
-    return render_template('confirmar_compra.html', form={}, cliente=sistema.cliente)
+    entregas = sistema.listar_metodos_entrega()
+    pagos = sistema.listar_metodos_pago()
+    cliente = sistema.get_cliente_from_string(sistema.cliente)
+
+    return render_template('confirmar_compra.html', form={}, cliente=sistema.cliente,
+    entregas=entregas, usuario=sistema.usuario, cliente=cliente.nombre, pagos=pagos)
 
 if __name__ == '__main__':
     app.run(port=5000,debug=True)
