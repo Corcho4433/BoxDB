@@ -1,5 +1,4 @@
 import mysql.connector
-from datetime import datetime
 
 class OrdenVentaDAO:
     def __init__(self):
@@ -8,11 +7,25 @@ class OrdenVentaDAO:
     def crear_orden_venta(self, id_cliente: int, id_usuario: int, id_tipo_entrega: int, subtotal: float, total: float, descuento: float, obs: str):
         cnx = self.__db
         cursor = cnx.cursor()
-        cursor.callproc('Realizar_orden_venta',(id_cliente,id_usuario,id_tipo_entrega,subtotal,descuento,total,obs,))
+        cursor.execute("SET @last_id = 0;")
+        call_proc_query = """
+            CALL Realizar_orden_venta(%s, %s, %s, %s, %s, %s, %s, @last_id);
+        """
+        cursor.execute(call_proc_query, [id_cliente, id_usuario, id_tipo_entrega, subtotal, descuento, total, obs])
+        cursor.execute("SELECT @last_id;")
+        last_id = cursor.fetchone()[0]
         cnx.commit()
         cursor.close()
-
-        return cursor.lastrowid
+        return last_id #TODO: Acordarse de mostrarlo en pantalla :3
+    
+    def crear_orden_det(self, id_orden: int, item: int, id_producto: str, cantidad: int):
+        cnx = self.__db
+        cursor = cnx.cursor()
+        call_proc_query = """
+            CALL Realizar_orden_venta_det(%s, %s, %s, %s);
+        """
+        cursor.execute(call_proc_query, [id_orden, id_producto, item, cantidad])
+        cnx.commit()
 
     def listar_tipos_entrega(self):
         cnx = self.__db

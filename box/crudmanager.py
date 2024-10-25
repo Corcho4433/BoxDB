@@ -74,7 +74,7 @@ class CrudManager:
         return productos, self.__productos_baja
 
     def check_stock(self, producto_cantidad: tuple):
-        return self.__producto_dao.check_stock(producto_cantidad)
+        self.__producto_dao.check_stock(producto_cantidad)
 
     def listar_metodos_entrega(self):
         return self.__orden_venta_dao.listar_tipos_entrega()
@@ -100,4 +100,11 @@ class CrudManager:
             descuento = 0.00
             total = subtotal + 20000.00
 
-        self.__orden_venta_dao.crear_orden_venta(id_cliente, id_usuario, id_entrega, subtotal, total, descuento, obs)
+        last_id = self.__orden_venta_dao.crear_orden_venta(id_cliente, id_usuario,
+        id_entrega, subtotal, total, descuento, obs)
+
+        item_number = 1
+        for producto, cantidad in self.__productos_cantidad:
+            if cantidad > 0:
+                self.__orden_venta_dao.crear_orden_det(last_id, item_number, producto, cantidad)
+                item_number += 1

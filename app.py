@@ -30,7 +30,6 @@ def home():
         sistema.agregar_cliente(cliente)
         return render_template('iniciar_sesion.html', cliente=cliente.nombre, form={})
 
-    # Solo renderiza la página principal si es un GET
     clientes = sistema.listar_clientes()
     return render_template('index.html', clientes=clientes, form={})
 
@@ -42,8 +41,7 @@ def iniciar_sesion():
         apellido = request.form["apellido"]
         usuario = sistema.cargar_usuario_from_credentials(nombre, apellido)
         sistema.agregar_usuario(usuario)
-        print("lolo")  # This should now show in the console
-        return redirect(url_for("cargar_productos"))  # Ensure this is not redirecting unexpectedly
+        return redirect(url_for("cargar_productos"))
 
     return render_template('iniciar_sesion.html', form={})
 
@@ -76,8 +74,7 @@ def comprar():
                     cantidad = request.form[key]
                     productos_cantidades.append((producto_id, int(cantidad)))
 
-            for producto_cantidad in productos_cantidades:
-                sistema.check_stock(producto_cantidad)
+            sistema.check_stock(productos_cantidades)
 
             sistema.set_productos_cantidad(productos_cantidades)
 
@@ -121,7 +118,7 @@ def confirmar_compra():
     pagos = sistema.listar_metodos_pago()
     cliente = sistema.get_cliente_from_string(sistema.cliente)
 
-    return render_template('confirmar_compra.html', form={}, cliente=sistema.cliente,
+    return render_template('confirmar_compra.html', form={},
     entregas=entregas, usuario=sistema.usuario, cliente=cliente.nombre, pagos=pagos)
 
 if __name__ == '__main__':
