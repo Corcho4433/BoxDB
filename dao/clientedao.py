@@ -4,7 +4,7 @@ from box.cliente import Cliente
 class ClienteDAO:
     def __init__(self):
         # Contraseña del Huergo: i2i0L2aH1
-        self.__db = mysql.connector.connect(user='root', password="racing1996", host="localhost", database='boxdbmartindatabases')
+        self.__db = mysql.connector.connect(user='root', password="i2i0L2aH1", host="localhost", database='boxdbmartindatabases')
 
     def listar_clientes(self):
         cnx = self.__db

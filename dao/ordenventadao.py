@@ -2,7 +2,7 @@ import mysql.connector
 
 class OrdenVentaDAO:
     def __init__(self):
-        self.__db = mysql.connector.connect(user='root', password="racing1996", host="localhost", database='boxdbmartindatabases')
+        self.__db = mysql.connector.connect(user='root', password="i2i0L2aH1", host="localhost", database='boxdbmartindatabases')
 
     def crear_orden_venta(self, id_cliente: int, id_usuario: int, id_tipo_entrega: int, subtotal: float, total: float, descuento: float, obs: str):
         cnx = self.__db
@@ -15,10 +15,29 @@ class OrdenVentaDAO:
         cursor.execute("SELECT @last_id;")
         last_id = cursor.fetchone()[0]
         cnx.commit()
+        self.__reservar_materiales(cursor, last_id)
         cursor.close()
-        return last_id #TODO: Acordarse de mostrarlo en pantalla :3
+        return last_id
     
-    def crear_orden_det(self, id_orden: int, item: int, id_producto: str, cantidad: int):
+    def protocolo_caida_del_murcielago(self):
+        cnx = self.__db
+        cursor = cnx.cursor()
+        cursor.execute("DROP TABLE IF EXISTS stock_check_temporal;")
+        cursor.close()
+        cnx.close()
+
+    def __reservar_materiales(self, cursor, last_id: int):
+        cursor.execute("""insert into materialesreservadosprod (idordenventa, iditem, cantidad, detalle)
+                       select %s, tmp.iditem, tmp.total_cantidad, a.detalle
+                       from stock_check_temporal tmp
+                       join almacen a on tmp.iditem = a.iditem;""", (last_id,))
+        
+        cursor.execute("""UPDATE almacen as a
+                       join stock_check_temporal s on a.iditem = s.iditem
+                       set a.stock = a.stock - s.total_cantidad;""")
+
+    def crear_orden_det(self, id_orden: int, item: int, id_producto: 
+                        str, cantidad: int):
         cnx = self.__db
         cursor = cnx.cursor()
         call_proc_query = """
@@ -44,5 +63,3 @@ class OrdenVentaDAO:
         tipos_pago = cursor.fetchall()
         
         return [[row[0], row[2]] for row in tipos_pago]
-
-        

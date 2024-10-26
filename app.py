@@ -74,12 +74,13 @@ def comprar():
                     cantidad = request.form[key]
                     productos_cantidades.append((producto_id, int(cantidad)))
 
-            sistema.check_stock(productos_cantidades)
+            productos_filtrados = [(producto, cantidad) for producto, cantidad in productos_cantidades if cantidad != 0]
+            sistema.check_stock(productos_filtrados)
 
-            sistema.set_productos_cantidad(productos_cantidades)
+            sistema.set_productos_cantidad(productos_filtrados)
 
             return redirect(url_for("confirmar_compra", form={},
-            productos_cantidades=productos_cantidades, usuario=sistema.usuario))
+            productos_cantidades=productos_filtrados, usuario=sistema.usuario))
 
         except NoEsProcesableError as e:
             mensaje_error = f"Error: {e}"
@@ -112,7 +113,8 @@ def confirmar_compra():
     if request.method == 'POST':
         tipo_entrega = eval(request.form["entrega"])
         id_entrega = int(tipo_entrega[0])
-        sistema.realizar_orden_venta(id_entrega)
+        id_o = sistema.realizar_orden_venta(id_entrega)
+        return render_template('exito_orden.html', id_orden=id_o)
 
     entregas = sistema.listar_metodos_entrega()
     pagos = sistema.listar_metodos_pago()
@@ -120,6 +122,10 @@ def confirmar_compra():
 
     return render_template('confirmar_compra.html', form={},
     entregas=entregas, usuario=sistema.usuario, cliente=cliente.nombre, pagos=pagos)
+
+@app.route('/cerrar_sesion', methods=['GET', 'POST'])
+def cerrar_sesion():
+    return render_template("index.html")
 
 if __name__ == '__main__':
     app.run(port=5000,debug=True)

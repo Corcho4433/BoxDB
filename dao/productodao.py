@@ -7,7 +7,7 @@ class NoEsProcesableError(Exception):
 
 class ProductoDAO:
     def __init__(self):
-        self.__db = mysql.connector.connect(user='root', password="racing1996",
+        self.__db = mysql.connector.connect(user='root', password="i2i0L2aH1",
         host="localhost", database='boxdbmartindatabases')
 
     def listar_productos(self, id_cliente: int) -> list[Producto]:
@@ -70,10 +70,10 @@ class ProductoDAO:
 
         cnx.commit()
         resultados = self.__comparar_tablas_stock(cursor)
-        cursor.execute("DROP TABLE IF EXISTS stock_check_temporal;")
         if resultados:
             for fila in resultados:
                 print(f"ID Item: {fila[0]} No alcanza el stock")
+            cursor.execute("DROP TABLE IF EXISTS stock_check_temporal;")
             raise NoEsProcesableError("No alcanzan los materiales para esa orden!")
         print("Stock en orden.")
         return None
@@ -91,7 +91,7 @@ class ProductoDAO:
 
     def __crear_tabla_temporal(self, cursor, cnx):
         crear_tabla_temporal = """
-        CREATE TEMPORARY TABLE IF NOT EXISTS stock_check_temporal (
+        CREATE TABLE IF NOT EXISTS stock_check_temporal (
             iditem VARCHAR(50) PRIMARY KEY,
             total_cantidad decimal(8,2)
         );

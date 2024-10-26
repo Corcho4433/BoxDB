@@ -82,7 +82,7 @@ class CrudManager:
     def listar_metodos_pago(self):
         return self.__orden_venta_dao.listar_tipos_pago()
 
-    def realizar_orden_venta(self, id_entrega: int):
+    def realizar_orden_venta(self, id_entrega: int) -> int:
         subtotal = 0.00
         id_cliente = self.__cliente.id_cliente
         id_usuario = self.__usuario_dao.get_id_from_usuario(self.__usuario)
@@ -108,3 +108,5 @@ class CrudManager:
             if cantidad > 0:
                 self.__orden_venta_dao.crear_orden_det(last_id, item_number, producto, cantidad)
                 item_number += 1
+
+        return last_id
