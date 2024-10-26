@@ -1,12 +1,9 @@
 from box.cliente import Cliente
-from box.producto import Producto
-from box.material import Material
 from box.usuario import Usuario
 from dao.clientedao import ClienteDAO
 from dao.ordenventadao import OrdenVentaDAO
 from dao.productodao import ProductoDAO
 from dao.usuariodao import UsuarioDAO
-
 
 class CrudManager:
     def __init__(self, cliente_dao: ClienteDAO, usuario_dao: UsuarioDAO, orden_venta_dao: OrdenVentaDAO, producto_dao: ProductoDAO):
@@ -34,7 +31,11 @@ class CrudManager:
 
     @property
     def usuario(self) -> str:
-        return f"{str(self.__usuario)}"
+        return str(self.__usuario)
+    
+    @property
+    def productos_cantidad(self) -> list:
+        return self.__productos_cantidad
 
     def set_productos_cantidad(self, productos_cantidad: list):
         self.__productos_cantidad = productos_cantidad
@@ -78,7 +79,7 @@ class CrudManager:
 
     def listar_metodos_entrega(self):
         return self.__orden_venta_dao.listar_tipos_entrega()
-    
+
     def listar_metodos_pago(self):
         return self.__orden_venta_dao.listar_tipos_pago()
 
@@ -95,7 +96,7 @@ class CrudManager:
             obs = "Descuento por retiro"
             descuento = 20000.00
             total = subtotal - 20000.00
-        if id_entrega == 2:
+        elif id_entrega == 2:
             obs = "Suma costo de envio"
             descuento = 0.00
             total = subtotal + 20000.00

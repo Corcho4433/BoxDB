@@ -6,38 +6,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CrudBox: Iniciar Sesión</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f8fb;
+            color: #4a4a4a;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 450px;
+            margin-top: 80px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #4a90e2;
+        }
+
+        .alert-danger {
+            font-size: 0.95em;
+        }
+
+        .form-container {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-label {
+            font-weight: bold;
+            color: #6c757d;
+        }
+
+        .btn-success {
+            width: 100%;
+            font-weight: bold;
+            background-color: #4a90e2;
+            border-color: #4a90e2;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-success:hover {
+            background-color: #357abd;
+            border-color: #357abd;
+        }
+    </style>
 </head>
 
-<body class="container">
-    <div class="d-flex justify-content-between align-items-center my-4">
-        <h1>CrudBOX</h1>
-        <h1>Bienvenido {{ cliente }}</h1>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>CrudBOX</h1>
+            <h2 class="my-3 text-muted">Bienvenido, {{ cliente }}</h2>
+        </div>
+
+        <div class="alert alert-info text-center">Identifiquese como empleado de {{ cliente }}.</div>
+
+        {% if error %}
+        <div class="alert alert-danger text-center">{{ error }}</div>
+        {% endif %}
+
+        <div class="form-container">
+            <form action="/iniciar_sesion" method="post" class="form-group">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required class="form-control" placeholder="Ingrese su nombre">
+                </div>
+        
+                <div class="mb-3">
+                    <label for="apellido" class="form-label">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" required class="form-control" placeholder="Ingrese su apellido">
+                </div>
+        
+                <button type="submit" class="btn btn-success">Iniciar sesión</button>
+            </form>
+        </div>
     </div>
 
-    <h2 class="my-4">Identifíquese como empleado</h2>
-
-    {% if request.args.get('mensaje') %}
-    <div class="alert alert-warning">{{ request.args.get('mensaje') }}</div>
-    {% endif %}
-
-    <div class="form-container">
-        <form action="/iniciar_sesion" method="post" class="form-group">
-            <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required class="form-control">
-            </div>
-    
-            <div class="mb-3">
-                <label for="apellido" class="form-label">Apellido:</label>
-                <input type="text" id="apellido" name="apellido" required class="form-control">
-            </div>
-    
-            <button type="submit" class="btn btn-success">Iniciar sesión</button>  <!-- Cambiado a botón de tipo submit -->
-        </form>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

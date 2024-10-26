@@ -4,10 +4,8 @@ from flask import Flask,redirect,url_for,render_template,request
 from dao.clientedao import ClienteDAO
 from dao.ordenventadao import OrdenVentaDAO
 from dao.productodao import ProductoDAO, NoEsProcesableError
-from dao.usuariodao import UsuarioDAO
+from dao.usuariodao import UsuarioDAO, EmpleadoNoExisteError
 from box.crudmanager import CrudManager
-from box.cliente import Cliente
-from box.usuario import Usuario
 
 app=Flask(__name__)
 
@@ -28,7 +26,7 @@ def home():
     if request.method == 'POST':
         cliente = sistema.get_cliente_from_string(request.form["cliente"])
         sistema.agregar_cliente(cliente)
-        return render_template('iniciar_sesion.html', cliente=cliente.nombre, form={})
+        return redirect(url_for('iniciar_sesion'))
 
     sistema.reiniciar()
     clientes = sistema.listar_clientes()
@@ -37,18 +35,25 @@ def home():
 @app.route('/iniciar_sesion', methods=['GET', 'POST'])
 def iniciar_sesion():
     if request.method == 'POST':
-        nombre = request.form["nombre"]
-        apellido = request.form["apellido"]
-        usuario = sistema.cargar_usuario_from_credentials(nombre, apellido)
-        sistema.agregar_usuario(usuario)
-        return redirect(url_for("cargar_productos"))
+        try:
+            nombre = request.form["nombre"]
+            apellido = request.form["apellido"]
+            usuario = sistema.cargar_usuario_from_credentials(nombre, apellido)
+            sistema.agregar_usuario(usuario)
+            return redirect(url_for("cargar_productos"))
+        except EmpleadoNoExisteError as e:
+            mensaje_error = f"Error: {e}"
+            cliente = sistema.get_cliente_from_string(sistema.cliente)
+            return render_template('iniciar_sesion.html', form={}, cliente=cliente.nombre,
+            error=mensaje_error)
 
-    return render_template('iniciar_sesion.html', form={})
+    cliente = sistema.get_cliente_from_string(sistema.cliente)
+    return render_template('iniciar_sesion.html', form={}, cliente=cliente.nombre)
 
 @app.route('/cargar_productos', methods=['GET', 'POST'])
 def cargar_productos():
     if request.method == 'POST':
-        return render_template("comprar.html", form={})
+        return redirect(url_for("comprar", form={}))
 
     listado_productos, productos_baja = sistema.listar_productos()
     productos = []
@@ -74,13 +79,13 @@ def comprar():
                     cantidad = request.form[key]
                     productos_cantidades.append((producto_id, int(cantidad)))
 
-            productos_filtrados = [(producto, cantidad) for producto, cantidad in productos_cantidades if cantidad != 0]
+            productos_filtrados = [(producto, cantidad) for producto,
+            cantidad in productos_cantidades if cantidad != 0]
             sistema.check_stock(productos_filtrados)
 
             sistema.set_productos_cantidad(productos_filtrados)
 
-            return redirect(url_for("confirmar_compra", form={},
-            productos_cantidades=productos_filtrados, usuario=sistema.usuario))
+            return redirect(url_for("confirmar_compra"))
 
         except NoEsProcesableError as e:
             mensaje_error = f"Error: {e}"
@@ -95,7 +100,7 @@ def comprar():
             cliente = sistema.get_cliente_from_string(sistema.cliente)
 
             return render_template("comprar.html", error=mensaje_error,
-            productos=productos, cliente=cliente.nombre)
+            productos=productos, cliente=cliente.nombre, usuario=sistema.usuario)
 
     listado_productos,_= sistema.listar_productos()
     productos = []
@@ -106,7 +111,8 @@ def comprar():
         productos.append([producto.id_producto, producto.nombre, producto.tipo_producto,
         producto.precio_unitario])
 
-    return render_template('comprar.html', form={}, productos=productos, cliente=cliente.nombre)
+    return render_template('comprar.html', form={}, productos=productos,
+    cliente=cliente.nombre, usuario=sistema.usuario)
 
 @app.route('/confirmar_compra', methods=['GET', 'POST'])
 def confirmar_compra():
@@ -116,14 +122,19 @@ def confirmar_compra():
         tipo_pago = eval(request.form["pago"])
         id_pago = int(tipo_pago[0])
         id_o = sistema.realizar_orden_venta(id_entrega, id_pago)
-        return render_template('exito_orden.html', id_orden=id_o)
+        return redirect(url_for('exito_orden', id_orden=id_o))
 
     entregas = sistema.listar_metodos_entrega()
     pagos = sistema.listar_metodos_pago()
     cliente = sistema.get_cliente_from_string(sistema.cliente)
 
     return render_template('confirmar_compra.html', form={},
-    entregas=entregas, usuario=sistema.usuario, cliente=cliente.nombre, pagos=pagos)
+    entregas=entregas, usuario=sistema.usuario, cliente=cliente.nombre, pagos=pagos,
+    productos_cantidad=sistema.productos_cantidad)
+
+@app.route('/exito_orden/<int:id_orden>', methods=['GET', 'POST'])
+def exito_orden(id_orden):
+    return render_template("exito_orden.html", id_orden=id_orden)
 
 if __name__ == '__main__':
     app.run(port=5000,debug=True)
