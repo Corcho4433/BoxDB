@@ -2,29 +2,22 @@ import mysql.connector
 
 class OrdenVentaDAO:
     def __init__(self):
-        self.__db = mysql.connector.connect(user='root', password="i2i0L2aH1", host="localhost", database='boxdbmartindatabases')
+        self.__db = mysql.connector.connect(user='root', password="racing1996", host="localhost", database='boxdbmartindatabases')
 
-    def crear_orden_venta(self, id_cliente: int, id_usuario: int, id_tipo_entrega: int, subtotal: float, total: float, descuento: float, obs: str):
+    def crear_orden_venta(self, id_cliente: int, id_usuario: int, id_tipo_entrega: int, id_pago: int, subtotal: float, total: float, descuento: float, obs: str):
         cnx = self.__db
         cursor = cnx.cursor()
         cursor.execute("SET @last_id = 0;")
         call_proc_query = """
-            CALL Realizar_orden_venta(%s, %s, %s, %s, %s, %s, %s, @last_id);
+            CALL Realizar_orden_venta(%s, %s, %s, %s, %s, %s, %s, %s, @last_id);
         """
-        cursor.execute(call_proc_query, [id_cliente, id_usuario, id_tipo_entrega, subtotal, descuento, total, obs])
+        cursor.execute(call_proc_query, [id_cliente, id_usuario, id_tipo_entrega, id_pago, subtotal, descuento, total, obs])
         cursor.execute("SELECT @last_id;")
         last_id = cursor.fetchone()[0]
         cnx.commit()
         self.__reservar_materiales(cursor, last_id)
         cursor.close()
         return last_id
-    
-    def protocolo_caida_del_murcielago(self):
-        cnx = self.__db
-        cursor = cnx.cursor()
-        cursor.execute("DROP TABLE IF EXISTS stock_check_temporal;")
-        cursor.close()
-        cnx.close()
 
     def __reservar_materiales(self, cursor, last_id: int):
         cursor.execute("""insert into materialesreservadosprod (idordenventa, iditem, cantidad, detalle)

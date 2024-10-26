@@ -30,9 +30,9 @@ def home():
         sistema.agregar_cliente(cliente)
         return render_template('iniciar_sesion.html', cliente=cliente.nombre, form={})
 
+    sistema.reiniciar()
     clientes = sistema.listar_clientes()
     return render_template('index.html', clientes=clientes, form={})
-
 
 @app.route('/iniciar_sesion', methods=['GET', 'POST'])
 def iniciar_sesion():
@@ -113,7 +113,9 @@ def confirmar_compra():
     if request.method == 'POST':
         tipo_entrega = eval(request.form["entrega"])
         id_entrega = int(tipo_entrega[0])
-        id_o = sistema.realizar_orden_venta(id_entrega)
+        tipo_pago = eval(request.form["pago"])
+        id_pago = int(tipo_pago[0])
+        id_o = sistema.realizar_orden_venta(id_entrega, id_pago)
         return render_template('exito_orden.html', id_orden=id_o)
 
     entregas = sistema.listar_metodos_entrega()
@@ -122,10 +124,6 @@ def confirmar_compra():
 
     return render_template('confirmar_compra.html', form={},
     entregas=entregas, usuario=sistema.usuario, cliente=cliente.nombre, pagos=pagos)
-
-@app.route('/cerrar_sesion', methods=['GET', 'POST'])
-def cerrar_sesion():
-    return render_template("index.html")
 
 if __name__ == '__main__':
     app.run(port=5000,debug=True)

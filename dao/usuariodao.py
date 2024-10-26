@@ -6,7 +6,7 @@ from box.usuario import Usuario
 class UsuarioDAO:
     def __init__(self):
         # Contraseña del Huergo: i2i0L2aH1
-        self.__db = mysql.connector.connect(user='root', password="i2i0L2aH1", host="localhost", database='boxdbmartindatabases')
+        self.__db = mysql.connector.connect(user='root', password="racing1996", host="localhost", database='boxdbmartindatabases')
 
     def get_empleado_from_nombre(self, nombre: str, apellido: str) -> Usuario:
         cnx = self.__db

@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `boxdbmartindatabases` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `boxdbmartindatabases` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `boxdbmartindatabases`;
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
--- Host: localhost    Database: boxdbmartindatabases
+-- Host: 127.0.0.1    Database: boxdbmartindatabases
 -- ------------------------------------------------------
--- Server version	8.0.28
+-- Server version	8.0.39
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -667,7 +667,7 @@ CREATE TABLE `materialesreservadosprod` (
   `IdOrdenVenta` int NOT NULL,
   `IdItem` varchar(45) NOT NULL,
   `Cantidad` decimal(8,2) NOT NULL,
-  `Detalle` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Detalle` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`IdReservado`),
   KEY `FKIdItem_idx` (`IdItem`),
   KEY `FKIdOrdenVentaMatReser_idx` (`IdOrdenVenta`),
@@ -997,6 +997,7 @@ CREATE TABLE `ordenesventascab` (
   `IdEmpleado` int NOT NULL,
   `IdDireccion` int NOT NULL,
   `IdTipoEntrega` int NOT NULL,
+  `IdTipoPago` int NOT NULL,
   `Subtotal` decimal(8,2) NOT NULL,
   `Descuento` decimal(8,2) DEFAULT NULL,
   `Total` decimal(8,2) NOT NULL,
@@ -1008,10 +1009,12 @@ CREATE TABLE `ordenesventascab` (
   KEY `FKIdEmpleado_idx` (`IdEmpleado`),
   KEY `FKIdDireccion_idx` (`IdDireccion`),
   KEY `FkIdTipoEntrega_idx` (`IdTipoEntrega`),
+  KEY `FkIdTipoPagoOrdVenCab_idx` (`IdTipoPago`),
   CONSTRAINT `FKIdClienteOrdVenCab` FOREIGN KEY (`IdCliente`) REFERENCES `clientes` (`IdCliente`),
   CONSTRAINT `FKIdDireccionOrdVenCab` FOREIGN KEY (`IdDireccion`) REFERENCES `direcciones` (`IdDireccion`),
   CONSTRAINT `FKIdEmpleadoOrdVenCab` FOREIGN KEY (`IdEmpleado`) REFERENCES `empleados` (`IdEmpleado`),
-  CONSTRAINT `FkIdTipoEntregaOrdVenCab` FOREIGN KEY (`IdTipoEntrega`) REFERENCES `tiposentrega` (`IdTipoEntrega`)
+  CONSTRAINT `FkIdTipoEntregaOrdVenCab` FOREIGN KEY (`IdTipoEntrega`) REFERENCES `tiposentrega` (`IdTipoEntrega`),
+  CONSTRAINT `FkIdTipoPagoOrdVenCab` FOREIGN KEY (`IdTipoPago`) REFERENCES `tipospago` (`IdTipoPago`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2234,7 +2237,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Realizar_orden_venta`(in PIDcliente int, PIDempleado int, PIDtipoentrega int, subtotal decimal(8,2), descuento decimal(8,2), total decimal(8,2), obs varchar(24), out last_id int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Realizar_orden_venta`(in PIDcliente int, PIDempleado int, PIDtipoentrega int, PIDtipopago int, subtotal decimal(8,2), descuento decimal(8,2), total decimal(8,2), obs varchar(24), out last_id int)
 BEGIN
 	
 	declare id_direccion int;
@@ -2247,8 +2250,8 @@ BEGIN
 	SET fecha = CURDATE();
 	SET fecha_entrega = DATE_ADD(CURDATE(), INTERVAL 1 MONTH);
 
-	INSERT INTO `ordenesventascab` (`IdCliente`, `IdEmpleado`, `IdDireccion`, `IdTipoEntrega`, `Subtotal`, `Descuento`, `Total`, `Fecha`, `FechaEntrega`, `Observaciones`) 
-    VALUES (pidcliente, pidempleado, id_direccion, pidtipoentrega, subtotal, descuento, total, fecha, fecha_entrega, obs);
+	INSERT INTO `ordenesventascab` (`IdCliente`, `IdEmpleado`, `IdDireccion`, `IdTipoEntrega`, `IdTipoPago`, `Subtotal`, `Descuento`, `Total`, `Fecha`, `FechaEntrega`, `Observaciones`) 
+    VALUES (pidcliente, pidempleado, id_direccion, pidtipoentrega, pidtipopago, subtotal, descuento, total, fecha, fecha_entrega, obs);
     
     commit;
 
@@ -2403,6 +2406,30 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `TruncateStockCheckTemporal` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `TruncateStockCheckTemporal`()
+BEGIN
+    IF EXISTS (SELECT * FROM information_schema.tables 
+               WHERE table_schema = DATABASE() 
+               AND table_name = 'stock_check_temporal') THEN
+
+        TRUNCATE TABLE stock_check_temporal;
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -2413,4 +2440,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-25 21:44:19
+-- Dump completed on 2024-10-26  0:18:34

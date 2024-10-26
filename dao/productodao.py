@@ -7,7 +7,7 @@ class NoEsProcesableError(Exception):
 
 class ProductoDAO:
     def __init__(self):
-        self.__db = mysql.connector.connect(user='root', password="i2i0L2aH1",
+        self.__db = mysql.connector.connect(user='root', password="racing1996",
         host="localhost", database='boxdbmartindatabases')
 
     def listar_productos(self, id_cliente: int) -> list[Producto]:
@@ -90,6 +90,7 @@ class ProductoDAO:
         return cursor.fetchall()
 
     def __crear_tabla_temporal(self, cursor, cnx):
+        cursor.callproc("TruncateStockCheckTemporal")
         crear_tabla_temporal = """
         CREATE TABLE IF NOT EXISTS stock_check_temporal (
             iditem VARCHAR(50) PRIMARY KEY,
@@ -112,7 +113,6 @@ class ProductoDAO:
         return [ 
             [row[0], row[1], row[2]] for row in productos
         ]
-
 
     def __actualizar_precios_unitarios(self, idproducto: str):
         cnx = self.__db

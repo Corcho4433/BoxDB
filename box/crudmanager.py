@@ -82,7 +82,7 @@ class CrudManager:
     def listar_metodos_pago(self):
         return self.__orden_venta_dao.listar_tipos_pago()
 
-    def realizar_orden_venta(self, id_entrega: int) -> int:
+    def realizar_orden_venta(self, id_entrega: int, id_pago: int) -> int:
         subtotal = 0.00
         id_cliente = self.__cliente.id_cliente
         id_usuario = self.__usuario_dao.get_id_from_usuario(self.__usuario)
@@ -95,13 +95,17 @@ class CrudManager:
             obs = "Descuento por retiro"
             descuento = 20000.00
             total = subtotal - 20000.00
-        else:
+        if id_entrega == 2:
             obs = "Suma costo de envio"
             descuento = 0.00
             total = subtotal + 20000.00
+        else:
+            obs = "Envio de terceros"
+            descuento = 0.00
+            total = subtotal
 
         last_id = self.__orden_venta_dao.crear_orden_venta(id_cliente, id_usuario,
-        id_entrega, subtotal, total, descuento, obs)
+        id_entrega, id_pago, subtotal, total, descuento, obs)
 
         item_number = 1
         for producto, cantidad in self.__productos_cantidad:
@@ -110,3 +114,10 @@ class CrudManager:
                 item_number += 1
 
         return last_id
+
+    def reiniciar(self):
+        self.__cliente = None
+        self.__usuario = None
+        self.__productos_cantidad = []
+        self.__productos = []
+        self.__productos_baja = []
