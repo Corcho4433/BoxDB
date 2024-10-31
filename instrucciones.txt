@@ -1,0 +1,9 @@
+1. Colocar la contraseña de la conexion MySQL en el archivo settings.py
+
+2. Abrir una consola powershell de administrador en este directorio
+
+3. Ejecutar en la consola el siguiente comando: ".\setup.ps1"
+
+4. Cuando aparezca en pantalla "Entorno virtual activado. Listo para ejecutar el programa." ejecutar "python app.py"
+
+5. Para cerrar el programa simplemente teclear Ctrl + C en la terminal powershell y ejecutar "exit"

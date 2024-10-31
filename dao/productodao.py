@@ -6,8 +6,8 @@ class NoEsProcesableError(Exception):
     pass
 
 class ProductoDAO:
-    def __init__(self):
-        self.__db = mysql.connector.connect(user='root', password="racing1996", host="localhost", database='boxdbmartindatabases')
+    def __init__(self, password: str):
+        self.__db = mysql.connector.connect(user='root', password=password, host="localhost", database='boxdbmartindatabases')
 
     def listar_productos(self, id_cliente: int) -> list[Producto]:
         cnx = self.__db

@@ -1,8 +1,8 @@
 import mysql.connector
 
 class OrdenVentaDAO:
-    def __init__(self):
-        self.__db = mysql.connector.connect(user='root', password="racing1996", host="localhost", database='boxdbmartindatabases')
+    def __init__(self, password: str):
+        self.__db = mysql.connector.connect(user='root', password=password, host="localhost", database='boxdbmartindatabases')
 
     def crear_orden_venta(self, id_cliente: int,
     id_usuario: int, id_tipo_entrega: int, id_pago: int,

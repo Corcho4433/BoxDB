@@ -6,15 +6,16 @@ from dao.ordenventadao import OrdenVentaDAO
 from dao.productodao import ProductoDAO, NoEsProcesableError
 from dao.usuariodao import UsuarioDAO, EmpleadoNoExisteError
 from box.crudmanager import CrudManager
+import settings
 
 app=Flask(__name__)
 
 def crear_sistema():
     """Crea el sistema de reservas que se usara"""
-    cliente_dao = ClienteDAO()
-    producto_dao = ProductoDAO()
-    orden_venta_dao = OrdenVentaDAO()
-    usuario_dao = UsuarioDAO()
+    cliente_dao = ClienteDAO(settings.DB_PASSWORD)
+    producto_dao = ProductoDAO(settings.DB_PASSWORD)
+    orden_venta_dao = OrdenVentaDAO(settings.DB_PASSWORD)
+    usuario_dao = UsuarioDAO(settings.DB_PASSWORD)
     sistema_crud = CrudManager(cliente_dao, usuario_dao, orden_venta_dao, producto_dao)
     return sistema_crud
 

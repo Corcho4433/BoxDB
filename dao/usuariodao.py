@@ -5,9 +5,9 @@ class EmpleadoNoExisteError(Exception):
     pass
 
 class UsuarioDAO:
-    def __init__(self):
+    def __init__(self, password: str):
         # Contraseña del Huergo aula roja: i2i0L2aH1
-        self.__db = mysql.connector.connect(user='root', password="racing1996", host="localhost", database='boxdbmartindatabases')
+        self.__db = mysql.connector.connect(user='root', password=password, host="localhost", database='boxdbmartindatabases')
 
     def get_empleado_from_nombre(self, nombre: str, apellido: str) -> Usuario:
         cnx = self.__db

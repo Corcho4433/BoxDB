@@ -32,7 +32,7 @@ class CrudManager:
     @property
     def usuario(self) -> str:
         return str(self.__usuario)
-    
+
     @property
     def productos_cantidad(self) -> list:
         return self.__productos_cantidad
