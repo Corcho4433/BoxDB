@@ -2,7 +2,14 @@
 
 2. Abrir una consola powershell de administrador en este directorio
 
-3. Ejecutar en la consola el siguiente comando: ".\setup.ps1"
+3. Ejecutar en la consola el siguiente comando: 
+"if (!(Test-Path -Path "venv")) {
+    python -m venv venv
+    Write-Output "Entorno virtual 'venv' creado."
+}
+& .\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+Write-Output "Dependencias instaladas y entorno virtual activado. Listo para ejecutar el programa."
 
 4. Cuando aparezca en pantalla "Entorno virtual activado. Listo para ejecutar el programa." ejecutar "python app.py"
 
