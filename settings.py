@@ -1,1 +1,1 @@
-DB_PASSWORD = "racing1996" #Insertar la contraseña de su conexion MySQL
+DB_PASSWORD = "" #Insertar la contraseña de su conexion MySQL

@@ -1,9 +1,9 @@
 1. Colocar la contraseña de la conexion MySQL en el archivo settings.py
 
-2. Abrir una consola powershell de administrador en este directorio
+2. Abrir una consola powershell en este directorio
 
 3. Ejecutar en la consola el siguiente comando: 
-"if (!(Test-Path -Path "venv")) {
+if (!(Test-Path -Path "venv")) {
     python -m venv venv
     Write-Output "Entorno virtual 'venv' creado."
 }
@@ -11,6 +11,6 @@
 pip install -r requirements.txt
 Write-Output "Dependencias instaladas y entorno virtual activado. Listo para ejecutar el programa."
 
-4. Cuando aparezca en pantalla "Entorno virtual activado. Listo para ejecutar el programa." ejecutar "python app.py"
+4. Cuando aparezca en pantalla "Entorno virtual activado. Listo para ejecutar el programa." ejecutar "python app.py" ( se podra verificar que se esta en un directorio (venv) en verde )
 
 5. Para cerrar el programa simplemente teclear Ctrl + C en la terminal powershell y ejecutar "exit"
